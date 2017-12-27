@@ -1,0 +1,12 @@
+// navigation buttons
+
+@import "variables";
+
+.pointer {
+  z-index: 2;
+  font-size: $menu-font-size;
+  color: $primary;
+  position: absolute;
+  top: calc(50% - #{$menu-text-radius} - 2.5rem);
+  left: calc(50% - #{$menu-font-size/2});
+}

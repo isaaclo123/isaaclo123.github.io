@@ -1,0 +1,87 @@
+// menu scss
+
+@import "variables";
+
+// spin animation
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg) !important; } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg) !important; } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg) !important; } }
+
+// the circular text of the menu
+
+nav {
+  z-index: 2;
+  position: absolute;
+  bottom: calc(50% - #{($menu-text-radius)});
+  right: calc(50% - #{$menu-text-radius});
+  /*
+  -webkit-animation:spin 10s linear infinite;
+  -moz-animation:spin 10s linear infinite;
+  animation:spin 10s linear infinite;
+  animation-name: spin;
+  */
+  width: ($menu-text-radius*2);
+  height: ($menu-text-radius*2);
+
+  // internal character span css
+  span {
+    color: $primary !important;
+    font: $menu-font-size $font-family;
+    height: $menu-text-radius;
+    width: $menu-font-size;
+    position: absolute;
+    text-align: center;
+    transform-origin: bottom center;
+    top: 0;
+    left: #{$menu-text-radius - ($menu-font-size/2)};
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  // highlight
+  .highlight {
+    color: $accent;
+  }
+
+  // links characters css
+  @for $i from 1 through 60 {
+    .char#{$i} {
+      transform: rotate((($i*6)-(6*4.5))+deg) !important;
+    };
+  };
+}
+
+// the viewed part of the page inside the center circle
+
+#view {
+  z-index: 1;
+  position:relative;
+  width:100vw; height:100vh;
+  margin:0 auto;
+  overflow:hidden;
+
+  &:after{
+    border: $border-size $primary solid !important;
+    box-sizing: border-box;
+    top: calc(50% - #{23rem/2});
+    left: calc(50% - #{23rem/2});
+    content:'';
+    position:absolute;
+    border-radius:100%;
+    width:($content-radius); height:($content-radius);
+    box-shadow: 0px 0px 0px 2000px $background;
+  }
+}
+
+.page {
+  position: absolute;
+  width: $content-radius;
+  top: calc(50% - #{$content-radius/2});
+  left: calc(50% - #{$content-radius/2});
+  height: $content-radius;
+  width: $content-radius;
+}
