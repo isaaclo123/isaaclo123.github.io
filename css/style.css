@@ -49,8 +49,11 @@ nav {
     top: 0;
     left: 13rem; }
   nav p {
+    cursor: pointer;
     padding: 0;
     margin: 0; }
+  nav i {
+    cursor: pointer; }
   nav .highlight {
     color: #2962ff; }
   nav .char1 {
@@ -174,32 +177,47 @@ nav {
   nav .char60 {
     transform: rotate(333deg) !important; }
 
-#view {
+/*
+// the part of the page that frames the view inside the center circle
+
+#page-frame {
   z-index: 1;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto;
-  overflow: hidden; }
-  #view:after {
-    border: 0.2rem #0d47a1 solid !important;
+  position:relative;
+  width:100vw; height:100vh;
+  margin:0 auto;
+  overflow:hidden;
+  //pointer-events: none;
+
+  &:after{
+    border: $border-size $primary solid !important;
     box-sizing: border-box;
     top: calc(50% - 23rem/2);
     left: calc(50% - 23rem/2);
-    content: '';
-    position: absolute;
-    border-radius: 100%;
-    width: 23rem;
-    height: 23rem;
-    box-shadow: 0px 0px 0px 2000px #fafafa; }
-
-.page {
+    content:'';
+    position:absolute;
+    border-radius:100%;
+    width:($content-radius); height:($content-radius);
+    box-shadow: 0px 0px 0px 2000px $background;
+  }
+}
+*/
+#view {
   position: absolute;
   width: 23rem;
   top: calc(50% - 11.5rem);
   left: calc(50% - 11.5rem);
   height: 23rem;
-  width: 23rem; }
+  width: 23rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0.2rem #0d47a1 solid !important;
+  z-index: 3;
+  text-align: center;
+  line-height: 80px; }
+  #view span {
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle; }
 
 .pointer {
   z-index: 2;

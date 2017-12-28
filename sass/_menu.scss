@@ -23,6 +23,7 @@ nav {
   */
   width: ($menu-text-radius*2);
   height: ($menu-text-radius*2);
+  //pointer-events: none;
 
   // internal character span css
   span {
@@ -38,8 +39,15 @@ nav {
   }
 
   p {
+    cursor: pointer;
     padding: 0;
     margin: 0;
+    //pointer-events: auto;
+  }
+
+  i {
+    cursor: pointer;
+    //pointer-events: auto;
   }
 
   // highlight
@@ -55,14 +63,16 @@ nav {
   };
 }
 
-// the viewed part of the page inside the center circle
+/*
+// the part of the page that frames the view inside the center circle
 
-#view {
+#page-frame {
   z-index: 1;
   position:relative;
   width:100vw; height:100vh;
   margin:0 auto;
   overflow:hidden;
+  //pointer-events: none;
 
   &:after{
     border: $border-size $primary solid !important;
@@ -76,12 +86,27 @@ nav {
     box-shadow: 0px 0px 0px 2000px $background;
   }
 }
+*/
 
-.page {
+#view {
   position: absolute;
   width: $content-radius;
   top: calc(50% - #{$content-radius/2});
   left: calc(50% - #{$content-radius/2});
   height: $content-radius;
   width: $content-radius;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: $border-size $primary solid !important;
+  z-index: 3;
+
+  //text
+  text-align:center;
+	line-height:80px;
+
+  span {
+    line-height: normal;
+    display:inline-block;
+    vertical-align: middle;
+  }
 }
