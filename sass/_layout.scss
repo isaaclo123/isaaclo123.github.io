@@ -1,0 +1,21 @@
+.content {
+  position: absolute;
+  height: $content-radius; width: $content-radius;
+  top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+  width: $content-radius;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: $border-size $primary solid !important;
+  z-index: 3;
+
+  //text
+  text-align:center;
+	line-height:80px;
+
+  span {
+    line-height: normal;
+    display:inline-block;
+    vertical-align: middle;
+  }
+}
+

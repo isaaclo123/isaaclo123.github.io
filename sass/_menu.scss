@@ -13,29 +13,24 @@
 nav {
   z-index: 2;
   position: absolute;
-  bottom: calc(50% - #{($menu-text-radius)});
-  right: calc(50% - #{$menu-text-radius});
+  top: calc(50% - #{($menu-text-radius)}); right: calc(50% - #{$menu-text-radius});
   /*
   -webkit-animation:spin 10s linear infinite;
   -moz-animation:spin 10s linear infinite;
   animation:spin 10s linear infinite;
   animation-name: spin;
   */
-  width: ($menu-text-radius*2);
-  height: ($menu-text-radius*2);
-  //pointer-events: none;
+  width: ($menu-text-radius*2); height: ($menu-text-radius*2);
 
   // internal character span css
   span {
     color: $primary !important;
     font: $menu-font-size $font-family;
-    height: $menu-text-radius;
-    width: $menu-font-size;
+    height: $menu-text-radius; width: $menu-font-size;
     position: absolute;
     text-align: center;
     transform-origin: bottom center;
-    top: 0;
-    left: #{$menu-text-radius - ($menu-font-size/2)};
+    top: 0; left: #{$menu-text-radius - ($menu-font-size/2)};
   }
 
   p {
@@ -87,26 +82,3 @@ nav {
   }
 }
 */
-
-#view {
-  position: absolute;
-  width: $content-radius;
-  top: calc(50% - #{$content-radius/2});
-  left: calc(50% - #{$content-radius/2});
-  height: $content-radius;
-  width: $content-radius;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: $border-size $primary solid !important;
-  z-index: 3;
-
-  //text
-  text-align:center;
-	line-height:80px;
-
-  span {
-    line-height: normal;
-    display:inline-block;
-    vertical-align: middle;
-  }
-}
