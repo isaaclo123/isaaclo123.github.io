@@ -18,18 +18,21 @@ html, body {
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg) !important; } }
+
 @-webkit-keyframes spin {
   100% {
     -webkit-transform: rotate(360deg) !important; } }
+
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg) !important; } }
+
 nav {
   z-index: 2;
   position: absolute;
-  top: calc(50% - 14.25rem);
-  right: calc(50% - 14.25rem);
+  top: calc(50% - 14.5rem);
+  right: calc(50% - 14.5rem);
   /*
   -webkit-animation:spin 10s linear infinite;
   -moz-animation:spin 10s linear infinite;
@@ -37,18 +40,18 @@ nav {
   animation-name: spin;
   */
   pointer-events: none;
-  width: 28.5rem;
-  height: 28.5rem; }
+  width: 29rem;
+  height: 29rem; }
   nav span {
     color: #0d47a1 !important;
     font: 2rem Courier, MonoSpace;
-    height: 14.25rem;
+    height: 14.5rem;
     width: 2rem;
     position: absolute;
     text-align: center;
     transform-origin: bottom center;
     top: 0;
-    left: 13.25rem;
+    left: 13.5rem;
     pointer-events: none; }
   nav p {
     cursor: pointer;
@@ -192,15 +195,15 @@ nav {
   overflow: hidden;
   pointer-events: none; }
   #circle-frame:after {
-    border: 0.2rem #0d47a1 solid !important;
+    border: 0.25rem #0d47a1 solid !important;
     box-sizing: border-box;
-    top: calc(50% - 11.7rem);
-    left: calc(50% - 11.7rem);
+    top: calc(50% - 11.75rem);
+    left: calc(50% - 11.75rem);
     content: '';
     position: absolute;
     border-radius: 100%;
-    width: 23.4rem;
-    height: 23.4rem;
+    width: 23.5rem;
+    height: 23.5rem;
     box-shadow: 0px 0px 0px 2000px #fafafa; }
 
 .pointer {
@@ -208,7 +211,7 @@ nav {
   font-size: 2rem;
   color: #0d47a1;
   position: absolute;
-  top: calc(50% - 14.25rem - 2.5rem);
+  top: calc(50% - 14.5rem - 2.5rem);
   left: calc(50% - 1rem); }
 
 .page {
@@ -249,7 +252,7 @@ nav {
   background-color: #0d47a1;
   color: #fafafa !important;
   border-radius: 50%;
-  border: 0.1rem #fafafa solid !important; }
+  border: 0.125rem #fafafa solid !important; }
   .dark-page .content {
     color: #fafafa; }
 
@@ -257,5 +260,3 @@ nav {
   border-radius: 50%;
   height: 23rem;
   width: 23rem; }
-
-/*# sourceMappingURL=style.css.map */
