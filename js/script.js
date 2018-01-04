@@ -9,33 +9,53 @@ const pages = [
 ];
 
 const social = [
+  ['fa-facebook fa', 'https://www.facebook.com/isaaclo123'],
+  ['fa-linkedin fa', 'https://www.linkedin.com/in/isaac-lo-325587124/'],
+  ['fa-github fa', 'https://github.com/isaaclo123'],
+];
+/*
+const social = [
   ['icon-social-facebook', 'https://www.facebook.com/isaaclo123'],
   ['icon-social-linkedin', 'https://www.linkedin.com/in/isaac-lo-325587124/'],
   ['icon-social-github', 'https://github.com/isaaclo123'],
 ];
-
-window.onload = () => {
-  menuInit(pages, social); // eslint-disable-line no-undef
-};
+*/
 
 // router
 
 const routes = {
   '': {
-    url: '/home/home.html',
+    page: './pages/home/home.html',
+    script: './pages/home/home.js',
+  },
+  home: {
+    page: './pages/home/home.html',
+    script: './pages/home/home.js',
   },
   resume: {
-    url: '/resume/resume.html',
+    page: './pages/resume/resume.html',
+    // script: resumeLoad(), // eslint-disable-line no-undef
   },
   projects: {
-    url: '/projects/projects.html',
+    page: './pages/projects/projects.html',
+    // script: projectLoad(), // eslint-disable-line no-undef
   },
   music: {
-    url: '/music/music.html',
+    page: './pages/music/music.html',
+    // script: musicLoad(), // eslint-disable-line no-undef
   },
   contact: {
-    url: '/contact/contact.html',
+    page: './pages/contact/contact.html',
+    // script: contactLoad(), // eslint-disable-line no-undef
   },
+};
+
+// page
+
+window.onload = () => {
+  menuInit(pages, social); // eslint-disable-line no-undef
+  router(routes); // eslint-disable-line no-undef
+  // goto home page when page first loads
 };
 
 // route view based on page change
@@ -44,4 +64,8 @@ window.onhashchange = () => {
   setTimeout(() => {
     router(routes); // eslint-disable-line no-undef
   }, 400);
+};
+
+window.onbeforeunload = () => {
+  router(routes); // eslint-disable-line no-undef
 };

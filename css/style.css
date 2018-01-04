@@ -28,7 +28,7 @@ html, body {
 nav {
   z-index: 2;
   position: absolute;
-  bottom: calc(50% - 14rem);
+  top: calc(50% - 14rem);
   right: calc(50% - 14rem);
   /*
   -webkit-animation:spin 10s linear infinite;
@@ -36,6 +36,7 @@ nav {
   animation:spin 10s linear infinite;
   animation-name: spin;
   */
+  pointer-events: none;
   width: 28rem;
   height: 28rem; }
   nav span {
@@ -47,13 +48,18 @@ nav {
     text-align: center;
     transform-origin: bottom center;
     top: 0;
-    left: 13rem; }
+    left: 13rem;
+    pointer-events: none; }
   nav p {
     cursor: pointer;
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    font-weight: bold;
+    pointer-events: auto; }
   nav i {
-    cursor: pointer; }
+    font-size: 1.6rem !important;
+    cursor: pointer;
+    pointer-events: auto; }
   nav .highlight {
     color: #2962ff; }
   nav .char1 {
@@ -177,47 +183,25 @@ nav {
   nav .char60 {
     transform: rotate(333deg) !important; }
 
-/*
-// the part of the page that frames the view inside the center circle
-
-#page-frame {
+#circle-frame {
   z-index: 1;
-  position:relative;
-  width:100vw; height:100vh;
-  margin:0 auto;
-  overflow:hidden;
-  //pointer-events: none;
-
-  &:after{
-    border: $border-size $primary solid !important;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  pointer-events: none; }
+  #circle-frame:after {
+    border: 0.2rem #0d47a1 solid !important;
     box-sizing: border-box;
     top: calc(50% - 23rem/2);
     left: calc(50% - 23rem/2);
-    content:'';
-    position:absolute;
-    border-radius:100%;
-    width:($content-radius); height:($content-radius);
-    box-shadow: 0px 0px 0px 2000px $background;
-  }
-}
-*/
-#view {
-  position: absolute;
-  width: 23rem;
-  top: calc(50% - 11.5rem);
-  left: calc(50% - 11.5rem);
-  height: 23rem;
-  width: 23rem;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: 0.2rem #0d47a1 solid !important;
-  z-index: 3;
-  text-align: center;
-  line-height: 80px; }
-  #view span {
-    line-height: normal;
-    display: inline-block;
-    vertical-align: middle; }
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    width: 23rem;
+    height: 23rem;
+    box-shadow: 0px 0px 0px 2000px #fafafa; }
 
 .pointer {
   z-index: 2;
@@ -226,5 +210,38 @@ nav {
   position: absolute;
   top: calc(50% - 14rem - 2.5rem);
   left: calc(50% - 1rem); }
+
+.page {
+  position: absolute;
+  height: 23rem;
+  width: 23rem;
+  top: calc(50% - 11.5rem);
+  left: calc(50% - 11.5rem);
+  box-sizing: border-box;
+  border-radius: 50%;
+  z-index: 0;
+  font-size: 2.5rem;
+  font-family: Courier, MonoSpace;
+  text-align: center;
+  padding-top: auto;
+  padding-bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.content {
+  padding: 1rem;
+  padding-top: 0;
+  height: auto;
+  width: auto;
+  color: #0d47a1; }
+  .content h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 2.5rem; }
+  .content span {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: Arial; }
 
 /*# sourceMappingURL=style.css.map */

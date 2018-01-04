@@ -1,21 +1,41 @@
-.content {
+// content layour scss
+
+@import "variables";
+
+.page {
   position: absolute;
   height: $content-radius; width: $content-radius;
   top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
-  width: $content-radius;
   box-sizing: border-box;
   border-radius: 50%;
-  border: $border-size $primary solid !important;
-  z-index: 3;
+  //border: $border-size $primary solid !important;
+  z-index: 0;
+  font-size: $content-title-size;
+  font-family: $font-family;
+  text-align: center;
+  padding-top: auto;
+  padding-bottom: auto;
 
-  //text
-  text-align:center;
-	line-height:80px;
-
-  span {
-    line-height: normal;
-    display:inline-block;
-    vertical-align: middle;
-  }
+  // vertically align pages
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.content {
+  padding: $page-padding;
+  padding-top: 0;
+  height: auto; width: auto;
+  color: $primary;
+
+  h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: $page-title-size;
+  }
+  span {
+    margin: 0;
+    font-size: $page-font-size;
+    font-family: Arial;
+  }
+}

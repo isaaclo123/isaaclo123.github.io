@@ -1,4 +1,5 @@
 // router
+//
 
 function router(routeData) { // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
@@ -6,7 +7,14 @@ function router(routeData) { // eslint-disable-line no-unused-vars
     const view = document.getElementById('view');
     const reader = new FileReader();
 
-    fetch(routeData[route].url, {
+    // script loader
+    const script = document.createElement('script');
+    script.onload = () => {
+      load(); // eslint-disable-line no-undef
+    };
+
+
+    fetch(routeData[route].page, {
       method: 'GET',
       headers: {},
       mode: 'cors',
@@ -19,10 +27,13 @@ function router(routeData) { // eslint-disable-line no-unused-vars
     reader.onload = () => {
       view.innerHTML = reader.result;
       setTimeout(() => {
-        // document.getElementById("left").classList.add('load')
-        // document.getElementById("right").classList.add('load')
+        // animate
       }, 400);
-      routeData[route].script();
+      if ('script' in routeData[route]) {
+        // script loading
+        script.src = routeData[route].script;
+        view.appendChild(script);
+      }
     };
   } else {
     window.location = '';

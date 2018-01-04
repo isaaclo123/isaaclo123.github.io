@@ -1,8 +1,12 @@
 // sets up circular menu
 
-function goto(url) { // eslint-disable-line no-unused-vars
+function gotoUrl(url) { // eslint-disable-line no-unused-vars
   // goes to URL
   window.location.href = url;
+}
+
+function gotoHash(hash) { // eslint-disable-line no-unused-vars
+  window.location.hash = `/${hash}`;
 }
 
 function hover(el) { // eslint-disable-line no-unused-vars
@@ -13,13 +17,6 @@ function hover(el) { // eslint-disable-line no-unused-vars
   for (let i = 0; i < elements.length; i += 1) {
     elements[i].classList.toggle('highlight');
   }
-}
-
-function getBaseURL() {
-  // gets base URL
-  const arr = window.location.href.split('/');
-  delete arr[arr.length - 1];
-  return arr.join('/');
 }
 
 function menuInit(pages, social) { // eslint-disable-line no-unused-vars
@@ -35,7 +32,7 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
 
     if (name !== 'seperator') {
       // add linking to character
-      inner.setAttribute('onclick', `goto(${getBaseURL()}${name})`);
+      inner.setAttribute('onclick', `gotoHash('${name}')`);
       // add hover behavior
       inner.setAttribute('onmouseover', 'hover(this)');
       inner.setAttribute('onmouseout', 'hover(this)');
@@ -91,11 +88,10 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
 
     // create icon for social link
     const icon = document.createElement('i');
-    icon.classList.add(social[j][0]);
-    // icon.classList.add('fa'); for fa-icons
+    icon.className += social[j][0];
     icon.setAttribute('aria-hidden', 'true');
     // add linking
-    icon.setAttribute('onclick', `goto('${social[j][1]}')`);
+    icon.setAttribute('onclick', `gotoUrl('${social[j][1]}')`);
     // add hover behavior
     icon.setAttribute('onmouseover', 'hover(this)');
     icon.setAttribute('onmouseout', 'hover(this)');

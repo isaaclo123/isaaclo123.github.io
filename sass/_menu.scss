@@ -20,6 +20,7 @@ nav {
   animation:spin 10s linear infinite;
   animation-name: spin;
   */
+  pointer-events: none;
   width: ($menu-text-radius*2); height: ($menu-text-radius*2);
 
   // internal character span css
@@ -31,18 +32,21 @@ nav {
     text-align: center;
     transform-origin: bottom center;
     top: 0; left: #{$menu-text-radius - ($menu-font-size/2)};
+    pointer-events: none;
   }
 
   p {
     cursor: pointer;
     padding: 0;
     margin: 0;
-    //pointer-events: auto;
+    font-weight: bold;
+    pointer-events: auto;
   }
 
   i {
+    font-size: ($menu-font-size * 0.8) !important;
     cursor: pointer;
-    //pointer-events: auto;
+    pointer-events: auto;
   }
 
   // highlight
@@ -58,16 +62,15 @@ nav {
   };
 }
 
-/*
 // the part of the page that frames the view inside the center circle
 
-#page-frame {
+#circle-frame {
   z-index: 1;
   position:relative;
   width:100vw; height:100vh;
   margin:0 auto;
   overflow:hidden;
-  //pointer-events: none;
+  pointer-events: none;
 
   &:after{
     border: $border-size $primary solid !important;
@@ -81,4 +84,3 @@ nav {
     box-shadow: 0px 0px 0px 2000px $background;
   }
 }
-*/
