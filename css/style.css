@@ -28,8 +28,8 @@ html, body {
 nav {
   z-index: 2;
   position: absolute;
-  top: calc(50% - 14rem);
-  right: calc(50% - 14rem);
+  top: calc(50% - 14.25rem);
+  right: calc(50% - 14.25rem);
   /*
   -webkit-animation:spin 10s linear infinite;
   -moz-animation:spin 10s linear infinite;
@@ -37,18 +37,18 @@ nav {
   animation-name: spin;
   */
   pointer-events: none;
-  width: 28rem;
-  height: 28rem; }
+  width: 28.5rem;
+  height: 28.5rem; }
   nav span {
     color: #0d47a1 !important;
     font: 2rem Courier, MonoSpace;
-    height: 14rem;
+    height: 14.25rem;
     width: 2rem;
     position: absolute;
     text-align: center;
     transform-origin: bottom center;
     top: 0;
-    left: 13rem;
+    left: 13.25rem;
     pointer-events: none; }
   nav p {
     cursor: pointer;
@@ -57,7 +57,7 @@ nav {
     font-weight: bold;
     pointer-events: auto; }
   nav i {
-    font-size: 1.6rem !important;
+    font-size: 1.7rem !important;
     cursor: pointer;
     pointer-events: auto; }
   nav .highlight {
@@ -194,13 +194,13 @@ nav {
   #circle-frame:after {
     border: 0.2rem #0d47a1 solid !important;
     box-sizing: border-box;
-    top: calc(50% - 23rem/2);
-    left: calc(50% - 23rem/2);
+    top: calc(50% - 11.7rem);
+    left: calc(50% - 11.7rem);
     content: '';
     position: absolute;
     border-radius: 100%;
-    width: 23rem;
-    height: 23rem;
+    width: 23.4rem;
+    height: 23.4rem;
     box-shadow: 0px 0px 0px 2000px #fafafa; }
 
 .pointer {
@@ -208,7 +208,7 @@ nav {
   font-size: 2rem;
   color: #0d47a1;
   position: absolute;
-  top: calc(50% - 14rem - 2.5rem);
+  top: calc(50% - 14.25rem - 2.5rem);
   left: calc(50% - 1rem); }
 
 .page {
@@ -228,20 +228,34 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center; }
+  .page .content {
+    padding: 1.5rem;
+    height: auto;
+    width: auto;
+    color: #0d47a1;
+    line-height: 2rem; }
+    .page .content h1 {
+      margin: 0;
+      margin-bottom: 0.75rem;
+      font-weight: bold;
+      font-size: 2.5rem;
+      font-family: Courier, MonoSpace; }
+    .page .content span {
+      margin: 0;
+      font-size: 1.5rem;
+      font-family: Helvetica, Regular; }
 
-.content {
-  padding: 1rem;
-  padding-top: 0;
-  height: auto;
-  width: auto;
-  color: #0d47a1; }
-  .content h1 {
-    margin: 0;
-    font-weight: bold;
-    font-size: 2.5rem; }
-  .content span {
-    margin: 0;
-    font-size: 1.5rem;
-    font-family: Arial; }
+.dark-page {
+  background-color: #0d47a1;
+  color: #fafafa !important;
+  border-radius: 50%;
+  border: 0.1rem #fafafa solid !important; }
+  .dark-page .content {
+    color: #fafafa; }
+
+.page-fit {
+  border-radius: 50%;
+  height: 23rem;
+  width: 23rem; }
 
 /*# sourceMappingURL=style.css.map */

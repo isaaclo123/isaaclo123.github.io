@@ -26,7 +26,7 @@ nav {
   // internal character span css
   span {
     color: $primary !important;
-    font: $menu-font-size $font-family;
+    font: $menu-font-size $serif-font;
     height: $menu-text-radius; width: $menu-font-size;
     position: absolute;
     text-align: center;
@@ -44,7 +44,7 @@ nav {
   }
 
   i {
-    font-size: ($menu-font-size * 0.8) !important;
+    font-size: ($menu-font-size * 0.85) !important;
     cursor: pointer;
     pointer-events: auto;
   }
@@ -75,12 +75,13 @@ nav {
   &:after{
     border: $border-size $primary solid !important;
     box-sizing: border-box;
-    top: calc(50% - #{23rem/2});
-    left: calc(50% - #{23rem/2});
+    top: calc(50% - #{(23rem+(2*$border-size))/2});
+    left: calc(50% - #{(23rem+(2*$border-size))/2});
+    // left: calc(50% - #{23rem/2});
     content:'';
     position:absolute;
     border-radius:100%;
-    width:($content-radius); height:($content-radius);
+    width:($content-radius+(2*$border-size)); height:($content-radius+(2*$border-size));
     box-shadow: 0px 0px 0px 2000px $background;
   }
 }

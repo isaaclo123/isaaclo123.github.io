@@ -11,7 +11,7 @@
   //border: $border-size $primary solid !important;
   z-index: 0;
   font-size: $content-title-size;
-  font-family: $font-family;
+  font-family: $serif-font;
   text-align: center;
   padding-top: auto;
   padding-bottom: auto;
@@ -20,22 +20,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .content {
+    padding: $page-padding;
+    height: auto; width: auto;
+    color: $primary;
+    line-height: $page-line-height;
+
+    h1 {
+      margin: 0;
+      margin-bottom: ($page-padding/2);
+      font-weight: bold;
+      font-size: $page-title-size;
+      font-family: $serif-font;
+    }
+    span {
+      margin: 0;
+      font-size: $page-font-size;
+      font-family: $sans-serif-font;
+    }
+  }
+
 }
 
-.content {
-  padding: $page-padding;
-  padding-top: 0;
-  height: auto; width: auto;
-  color: $primary;
+.dark-page {
+  background-color: $primary;
+  color: $background !important;
+  border-radius: 50%;
+  border: ($border-size*0.5) $background solid !important;
+  .content {
+    color: $background;
+  }
+}
 
-  h1 {
-    margin: 0;
-    font-weight: bold;
-    font-size: $page-title-size;
-  }
-  span {
-    margin: 0;
-    font-size: $page-font-size;
-    font-family: Arial;
-  }
+.page-fit {
+  border-radius: 50%;
+  height: $content-radius; width: $content-radius;
 }

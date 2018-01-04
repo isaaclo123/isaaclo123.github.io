@@ -1,10 +1,9 @@
 // router
-//
 
-function router(routeData) { // eslint-disable-line no-unused-vars
+function router(routeData, element = 'view') { // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
-    const view = document.getElementById('view');
+    const view = document.getElementById(element);
     const reader = new FileReader();
 
     // script loader
@@ -12,7 +11,6 @@ function router(routeData) { // eslint-disable-line no-unused-vars
     script.onload = () => {
       load(); // eslint-disable-line no-undef
     };
-
 
     fetch(routeData[route].page, {
       method: 'GET',
@@ -39,4 +37,3 @@ function router(routeData) { // eslint-disable-line no-unused-vars
     window.location = '';
   }
 }
-

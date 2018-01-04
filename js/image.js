@@ -16,8 +16,8 @@ function loadImage(image, imageElement = document.getElementById('image')) { // 
   }
 }
 
-function loadImages(selector) { // eslint-disable-line no-unused-vars
+function loadImages(selector, imgAttribute = 'img-src') { // eslint-disable-line no-unused-vars
   document.body.querySelectorAll(selector).forEach((val) => {
-    if (val.getAttribute('img-src')) loadImage(val.getAttribute('img-src'), val);
+    if (val.getAttribute(imgAttribute)) loadImage(val.getAttribute(imgAttribute), val);
   });
 }
