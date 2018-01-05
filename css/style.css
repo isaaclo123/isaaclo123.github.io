@@ -226,7 +226,12 @@ nav {
   height: 2rem;
   top: calc(50% - 1rem);
   left: calc(50% - 1rem);
-  text-align: center !important; }
+  padding: auto;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .left {
   left: calc(50% - 11rem); }
