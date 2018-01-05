@@ -31,8 +31,8 @@ html, body {
 nav {
   z-index: 2;
   position: absolute;
-  top: calc(50% - 14.5rem);
-  right: calc(50% - 14.5rem);
+  top: calc(50% - 14rem);
+  right: calc(50% - 14rem);
   /*
   -webkit-animation:spin 10s linear infinite;
   -moz-animation:spin 10s linear infinite;
@@ -40,18 +40,18 @@ nav {
   animation-name: spin;
   */
   pointer-events: none;
-  width: 29rem;
-  height: 29rem; }
+  width: 28rem;
+  height: 28rem; }
   nav span {
     color: #0d47a1 !important;
     font: 2rem Courier, MonoSpace;
-    height: 14.5rem;
+    height: 14rem;
     width: 2rem;
     position: absolute;
     text-align: center;
     transform-origin: bottom center;
     top: 0;
-    left: 13.5rem;
+    left: 13rem;
     pointer-events: none; }
   nav p {
     cursor: pointer;
@@ -197,22 +197,42 @@ nav {
   #circle-frame:after {
     border: 0.25rem #0d47a1 solid !important;
     box-sizing: border-box;
-    top: calc(50% - 11.75rem);
-    left: calc(50% - 11.75rem);
+    top: calc(50% - 23rem/2);
+    left: calc(50% - 23rem/2);
     content: '';
     position: absolute;
     border-radius: 100%;
-    width: 23.5rem;
-    height: 23.5rem;
+    width: 23rem;
+    height: 23rem;
     box-shadow: 0px 0px 0px 2000px #fafafa; }
 
+/*
 .pointer {
   z-index: 2;
-  font-size: 2rem;
-  color: #0d47a1;
+  font-size: $menu-font-size !important;
+  font-family: $serif-font;
+  color: $primary;
   position: absolute;
-  top: calc(50% - 14.5rem - 2.5rem);
-  left: calc(50% - 1rem); }
+  top: calc(50% - 14rem - 2.5rem); left: calc(50% - 1rem);
+}
+*/
+.next-button {
+  z-index: 2;
+  position: absolute;
+  font-size: 2rem;
+  font-family: Courier, MonoSpace;
+  color: #fafafa;
+  width: 2rem;
+  height: 2rem;
+  top: calc(50% - 1rem);
+  left: calc(50% - 1rem);
+  text-align: center !important; }
+
+.left {
+  left: calc(50% - 11rem); }
+
+.right {
+  left: calc(50% - -9rem); }
 
 .page {
   position: absolute;
@@ -252,7 +272,7 @@ nav {
   background-color: #0d47a1;
   color: #fafafa !important;
   border-radius: 50%;
-  border: 0.125rem #fafafa solid !important; }
+  border: 0.4375rem #fafafa solid !important; }
   .dark-page .content {
     color: #fafafa; }
 

@@ -47,7 +47,7 @@
   background-color: $primary;
   color: $background !important;
   border-radius: 50%;
-  border: ($border-size*0.5) $background solid !important;
+  border: ($border-size*1.75) $background solid !important;
   .content {
     color: $background;
   }

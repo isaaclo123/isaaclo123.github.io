@@ -1,11 +1,32 @@
 // navigation buttons
 
 @import "variables";
-
+/*
 .pointer {
   z-index: 2;
-  font-size: $menu-font-size;
+  font-size: $menu-font-size !important;
+  font-family: $serif-font;
   color: $primary;
   position: absolute;
   top: calc(50% - #{$menu-text-radius} - 2.5rem); left: calc(50% - #{$menu-font-size/2});
+}
+*/
+
+.next-button {
+  z-index: 2;
+  position: absolute;
+  font-size: $nav-font-size;
+  font-family: $serif-font;
+  color: $background;
+  width: $nav-font-size; height: $nav-font-size;
+  top: calc(50% - #{$menu-font-size/2}); left: calc(50% - #{$menu-font-size/2});
+  text-align: center !important;
+}
+
+.left {
+  left: calc(50% - #{($nav-font-size/2) + ($content-radius/2) - 1.5rem}});
+}
+
+.right {
+  left: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
 }

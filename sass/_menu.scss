@@ -75,13 +75,12 @@ nav {
   &:after{
     border: $border-size $primary solid !important;
     box-sizing: border-box;
-    top: calc(50% - #{(23rem+(2*$border-size))/2});
-    left: calc(50% - #{(23rem+(2*$border-size))/2});
+    top: calc(50% - #{23rem/2}); left: calc(50% - #{23rem/2});
     // left: calc(50% - #{23rem/2});
     content:'';
     position:absolute;
     border-radius:100%;
-    width:($content-radius+(2*$border-size)); height:($content-radius+(2*$border-size));
+    width:($content-radius); height:($content-radius);
     box-shadow: 0px 0px 0px 2000px $background;
   }
 }
