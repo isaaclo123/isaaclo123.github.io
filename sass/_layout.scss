@@ -29,10 +29,14 @@
 
     h1 {
       margin: 0;
-      margin-bottom: ($page-padding/2);
+      margin-bottom: ($page-line-height*0.75);
       font-weight: bold;
       font-size: $page-title-size;
       font-family: $serif-font;
+    }
+    p {
+      margin: 0px;
+      margin-bottom: ($page-line-height*0.25);
     }
     span {
       margin: 0;
@@ -41,15 +45,14 @@
     }
   }
 
-}
-
-.dark-page {
-  background-color: $primary;
-  color: $background !important;
-  border-radius: 50%;
-  border: ($border-size*1.75) $background solid !important;
-  .content {
+  &-dark {
+    background-color: $primary;
     color: $background;
+    border-radius: 50%;
+    border: ($border-size*1.75) $background solid;
+    .content {
+      color: $background;
+    }
   }
 }
 

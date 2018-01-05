@@ -226,8 +226,6 @@ nav {
   height: 2rem;
   top: calc(50% - 1rem);
   left: calc(50% - 1rem);
-  padding: auto;
-  margin: auto;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -257,29 +255,31 @@ nav {
   justify-content: center;
   align-items: center; }
   .page .content {
-    padding: 1.5rem;
+    padding: 2.5rem;
     height: auto;
     width: auto;
     color: #0d47a1;
-    line-height: 2rem; }
+    line-height: 1.5rem; }
     .page .content h1 {
       margin: 0;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.125rem;
       font-weight: bold;
-      font-size: 2.5rem;
+      font-size: 2.25rem;
       font-family: Courier, MonoSpace; }
+    .page .content p {
+      margin: 0px;
+      margin-bottom: 0.375rem; }
     .page .content span {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-family: Helvetica, Regular; }
-
-.dark-page {
-  background-color: #0d47a1;
-  color: #fafafa !important;
-  border-radius: 50%;
-  border: 0.4375rem #fafafa solid !important; }
-  .dark-page .content {
-    color: #fafafa; }
+  .page-dark {
+    background-color: #0d47a1;
+    color: #fafafa;
+    border-radius: 50%;
+    border: 0.4375rem #fafafa solid; }
+    .page-dark .content {
+      color: #fafafa; }
 
 .page-fit {
   border-radius: 50%;
