@@ -10,11 +10,8 @@
   border-radius: 50%;
   //border: $border-size $primary solid !important;
   z-index: 0;
-  font-size: $content-title-size;
   font-family: $serif-font;
   text-align: center;
-  padding-top: auto;
-  padding-bottom: auto;
 
   // vertically align pages
   display: flex;
@@ -22,26 +19,37 @@
   align-items: center;
 
   .content {
-    padding: $page-padding;
+    padding: 0;
     height: auto; width: auto;
     color: $primary;
-    line-height: $page-line-height;
 
     h1 {
-      margin: 0;
-      margin-bottom: ($page-line-height*0.75);
+      margin-bottom: (0.5 * $page-font-size);
       font-weight: bold;
       font-size: $page-title-size;
       font-family: $serif-font;
-    }
-    p {
-      margin: 0px;
-      margin-bottom: ($page-line-height*0.25);
+      line-height: ($page-title-size*0.9);
     }
     span {
+      text-align: left;
       margin: 0;
+      margin-top: ($page-font-size*0.3);
+      line-height: ($page-font-size*1.2);
       font-size: $page-font-size;
       font-family: $sans-serif-font;
+    }
+    /*
+    ul {
+      margin-left: (-2 * $page-font-size);
+    }
+    li {
+      padding-top: (0.5 * $page-font-size);
+    }
+    */
+    p {
+      padding: 0;
+      margin: 0;
+      margin-top: (0.5 * $page-font-size);
     }
   }
 

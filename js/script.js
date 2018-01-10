@@ -34,7 +34,7 @@ const routes = {
   },
   resume: {
     page: './pages/resume/resume.html',
-    // script: resumeLoad(), // eslint-disable-line no-undef
+    script: './pages/resume/resume.js',
   },
   projects: {
     page: './pages/projects/projects.html',
