@@ -1,5 +1,5 @@
 html, body {
-  font-size: 3vmin;
+  font-size: 3.3vmin;
   padding: 0 auto;
   margin: 0 auto;
   overflow: hidden;
@@ -230,18 +230,19 @@ nav {
   justify-content: center;
   align-items: center; }
   .button-prev {
-    font-size: 1.5rem !important;
+    font-size: 2rem !important;
     left: calc(50% - 11rem); }
   .button-next {
-    font-size: 1.5rem !important;
+    font-size: 2rem !important;
     left: calc(50% - -9rem); }
   .button-download {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     top: calc(50% - -9rem); }
   .button-indicator {
+    width: auto;
     font-family: Helvetica, Regular;
     font-weight: bold;
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     top: calc(50% - 11rem); }
 
 .page {
@@ -259,33 +260,35 @@ nav {
   align-items: center; }
   .page .content {
     padding: 0;
+    margin-bottom: 1.1rem;
     height: auto;
     width: auto;
     color: #0d47a1; }
     .page .content h1 {
       text-align: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.55rem;
       font-weight: bold;
-      font-size: 1.75rem;
+      font-size: 1.8rem;
       font-family: Courier, MonoSpace;
-      line-height: 1.575rem; }
+      line-height: 1.62rem; }
     .page .content span {
-      text-align: left;
+      padding: 0;
       margin: 0;
-      margin-top: 0.3rem;
-      line-height: 1.2rem;
-      font-size: 1rem;
+      margin-top: 0.33rem;
+      line-height: 1.32rem;
+      font-size: 1.1rem;
       font-family: Helvetica, Regular; }
     .page .content ul {
-      margin: 0;
-      margin-left: -2rem; }
+      padding: 0;
+      margin: 0; }
     .page .content li {
+      padding: 0;
       margin: 0;
-      margin-top: 0.5rem; }
+      margin-top: 0.55rem; }
     .page .content p {
       padding: 0;
       margin: 0;
-      margin-top: 0.5rem; }
+      margin-top: 0.55rem; }
   .page-dark {
     background-color: #0d47a1;
     color: #fafafa;

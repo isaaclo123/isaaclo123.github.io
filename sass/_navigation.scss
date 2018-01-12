@@ -26,24 +26,25 @@
   align-items: center;
 
   &-prev {
-    font-size: ($nav-font-size*0.75) !important;
+    font-size: ($nav-font-size) !important;
     left: calc(50% - #{($nav-font-size/2) + ($content-radius/2) - 1.5rem}});
   }
 
   &-next {
-    font-size: ($nav-font-size*0.75) !important;
+    font-size: ($nav-font-size) !important;
     left: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
   }
 
   &-download {
-    font-size: ($nav-font-size/2) !important;
+    font-size: ($nav-font-size*0.6) !important;
     top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
   }
 
   &-indicator {
+    width: auto;
     font-family: $sans-serif-font;
     font-weight: bold;
-    font-size: ($nav-font-size/2) !important;
+    font-size: ($nav-font-size*0.6) !important;
     top: calc(50% - #{($nav-font-size/2) + ($content-radius/2) - 1.5rem}});
   }
 

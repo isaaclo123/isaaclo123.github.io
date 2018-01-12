@@ -19,6 +19,7 @@
 
   .content {
     padding: 0;
+    margin-bottom: $page-font-size;
     height: auto; width: auto;
     color: $primary;
 
@@ -32,7 +33,7 @@
       line-height: ($page-title-size*0.9);
     }
     span {
-      text-align: left;
+      padding: 0;
       margin: 0;
       margin-top: ($page-font-size*0.3);
       line-height: ($page-font-size*1.2);
@@ -40,10 +41,11 @@
       font-family: $sans-serif-font;
     }
     ul {
+      padding: 0;
       margin: 0;
-      margin-left: (-2 * $page-font-size);
     }
     li {
+      padding: 0;
       margin: 0;
       margin-top: (0.5 * $page-font-size);
     }

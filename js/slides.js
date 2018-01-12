@@ -1,17 +1,13 @@
 // slide generation
 
 function Slides( // eslint-disable-line no-unused-vars
-  slideData,
-  interval = 5000,
-  titleElement = document.getElementById('slide-title'),
-  descriptionElement = document.getElementById('slide-description'),
-  indicatorElement = document.getElementById('indicator'),
+  interval = 10000,
+  slideClass = 'slide',
+  indicator = 'indicator',
 ) {
   this.slideId = -1;
-  this.slideData = slideData;
-  this.title = titleElement;
-  this.description = descriptionElement;
-  this.indicator = indicatorElement;
+  this.slides = document.getElementsByClassName(slideClass);
+  this.indicator = document.getElementById(indicator);
 
   // actions that actually show the slides
   this.slideshow = () => {
@@ -34,7 +30,7 @@ function Slides( // eslint-disable-line no-unused-vars
   // goes to next slide in slideshow, loops around
   this.next = () => {
     this.slideId += 1;
-    if (this.slideId > this.slideData.length - 1) {
+    if (this.slideId > this.slides.length - 1) {
       this.slideId = 0;
     }
     this.goto(this.slideId);
@@ -47,7 +43,7 @@ function Slides( // eslint-disable-line no-unused-vars
   this.prev = () => {
     this.slideId -= 1;
     if (this.slideId < 0) {
-      this.slideId = this.slideData.length - 1;
+      this.slideId = this.slides.length - 1;
     }
     this.goto(this.slideId);
     this.timerReset();
@@ -56,13 +52,16 @@ function Slides( // eslint-disable-line no-unused-vars
 
   // sets slideshow to page with id
   this.goto = (id) => {
-    this.title.innerHTML = this.slideData[id].title;
-    this.description.innerHTML = this.slideData[id].description;
+    for (let i = 0; i < this.slides.length; i += 1) {
+      this.slides[i].style.display = 'none';
+    }
+    this.slides[id].style.display = 'block';
+    this.indicate();
   };
 
   // set page
   this.indicate = () => {
-    this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slideData.length)}`;
+    this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slides.length)}`;
   };
 
   // init
