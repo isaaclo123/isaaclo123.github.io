@@ -35,9 +35,16 @@
     left: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
   }
 
-  &-download{
+  &-download {
     font-size: ($nav-font-size/2) !important;
     top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
+  }
+
+  &-indicator {
+    font-family: $sans-serif-font;
+    font-weight: bold;
+    font-size: ($nav-font-size/2) !important;
+    top: calc(50% - #{($nav-font-size/2) + ($content-radius/2) - 1.5rem}});
   }
 
 }

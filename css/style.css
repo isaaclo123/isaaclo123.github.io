@@ -238,6 +238,11 @@ nav {
   .button-download {
     font-size: 1rem !important;
     top: calc(50% - -9rem); }
+  .button-indicator {
+    font-family: Helvetica, Regular;
+    font-weight: bold;
+    font-size: 1rem !important;
+    top: calc(50% - 11rem); }
 
 .page {
   position: absolute;
@@ -249,7 +254,6 @@ nav {
   border-radius: 50%;
   z-index: 0;
   font-family: Courier, MonoSpace;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -257,16 +261,9 @@ nav {
     padding: 0;
     height: auto;
     width: auto;
-    color: #0d47a1;
-    /*
-    ul {
-      margin-left: (-2 * $page-font-size);
-    }
-    li {
-      padding-top: (0.5 * $page-font-size);
-    }
-    */ }
+    color: #0d47a1; }
     .page .content h1 {
+      text-align: center;
       margin-bottom: 0.5rem;
       font-weight: bold;
       font-size: 1.75rem;
@@ -279,6 +276,12 @@ nav {
       line-height: 1.2rem;
       font-size: 1rem;
       font-family: Helvetica, Regular; }
+    .page .content ul {
+      margin: 0;
+      margin-left: -2rem; }
+    .page .content li {
+      margin: 0;
+      margin-top: 0.5rem; }
     .page .content p {
       padding: 0;
       margin: 0;

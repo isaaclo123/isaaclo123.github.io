@@ -11,7 +11,6 @@
   //border: $border-size $primary solid !important;
   z-index: 0;
   font-family: $serif-font;
-  text-align: center;
 
   // vertically align pages
   display: flex;
@@ -24,6 +23,8 @@
     color: $primary;
 
     h1 {
+      // text-align: center;
+      text-align: center;
       margin-bottom: (0.5 * $page-font-size);
       font-weight: bold;
       font-size: $page-title-size;
@@ -38,14 +39,14 @@
       font-size: $page-font-size;
       font-family: $sans-serif-font;
     }
-    /*
     ul {
+      margin: 0;
       margin-left: (-2 * $page-font-size);
     }
     li {
-      padding-top: (0.5 * $page-font-size);
+      margin: 0;
+      margin-top: (0.5 * $page-font-size);
     }
-    */
     p {
       padding: 0;
       margin: 0;
