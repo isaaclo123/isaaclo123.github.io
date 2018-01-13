@@ -42,7 +42,6 @@ export default class {
     this.goto(this.slideId);
     clearInterval(this.timer);
     this.timerReset();
-    this.indicate();
   }
 
   // goes to previous slide in slideshow, loops around
@@ -53,7 +52,6 @@ export default class {
     }
     this.goto(this.slideId);
     this.timerReset();
-    this.indicate();
   }
 
   // sets slideshow to page with id

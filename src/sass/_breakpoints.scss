@@ -1,0 +1,51 @@
+// breakpoints
+
+/* Large screens ----------- */
+/*some CSS*/
+@media only screen and (min-device-width : 1825px){
+  html, body {
+    font-size: 28px;
+  }
+}
+
+@media only screen and (min-device-height : 1825px){
+  html, body {
+    font-size: 28px;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (max-device-width : 1824px){
+  html, body {
+    font-size: 2.6vmin;
+  }
+}
+@media only screen and (max-device-height : 1824px){
+  html, body {
+    font-size: 2.6vmin;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (max-device-width : 1224px){
+  html, body {
+    font-size: 3 vmin;
+  }
+}
+@media only screen and (max-device-height: 1224px){
+  html, body {
+    font-size: 3 vmin;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (max-device-width : 768px) {
+  html, body {
+    font-size: 3.4vmin;
+  }
+}
+@media only screen and (max-device-height: 768px){
+  html, body {
+    font-size: 3.4vmin;
+  }
+}
+

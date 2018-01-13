@@ -1,23 +1,13 @@
 // style
 
 html, body{
-  font-size: 3.4vmin;
   padding: 0 auto;
   margin: 0 auto;
   overflow: hidden;
-  height: auto; width: 100%;
-}
-
-.block {
   height: 100%; width: 100%;
-  padding: 0 !important;
-  margin: 0 !important;
 }
 
-.circle {
-  border-radius: 50%;
-}
-
+@import "breakpoints";
 @import "menu";
 @import "navigation";
 @import "layout";

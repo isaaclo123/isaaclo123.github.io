@@ -4,19 +4,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractScss = new ExtractTextPlugin('dist/styles.css');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const extractScss = new ExtractTextPlugin('public/styles.css');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   devServer: {
-    contentBase: path.join(__dirname, '/public/'),
+    contentBase: path.join(__dirname),
     inline: true,
     host: '0.0.0.0',
     port: 8080,
   },
   entry: './src/js/index.js',
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve(__dirname),
     filename: 'public/bundle.js',
   },
   module: {
@@ -35,7 +35,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {},
+            options: {
+              outputPath: 'public/',
+            },
           },
         ],
       },
@@ -57,10 +59,14 @@ module.exports = {
     extractScss,
     new HtmlWebpackPlugin({
       title: 'Isaac Lo',
+      filename: './index.html',
       template: './src/index.template.html',
     }),
     new CopyWebpackPlugin([
-      { from: path.join(__dirname, '/src/pages/resume/resume.pdf'), to: './public/resume.pdf' },
+      {
+        from: './src/pages/resume/resume.pdf',
+        to: './public/resume.pdf',
+      },
     ]),
     /*
     new webpack.optimize.UglifyJsPlugin({
@@ -69,9 +75,7 @@ module.exports = {
       },
     }),
     */
-    /*
-     * new CleanWebpackPlugin(['dist']),
-    */
+    new CleanWebpackPlugin(['public', 'index.html']),
   ],
   resolve: {
     modules: [
