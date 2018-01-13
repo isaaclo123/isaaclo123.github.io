@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractScss = new ExtractTextPlugin('public/styles.css');
+const extractScss = new ExtractTextPlugin('public/style.css');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
