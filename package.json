@@ -4,25 +4,35 @@
   "description": "Website for Isaac Lo",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build-sass": "node-sass --include-path ./sass ./sass/style.scss ./css/style.css",
-    "watch-sass": "npm run build-sass && npm run build-sass -- -w"
+    "start:dev": "webpack-dev-server",
+    "build:sass": "node-sass --include-path ./sass ./sass/style.scss ./css/style.css",
+    "watch:sass": "npm run build-sass && npm run build-sass -- -w"
   },
   "author": "Isaac Lo",
   "license": "UNLICENSED",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-check-es2015-constants": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2016": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.8",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-import-resolver-webpack": "^0.8.4",
     "eslint-plugin-import": "^2.8.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
     "node-hot-loader": "^1.5.2",
     "node-sass": "^4.7.2",
     "sass": "^1.0.0-beta.4",
     "sass-loader": "^6.0.6",
-    "webpack": "^3.10.0"
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.1"
   },
   "dependencies": {
     "express": "^4.16.2",

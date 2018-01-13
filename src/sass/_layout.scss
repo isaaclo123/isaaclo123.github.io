@@ -1,0 +1,73 @@
+// content layout scss
+
+@import "variables";
+
+.page {
+  position: absolute;
+  height: $content-radius; width: $content-radius;
+  top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+  box-sizing: border-box;
+  border-radius: 50%;
+  //border: $border-size $primary solid !important;
+  z-index: 0;
+  font-family: $serif-font;
+
+  // vertically align pages
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    padding: 0;
+    margin-bottom: $page-font-size;
+    height: auto; width: auto;
+    color: $primary;
+
+    h1 {
+      // text-align: center;
+      text-align: center;
+      margin-bottom: (0.5 * $page-font-size);
+      font-weight: bold;
+      font-size: $page-title-size;
+      font-family: $serif-font;
+      line-height: ($page-title-size*0.9);
+    }
+    span {
+      padding: 0;
+      margin: 0;
+      margin-top: ($page-font-size*0.3);
+      line-height: ($page-font-size*1.2);
+      font-size: $page-font-size;
+      font-family: $sans-serif-font;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      padding: 0;
+      margin: 0;
+      margin-top: (0.5 * $page-font-size);
+    }
+    p {
+      padding: 0;
+      margin: 0;
+      margin-top: (0.5 * $page-font-size);
+    }
+  }
+
+  &-dark {
+    background-color: $primary;
+    color: $background;
+    border-radius: 50%;
+    border: ($border-size*1.75) $background solid;
+    .content {
+      color: $background;
+    }
+  }
+}
+
+.page-fit {
+  border-radius: 50%;
+  height: $content-radius; width: $content-radius;
+}
