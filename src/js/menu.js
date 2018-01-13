@@ -106,3 +106,5 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
   // add seperator
   addSeperator(i, el);
 }
+
+export { gotoUrl, gotoHash, hover, menuInit };

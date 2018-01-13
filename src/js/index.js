@@ -1,12 +1,26 @@
 // index.js
 
 // import libraries
-import router from 'lib';
-import 'lib/menu';
+import router from 'lib/router';
+import { gotoUrl, gotoHash, hover, menuInit } from 'lib/menu';
+
+window.gotoUrl = gotoUrl;
+window.gotoHash = gotoHash;
+window.hover = hover;
 
 // page scripts
-import homeLoad from 'pages/home';
-import resumeLoad from 'pages/resume';
+const homeLoad = require('pages/home/home');
+const resumeLoad = require('pages/resume/resume');
+
+// import pages
+const home = require('pages/home/home.html');
+const resume = require('pages/resume/resume.html');
+
+// import css/sass
+require('sass/style.scss');
+
+// import fonts
+// require('npm/font-awesome/css/font-awesome.min.css');
 
 const pages = [
   ['home', 'ISAAC LO'],
@@ -26,16 +40,16 @@ const social = [
 
 const routes = {
   '': {
-    page: './pages/home/home.html',
-    load: homeLoad(),
+    page: home,
+    load: homeLoad,
   },
   home: {
-    page: './pages/home/home.html',
-    load: homeLoad(),
+    page: home,
+    load: homeLoad,
   },
   resume: {
-    page: './pages/resume/resume.html',
-    load: resumeLoad(),
+    page: resume,
+    load: resumeLoad,
     // script: './pages/resume/resume.js',
   },
   projects: {
@@ -56,7 +70,7 @@ const routes = {
 
 window.onload = () => {
   menuInit(pages, social); // eslint-disable-line no-undef
-  router(routes); // eslint-disable-line no-undef
+  router(routes);
   // goto home page when page first loads
 };
 
@@ -64,10 +78,10 @@ window.onload = () => {
 
 window.onhashchange = () => {
   setTimeout(() => {
-    router(routes); // eslint-disable-line no-undef
+    router(routes);
   }, 400);
 };
 
 window.onbeforeunload = () => {
-  router(routes); // eslint-disable-line no-undef
+  router(routes);
 };

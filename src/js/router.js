@@ -1,44 +1,26 @@
 // router
 
-function router(routeData, element = 'view') { // eslint-disable-line no-unused-vars
+export default (routeData, element = 'view') => { // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
     const view = document.getElementById(element);
-    const reader = new FileReader();
 
     // script loader
-    // const script = document.createElement('script');
-    /*
+    const script = document.createElement('script');
+
     script.onload = () => {
       load(); // eslint-disable-line no-undef
     };
-    */
 
-    fetch(routeData[route].page, {
-      method: 'GET',
-      headers: {},
-      mode: 'cors',
-      cache: 'default',
-    }).then(response =>
-      response.blob()).then((theBlob) => {
-      reader.readAsText(theBlob);
-    });
-
-    reader.onload = () => {
-      view.innerHTML = reader.result;
-      setTimeout(() => {
-        // animate
-      }, 400);
-      if ('load' in routeData[route]) {
-        routeData[route].load();
-        // script loading
-        /*
-        script.src = routeData[route].script;
-        view.appendChild(script);
-        */
-      }
-    };
+    // changes page
+    view.innerHTML = routeData[route].page;
+    setTimeout(() => {
+      // animate
+    }, 400);
+    if ('load' in routeData[route]) {
+      routeData[route].load.default();
+    }
   } else {
     window.location = '';
   }
-}
+};

@@ -1,34 +1,40 @@
 // slide generation
 
-function Slides( // eslint-disable-line no-unused-vars
-  interval = 10000,
-  slideClass = 'slide',
-  indicator = 'indicator',
-) {
-  this.slideId = -1;
-  this.slides = document.getElementsByClassName(slideClass);
-  this.indicator = document.getElementById(indicator);
+export default class {
+  constructor( // eslint-disable-line no-unused-vars
+    interval = 10000,
+    slideClass = 'slide',
+    indicator = 'indicator',
+  ) {
+    this.slideId = 0;
+    this.slides = document.getElementsByClassName(slideClass);
+    this.indicator = document.getElementById(indicator);
+    this.interval = interval;
+
+    // creates timer
+    this.timer = setInterval(() => {
+      this.slideshow();
+    }, this.interval);
+    // init
+
+    this.goto(0);
+  }
 
   // actions that actually show the slides
-  this.slideshow = () => {
+  slideshow() {
     this.next();
-  };
-
-  // creates timer
-  this.timer = setInterval(() => {
-    this.slideshow();
-  });
+  }
 
   // resets timer
-  this.timerReset = (sleepInterval = interval) => {
+  timerReset() {
     clearInterval(this.timer);
     this.timer = setInterval(() => {
       this.slideshow();
-    }, sleepInterval);
-  };
+    }, this.interval);
+  }
 
   // goes to next slide in slideshow, loops around
-  this.next = () => {
+  next() {
     this.slideId += 1;
     if (this.slideId > this.slides.length - 1) {
       this.slideId = 0;
@@ -37,10 +43,10 @@ function Slides( // eslint-disable-line no-unused-vars
     clearInterval(this.timer);
     this.timerReset();
     this.indicate();
-  };
+  }
 
   // goes to previous slide in slideshow, loops around
-  this.prev = () => {
+  prev() {
     this.slideId -= 1;
     if (this.slideId < 0) {
       this.slideId = this.slides.length - 1;
@@ -48,23 +54,19 @@ function Slides( // eslint-disable-line no-unused-vars
     this.goto(this.slideId);
     this.timerReset();
     this.indicate();
-  };
+  }
 
   // sets slideshow to page with id
-  this.goto = (id) => {
+  goto(id) {
     for (let i = 0; i < this.slides.length; i += 1) {
       this.slides[i].style.display = 'none';
     }
     this.slides[id].style.display = 'block';
     this.indicate();
-  };
+  }
 
   // set page
-  this.indicate = () => {
+  indicate() {
     this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slides.length)}`;
-  };
-
-  // init
-
-  this.goto(0);
+  }
 }
