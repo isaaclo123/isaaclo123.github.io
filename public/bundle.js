@@ -116,7 +116,7 @@ var _class = function () {
     this.interval = interval;
 
     // creates timer
-    this.timer = setInterval(function () {
+    window.timer = setInterval(function () {
       _this.slideshow();
     }, this.interval);
     // init
@@ -140,8 +140,8 @@ var _class = function () {
     value: function timerReset() {
       var _this2 = this;
 
-      clearInterval(this.timer);
-      this.timer = setInterval(function () {
+      clearInterval(window.timer);
+      window.timer = setInterval(function () {
         _this2.slideshow();
       }, this.interval);
     }
@@ -156,7 +156,7 @@ var _class = function () {
         this.slideId = 0;
       }
       this.goto(this.slideId);
-      clearInterval(this.timer);
+      clearInterval(window.timer);
       this.timerReset();
     }
 
