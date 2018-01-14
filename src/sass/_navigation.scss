@@ -24,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: auto;
 
   &-prev {
     font-size: ($nav-font-size) !important;

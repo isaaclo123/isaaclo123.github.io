@@ -1,10 +1,11 @@
 // style
 
-html, body{
+html, body {
   padding: 0 auto;
   margin: 0 auto;
   overflow: hidden;
   height: 100%; width: 100%;
+  pointer-events: none;
 }
 
 @import "breakpoints";

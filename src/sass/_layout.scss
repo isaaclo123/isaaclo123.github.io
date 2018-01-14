@@ -18,6 +18,7 @@
   align-items: center;
 
   .content {
+    pointer-events: auto !important;
     padding: 0;
     margin-bottom: $page-font-size;
     height: auto; width: auto;

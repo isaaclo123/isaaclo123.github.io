@@ -227,12 +227,12 @@ var resumeLoad = __webpack_require__(7);
 var projectLoad = __webpack_require__(9);
 
 // import pages
-var home = __webpack_require__(13);
-var resume = __webpack_require__(14);
-var projects = __webpack_require__(15);
+var home = __webpack_require__(14);
+var resume = __webpack_require__(15);
+var projects = __webpack_require__(16);
 
 // import css/sass
-__webpack_require__(16);
+__webpack_require__(17);
 
 // import fonts
 // require('npm/font-awesome/css/font-awesome.min.css');
@@ -548,14 +548,19 @@ var _leafGreen = __webpack_require__(11);
 
 var _leafGreen2 = _interopRequireDefault(_leafGreen);
 
+var _wakeIo = __webpack_require__(12);
+
+var _wakeIo2 = _interopRequireDefault(_wakeIo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(12);
+__webpack_require__(13);
 
 exports.default = function () {
   window.slides = new _slides2.default();
   (0, _image2.default)(_FastFlowIcon2.default, 'fastflow');
   (0, _image2.default)(_leafGreen2.default, 'leaflet');
+  (0, _image2.default)(_wakeIo2.default, 'wakeio');
 };
 
 /***/ }),
@@ -572,30 +577,36 @@ module.exports = __webpack_require__.p + "public/2d91a6ef0ec79733d73d5b6e4479d9d
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+module.exports = __webpack_require__.p + "public/fb2ff74a900b232c17a7f63d99095e87.png";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page\">\n  <img id=\"image\" class=\"page-fit\"></img>\n</div>\n";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page resume-page\">\n  <div class=\"content slide\">\n    <h1>Education</h1>\n    <span>\n      <ul>\n        <li>\n          <b>University of Minnesota</b>\n          <br>\n          <b>Twin Cities</b>\n          <br>\n          <u>Computer Science</u> Major\n          <br>GPA: <u>3.81</u>\n        </li>\n        <li>\n          <b>Leland High School</b>\n          <br><u>National Merit Finalist</u>\n          <br>GPA: <u>3.84</u>\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Work<br>Experience</h1>\n    <span>\n      <p>\n        <b>Interim Software Developer</b>\n        <br>\n        <b>(21st Century Education)</b>\n        <br>\n        Installed a company <u>server</u>\n        <br>\n        Set up a company <u>event page</u>\n        <br>\n        Wrote code for <u>21Vocab</u>\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Teaching<br>Experience</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Math and Coding</b> (2015-16)\n          <br>\n          Taught <u>Tkinter</u> to children\n          <br>\n          at San Jose Library\n        </li>\n        <li>\n          <b>Coding for Fun</b> (Fall 2015)\n          <br>\n          Taught <u>Scratch</u> to children\n          <br>\n          at Carden Academy Almaden\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <!--\n  <div class=\"content slide\">\n    <h1>Activities</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Chair</b> (2015-17)\n          <br>\n          Leland Congressional Debate</li>\n        <li>\n          <b>Secretary</b> (2015-17)\n          <br>\n          Leland Magic Club\n        </li>\n        <li>\n          <b>Secretary</b> (2014-16)\n          <br>\n          Leland Domino Club\n        </li>\n      </ul>\n    </span>\n  </div>\n  -->\n\n  <div class=\"content slide\">\n    <h1>Skills</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Backend</b>: Python, Django\n          <br>\n          Java, SQL</li>\n        <li>\n          <b>Frontend</b>: HTML, CSS, JS,\n          <br>\n          AngularJS, Vue.js, Jekyll\n        </li>\n        <li>\n          <b>Misc</b>: Linux, Git, GPG\n          <br>\n          SSH, Pandoc, LATEX\n        </li>\n      </ul>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
+module.exports = "<div class=\"page\">\n  <img id=\"image\" class=\"page-fit\"></img>\n</div>\n";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page projects-page\">\n\n  <div class=\"content slide\">\n    <img id=\"fastflow\" class=\"page-fit page-background\"></img>\n    <h1><span>FastFlow</span></h1>\n    <span>\n      <p>\n        <b>Software for better\n        <br>\n        and faster debate.</b>\n        <br>\n        Wrote <u>interface</u> code\n        <br>\n        and <u>project website</u>.\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"leaflet\" class=\"page-fit page-background\"></img>\n    <h1><span>Leaflet</span></h1>\n    <span>\n      <p>\n        <b>Minimalistic and\n        <br>\n        effective notetaking.</b>\n        <br>\n        Wrote a <u>GraphQL</u> API\n        <br>\n        with <u>Django</u> and <u>Python</u>.\n      </p>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-link\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
+module.exports = "<div class=\"page resume-page\">\n  <div class=\"content slide\">\n    <h1>Education</h1>\n    <span>\n      <ul>\n        <li>\n          <b>University of Minnesota</b>\n          <br>\n          <b>Twin Cities</b>\n          <br>\n          <u>Computer Science</u> Major\n          <br>GPA: <u>3.81</u>\n        </li>\n        <li>\n          <b>Leland High School</b>\n          <br><u>National Merit Finalist</u>\n          <br>GPA: <u>3.84</u>\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Work<br>Experience</h1>\n    <span>\n      <p>\n        <b>Interim Software Developer</b>\n        <br>\n        <b>(21st Century Education)</b>\n        <br>\n        Installed a company <u>server</u>\n        <br>\n        Set up a company <u>event page</u>\n        <br>\n        Wrote code for <u>21Vocab</u>\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Teaching<br>Experience</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Math and Coding</b> (2015-16)\n          <br>\n          Taught <u>Tkinter</u> to children\n          <br>\n          at San Jose Library\n        </li>\n        <li>\n          <b>Coding for Fun</b> (Fall 2015)\n          <br>\n          Taught <u>Scratch</u> to children\n          <br>\n          at Carden Academy Almaden\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <!--\n  <div class=\"content slide\">\n    <h1>Activities</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Chair</b> (2015-17)\n          <br>\n          Leland Congressional Debate</li>\n        <li>\n          <b>Secretary</b> (2015-17)\n          <br>\n          Leland Magic Club\n        </li>\n        <li>\n          <b>Secretary</b> (2014-16)\n          <br>\n          Leland Domino Club\n        </li>\n      </ul>\n    </span>\n  </div>\n  -->\n\n  <div class=\"content slide\">\n    <h1>Skills</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Backend</b>: Python, Django\n          <br>\n          Java, SQL</li>\n        <li>\n          <b>Frontend</b>: HTML, CSS, JS,\n          <br>\n          AngularJS, Vue.js, Jekyll\n        </li>\n        <li>\n          <b>Misc</b>: Linux, Git, GPG\n          <br>\n          SSH, Pandoc, LATEX\n        </li>\n      </ul>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/public/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page projects-page\">\n\n  <div class=\"content slide\">\n    <img id=\"fastflow\" class=\"page-fit page-background\"></img>\n    <h1><span>FastFlow</span></h1>\n    <span>\n      <p>\n        <b>Software for better\n        <br>\n        and faster debate.</b>\n        <br>\n        Wrote <u>interface</u> code\n        <br>\n        and <u>project website</u>.\n      </p>\n    </span>\n    <div class=\"button button-download\" onclick=\"gotoUrl('https://flow.fastflowdebate.com/')\"><i class=\"fa fa-link\"></i></div>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"leaflet\" class=\"page-fit page-background\"></img>\n    <h1><span>Leaflet</span></h1>\n    <span>\n      <p>\n        <b>Minimalistic and\n        <br>\n        effective notetaking.</b>\n        <br>\n        Wrote a <u>GraphQL</u> API\n        <br>\n        with <u>Django</u> and <u>Python</u>.\n      </p>\n    </span>\n    <div class=\"button button-download\" onclick=\"gotoUrl('https://github.com/Zarkoix/LeafletServer')\"><i class=\"fa fa-link\"></i></div>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"wakeio\" class=\"page-fit page-background\"></img>\n    <h1><span>wake.io</span></h1>\n    <span>\n      <p>\n        <b>An Open Source Fatigue\n        <br>\n        monitoring solution.</b>\n        <br>\n        A prototype written with\n        <br>\n        <u>vue.js</u> and <u>Python</u>.\n      </p>\n    </span>\n    <div class=\"button button-download\" onclick=\"gotoUrl('https://github.com/isaaclo123/wake-io')\"><i class=\"fa fa-link\"></i></div>\n  </div>\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

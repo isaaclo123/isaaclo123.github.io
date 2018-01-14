@@ -8,6 +8,7 @@
   color: #fafafa;
   border-radius: 50%; }
   .projects-page .content {
+    pointer-events: none;
     color: #fafafa !important; }
     .projects-page .content h1 {
       margin-bottom: 0.65625rem !important; }
@@ -26,12 +27,18 @@
       left: calc(50% - 11.5rem);
       z-index: -1;
       margin-bottom: -1.1rem !important; }
+    .projects-page .content .button-download {
+      z-index: 5 !important;
+      font-size: 1.2rem !important;
+      top: calc(50% - -9rem);
+      pointer-events: auto !important; }
 html, body {
   padding: 0 auto;
   margin: 0 auto;
   overflow: hidden;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 /* Large screens ----------- */
 /*some CSS*/
@@ -303,7 +310,8 @@ nav {
   text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  pointer-events: auto; }
   .button-prev {
     font-size: 2rem !important;
     left: calc(50% - 11rem); }
@@ -335,6 +343,7 @@ nav {
   justify-content: center;
   align-items: center; }
   .page .content {
+    pointer-events: auto !important;
     padding: 0;
     margin-bottom: 1.1rem;
     height: auto;
