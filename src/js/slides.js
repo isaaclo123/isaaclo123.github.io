@@ -15,14 +15,13 @@ export default class {
     this.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
-    // init
 
-    this.goto(0);
+    this.goto(this.slideId);
   }
 
   // actions that actually show the slides
   slideshow() {
-    this.next();
+    this.next(false);
   }
 
   // resets timer
@@ -34,24 +33,30 @@ export default class {
   }
 
   // goes to next slide in slideshow, loops around
-  next() {
+  next(reset = true) {
     this.slideId += 1;
     if (this.slideId > this.slides.length - 1) {
       this.slideId = 0;
     }
     this.goto(this.slideId);
-    clearInterval(this.timer);
-    this.timerReset();
+    if (reset) {
+      clearInterval(this.timer);
+      this.timerReset();
+    }
   }
 
   // goes to previous slide in slideshow, loops around
-  prev() {
+  prev(reset = true) {
     this.slideId -= 1;
     if (this.slideId < 0) {
       this.slideId = this.slides.length - 1;
     }
     this.goto(this.slideId);
     this.timerReset();
+    if (reset) {
+      clearInterval(this.timer);
+      this.timerReset();
+    }
   }
 
   // sets slideshow to page with id
