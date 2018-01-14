@@ -55,16 +55,6 @@
       margin-top: (0.5 * $page-font-size);
     }
   }
-
-  &-dark {
-    background-color: $primary;
-    color: $background;
-    border-radius: 50%;
-    border: ($border-size*1.75) $background solid;
-    .content {
-      color: $background;
-    }
-  }
 }
 
 .page-fit {

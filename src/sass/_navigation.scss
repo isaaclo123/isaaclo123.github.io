@@ -46,6 +46,6 @@
     font-weight: bold;
     font-size: ($nav-font-size*0.6) !important;
     top: calc(50% - #{($nav-font-size/2) + ($content-radius/2) - 1.5rem}});
+    left: calc(50% - #{$menu-font-size/2 + $page-font-size*0.3;});
   }
-
 }

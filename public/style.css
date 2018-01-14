@@ -1,3 +1,35 @@
+.resume-page {
+  background-color: #0d47a1;
+  color: #fafafa;
+  border-radius: 50%;
+  border: 0.4375rem #fafafa solid; }
+  .resume-page .content {
+    color: #fafafa !important; }
+.projects-page {
+  color: #fafafa;
+  border-radius: 50%; }
+  .projects-page .content {
+    color: #fafafa !important; }
+    .projects-page .content h1 {
+      margin-bottom: 0.65625rem !important; }
+      .projects-page .content h1 span {
+        font-size: inherit;
+        font-weight: inherit;
+        font-family: inherit;
+        padding: 0.4375rem !important;
+        background-color: rgba(0, 0, 0, 0.7); }
+    .projects-page .content p {
+      padding: 0.4375rem !important;
+      background-color: rgba(0, 0, 0, 0.7); }
+    .projects-page .content .page-background {
+      position: absolute;
+      top: calc(50% - 11.5rem);
+      left: calc(50% - 11.5rem);
+      z-index: -1;
+      margin-bottom: -1.1rem !important; }
+
+.projects-button {
+  color: #0d47a1 !important; }
 html, body {
   padding: 0 auto;
   margin: 0 auto;
@@ -27,18 +59,27 @@ html, body {
 /* iPads (landscape) ----------- */
 @media only screen and (max-device-width: 1224px) {
   html, body {
-    font-size: 3 vmin; } }
+    font-size: 3vmin; } }
 
 @media only screen and (max-device-height: 1224px) {
   html, body {
-    font-size: 3 vmin; } }
+    font-size: 3vmin; } }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (max-device-width: 768px) {
   html, body {
-    font-size: 3.4vmin; } }
+    font-size: 3.3vmin; } }
 
 @media only screen and (max-device-height: 768px) {
+  html, body {
+    font-size: 3.3vmin; } }
+
+/* Smartphones (smaller) ----------- */
+@media only screen and (max-device-width: 640px) {
+  html, body {
+    font-size: 3.4vmin; } }
+
+@media only screen and (max-device-height: 640px) {
   html, body {
     font-size: 3.4vmin; } }
 
@@ -271,7 +312,8 @@ nav {
     font-family: Roboto, sans-serif;
     font-weight: bold;
     font-size: 1.2rem !important;
-    top: calc(50% - 11rem); }
+    top: calc(50% - 11rem);
+    left: calc(50% - 1.33rem); }
 
 .page {
   position: absolute;
@@ -317,13 +359,6 @@ nav {
       padding: 0;
       margin: 0;
       margin-top: 0.55rem; }
-  .page-dark {
-    background-color: #0d47a1;
-    color: #fafafa;
-    border-radius: 50%;
-    border: 0.4375rem #fafafa solid; }
-    .page-dark .content {
-      color: #fafafa; }
 
 .page-fit {
   border-radius: 50%;

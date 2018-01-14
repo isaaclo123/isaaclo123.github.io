@@ -28,24 +28,35 @@
 /* iPads (landscape) ----------- */
 @media only screen and (max-device-width : 1224px){
   html, body {
-    font-size: 3 vmin;
+    font-size: 3vmin;
   }
 }
 @media only screen and (max-device-height: 1224px){
   html, body {
-    font-size: 3 vmin;
+    font-size: 3vmin;
   }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (max-device-width : 768px) {
   html, body {
-    font-size: 3.4vmin;
+    font-size: 3.3vmin;
   }
 }
 @media only screen and (max-device-height: 768px){
   html, body {
-    font-size: 3.4vmin;
+    font-size: 3.3vmin;
   }
 }
 
+/* Smartphones (smaller) ----------- */
+@media only screen and (max-device-width : 640px) {
+  html, body {
+    font-size: 3.4vmin;
+  }
+}
+@media only screen and (max-device-height: 640px){
+  html, body {
+    font-size: 3.4vmin;
+  }
+}

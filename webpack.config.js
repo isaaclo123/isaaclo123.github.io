@@ -1,3 +1,5 @@
+// webpack config dev
+
 // const webpack = require('webpack');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,7 +16,7 @@ module.exports = {
     host: '0.0.0.0',
     port: 8080,
   },
-  entry: './src/js/index.js',
+  entry: './src/js/script.js',
   output: {
     path: path.resolve(__dirname),
     filename: 'public/bundle.js',

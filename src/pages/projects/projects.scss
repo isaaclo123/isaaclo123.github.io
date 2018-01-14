@@ -1,0 +1,40 @@
+@import "../../sass/variables";
+
+$new-border: ($border-size*1.75);
+$highlight-opacity: 0.7;
+
+@mixin translucent-highlight {
+  padding: $new-border !important;
+  background-color: rgba(0,0,0,$highlight-opacity);
+}
+
+.projects-page {
+  color: $background;
+  border-radius: 50%;
+
+  .content {
+    color: $background !important;
+    h1 {
+      span {
+        font-size: inherit;
+        font-weight: inherit;
+        font-family: inherit;
+        @include translucent-highlight;
+      }
+      margin-bottom: ($new-border*1.5) !important;
+    }
+    p {
+      @include translucent-highlight;
+    }
+    .page-background {
+      position: absolute;
+      top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+      z-index: -1;
+      margin-bottom: (-1 * $page-font-size) !important;
+    }
+  }
+}
+
+.projects-button {
+  color: $primary !important;
+}

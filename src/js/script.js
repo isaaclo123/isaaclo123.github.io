@@ -1,4 +1,4 @@
-// index.js
+// script.js
 
 // import libraries
 import router from 'lib/router';
@@ -11,10 +11,12 @@ window.hover = hover;
 // page scripts
 const homeLoad = require('pages/home/home');
 const resumeLoad = require('pages/resume/resume');
+const projectLoad = require('pages/projects/projects');
 
 // import pages
 const home = require('pages/home/home.html');
 const resume = require('pages/resume/resume.html');
+const projects = require('pages/projects/projects.html');
 
 // import css/sass
 require('sass/style.scss');
@@ -53,7 +55,8 @@ const routes = {
     // script: './pages/resume/resume.js',
   },
   projects: {
-    page: './pages/projects/projects.html',
+    page: projects,
+    load: projectLoad,
     // script: projectLoad(), // eslint-disable-line no-undef
   },
   music: {

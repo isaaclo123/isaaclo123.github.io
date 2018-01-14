@@ -4,5 +4,5 @@
 node_modules
 node_modules/*
 
-.sass_cache
-.sass_cache/*
+.sass-cache
+.sass-cache/*

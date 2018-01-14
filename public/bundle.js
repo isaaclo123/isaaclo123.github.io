@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,15 +70,151 @@
 "use strict";
 
 
-var _router = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+// image loading
+
+exports.default = function (image, imageElement) {
+  // eslint-disable-line no-unused-vars
+  var el = document.getElementById(imageElement);
+  el.setAttribute('src', image);
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// slide generation
+
+var _class = function () {
+  function _class() {
+    var interval = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10000;
+
+    var _this = this;
+
+    var slideClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'slide';
+    var indicator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'indicator';
+
+    _classCallCheck(this, _class);
+
+    this.slideId = 0;
+    this.slides = document.getElementsByClassName(slideClass);
+    this.indicator = document.getElementById(indicator);
+    this.interval = interval;
+
+    // creates timer
+    this.timer = setInterval(function () {
+      _this.slideshow();
+    }, this.interval);
+    // init
+
+    this.goto(0);
+  }
+
+  // actions that actually show the slides
+
+
+  _createClass(_class, [{
+    key: 'slideshow',
+    value: function slideshow() {
+      this.next();
+    }
+
+    // resets timer
+
+  }, {
+    key: 'timerReset',
+    value: function timerReset() {
+      var _this2 = this;
+
+      clearInterval(this.timer);
+      this.timer = setInterval(function () {
+        _this2.slideshow();
+      }, this.interval);
+    }
+
+    // goes to next slide in slideshow, loops around
+
+  }, {
+    key: 'next',
+    value: function next() {
+      this.slideId += 1;
+      if (this.slideId > this.slides.length - 1) {
+        this.slideId = 0;
+      }
+      this.goto(this.slideId);
+      clearInterval(this.timer);
+      this.timerReset();
+    }
+
+    // goes to previous slide in slideshow, loops around
+
+  }, {
+    key: 'prev',
+    value: function prev() {
+      this.slideId -= 1;
+      if (this.slideId < 0) {
+        this.slideId = this.slides.length - 1;
+      }
+      this.goto(this.slideId);
+      this.timerReset();
+    }
+
+    // sets slideshow to page with id
+
+  }, {
+    key: 'goto',
+    value: function goto(id) {
+      this.indicate();
+      for (var i = 0; i < this.slides.length; i += 1) {
+        this.slides[i].style.display = 'none';
+      }
+      this.slides[id].style.display = 'block';
+    }
+
+    // set page
+
+  }, {
+    key: 'indicate',
+    value: function indicate() {
+      this.indicator.textContent = String(this.slideId + 1) + ' / ' + String(this.slides.length);
+    }
+  }]);
+
+  return _class;
+}();
+
+exports.default = _class;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _router = __webpack_require__(3);
 
 var _router2 = _interopRequireDefault(_router);
 
-var _menu = __webpack_require__(2);
+var _menu = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// index.js
+// script.js
 
 // import libraries
 window.gotoUrl = _menu.gotoUrl;
@@ -86,15 +222,17 @@ window.gotoHash = _menu.gotoHash;
 window.hover = _menu.hover;
 
 // page scripts
-var homeLoad = __webpack_require__(3);
-var resumeLoad = __webpack_require__(6);
+var homeLoad = __webpack_require__(5);
+var resumeLoad = __webpack_require__(7);
+var projectLoad = __webpack_require__(9);
 
 // import pages
-var home = __webpack_require__(8);
-var resume = __webpack_require__(9);
+var home = __webpack_require__(13);
+var resume = __webpack_require__(14);
+var projects = __webpack_require__(15);
 
 // import css/sass
-__webpack_require__(10);
+__webpack_require__(16);
 
 // import fonts
 // require('npm/font-awesome/css/font-awesome.min.css');
@@ -120,7 +258,8 @@ var routes = {
     // script: './pages/resume/resume.js',
   },
   projects: {
-    page: './pages/projects/projects.html'
+    page: projects,
+    load: projectLoad
     // script: projectLoad(), // eslint-disable-line no-undef
   },
   music: {
@@ -154,7 +293,7 @@ window.onbeforeunload = function () {
 };
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -194,7 +333,7 @@ exports.default = function (routeData) {
 };
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -322,25 +461,7 @@ exports.hover = hover;
 exports.menuInit = menuInit;
 
 /***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lib_image__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lib_image___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lib_image__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pages_home_face_jpg__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pages_home_face_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_pages_home_face_jpg__);
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (() => {
-  // eslint-disable-line no-unused-vars
-  Object(__WEBPACK_IMPORTED_MODULE_0_lib_image__["loadImage"])(__WEBPACK_IMPORTED_MODULE_1_pages_home_face_jpg___default.a);
-});
-
-/***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -349,44 +470,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// image loading
 
-function loadImage(image) {
-  var imageElement = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.getElementById('image');
+var _image = __webpack_require__(0);
+
+var _image2 = _interopRequireDefault(_image);
+
+var _face = __webpack_require__(6);
+
+var _face2 = _interopRequireDefault(_face);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
   // eslint-disable-line no-unused-vars
-  imageElement.setAttribute('src', image);
-}
-
-function loadImages(selector) {
-  var imgAttribute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'img-src';
-  // eslint-disable-line no-unused-vars
-  document.body.querySelectorAll(selector).forEach(function (val) {
-    if (val.getAttribute(imgAttribute)) loadImage(val.getAttribute(imgAttribute), val);
-  });
-}
-
-exports.loadImage = loadImage;
-exports.loadImages = loadImages;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "public/df0f287cde96908a6ac347161ab798c0.jpg";
+  (0, _image2.default)(_face2.default, 'image');
+};
 
 /***/ }),
 /* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lib_slides__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lib_slides___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lib_slides__);
-
-
-/* harmony default export */ __webpack_exports__["default"] = (() => {
-  window.slides = new __WEBPACK_IMPORTED_MODULE_0_lib_slides___default.a();
-});
+module.exports = __webpack_require__.p + "public/df0f287cde96908a6ac347161ab798c0.jpg";
 
 /***/ }),
 /* 7 */
@@ -399,126 +503,99 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _slides = __webpack_require__(1);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _slides2 = _interopRequireDefault(_slides);
 
-// slide generation
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _class = function () {
-  function _class() {
-    var interval = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10000;
+__webpack_require__(8);
 
-    var _this = this;
-
-    var slideClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'slide';
-    var indicator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'indicator';
-
-    _classCallCheck(this, _class);
-
-    this.slideId = 0;
-    this.slides = document.getElementsByClassName(slideClass);
-    this.indicator = document.getElementById(indicator);
-    this.interval = interval;
-
-    // creates timer
-    this.timer = setInterval(function () {
-      _this.slideshow();
-    }, this.interval);
-    // init
-
-    this.goto(0);
-  }
-
-  // actions that actually show the slides
-
-
-  _createClass(_class, [{
-    key: 'slideshow',
-    value: function slideshow() {
-      this.next();
-    }
-
-    // resets timer
-
-  }, {
-    key: 'timerReset',
-    value: function timerReset() {
-      var _this2 = this;
-
-      clearInterval(this.timer);
-      this.timer = setInterval(function () {
-        _this2.slideshow();
-      }, this.interval);
-    }
-
-    // goes to next slide in slideshow, loops around
-
-  }, {
-    key: 'next',
-    value: function next() {
-      this.slideId += 1;
-      if (this.slideId > this.slides.length - 1) {
-        this.slideId = 0;
-      }
-      this.goto(this.slideId);
-      clearInterval(this.timer);
-      this.timerReset();
-    }
-
-    // goes to previous slide in slideshow, loops around
-
-  }, {
-    key: 'prev',
-    value: function prev() {
-      this.slideId -= 1;
-      if (this.slideId < 0) {
-        this.slideId = this.slides.length - 1;
-      }
-      this.goto(this.slideId);
-      this.timerReset();
-    }
-
-    // sets slideshow to page with id
-
-  }, {
-    key: 'goto',
-    value: function goto(id) {
-      for (var i = 0; i < this.slides.length; i += 1) {
-        this.slides[i].style.display = 'none';
-      }
-      this.slides[id].style.display = 'block';
-      this.indicate();
-    }
-
-    // set page
-
-  }, {
-    key: 'indicate',
-    value: function indicate() {
-      this.indicator.textContent = String(this.slideId + 1) + ' / ' + String(this.slides.length);
-    }
-  }]);
-
-  return _class;
-}();
-
-exports.default = _class;
+exports.default = function () {
+  window.slides = new _slides2.default();
+};
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page\">\n  <img id=\"image\" class=\"page-fit\"></img>\n</div>\n";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"page page-dark\">\n  <div class=\"content slide\">\n    <h1>Education</h1>\n    <span>\n      <ul>\n        <li>\n          <b>University of Minnesota</b>\n          <br>\n          <b>Twin Cities</b>\n          <br>\n          <u>Computer Science</u> Major\n          <br>GPA: <u>3.81</u>\n        </li>\n        <li>\n          <b>Leland High School</b>\n          <br><u>National Merit Finalist</u>\n          <br>GPA: <u>3.84</u>\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Work<br>Experience</h1>\n    <span>\n      <p>\n        <b>Interim Software Developer</b>\n        <br>\n        <b>(21st Century Education)</b>\n        <br>\n        Installed a company <u>server</u>\n        <br>\n        Set up a company <u>event page</u>\n        <br>\n        Wrote code for <u>21Vocab</u>\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Teaching<br>Experience</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Math and Coding</b> (2015-16)\n          <br>\n          Taught <u>Tkinter</u> to children\n          <br>\n          at San Jose Library\n        </li>\n        <li>\n          <b>Coding for Fun</b> (Fall 2015)\n          <br>\n          Taught <u>Scratch</u> to children\n          <br>\n          at Carden Academy Almaden\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <!--\n  <div class=\"content slide\">\n    <h1>Activities</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Chair</b> (2015-17)\n          <br>\n          Leland Congressional Debate</li>\n        <li>\n          <b>Secretary</b> (2015-17)\n          <br>\n          Leland Magic Club\n        </li>\n        <li>\n          <b>Secretary</b> (2014-16)\n          <br>\n          Leland Domino Club\n        </li>\n      </ul>\n    </span>\n  </div>\n  -->\n\n  <div class=\"content slide\">\n    <h1>Skills</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Backend</b>: Python, Django\n          <br>\n          Java, SQL</li>\n        <li>\n          <b>Frontend</b>: HTML, CSS, JS,\n          <br>\n          AngularJS, Vue.js, Jekyll\n        </li>\n        <li>\n          <b>Misc</b>: Linux, Git, GPG\n          <br>\n          SSH, Pandoc, LATEX\n        </li>\n      </ul>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slides = __webpack_require__(1);
+
+var _slides2 = _interopRequireDefault(_slides);
+
+var _image = __webpack_require__(0);
+
+var _image2 = _interopRequireDefault(_image);
+
+var _FastFlowIcon = __webpack_require__(10);
+
+var _FastFlowIcon2 = _interopRequireDefault(_FastFlowIcon);
+
+var _leafGreen = __webpack_require__(11);
+
+var _leafGreen2 = _interopRequireDefault(_leafGreen);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+__webpack_require__(12);
+
+exports.default = function () {
+  window.slides = new _slides2.default();
+  (0, _image2.default)(_FastFlowIcon2.default, 'fastflow');
+  (0, _image2.default)(_leafGreen2.default, 'leaflet');
+};
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/525c315f15c8af10642af234c90715e2.png";
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/2d91a6ef0ec79733d73d5b6e4479d9d0.png";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page\">\n  <img id=\"image\" class=\"page-fit\"></img>\n</div>\n";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page resume-page\">\n  <div class=\"content slide\">\n    <h1>Education</h1>\n    <span>\n      <ul>\n        <li>\n          <b>University of Minnesota</b>\n          <br>\n          <b>Twin Cities</b>\n          <br>\n          <u>Computer Science</u> Major\n          <br>GPA: <u>3.81</u>\n        </li>\n        <li>\n          <b>Leland High School</b>\n          <br><u>National Merit Finalist</u>\n          <br>GPA: <u>3.84</u>\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Work<br>Experience</h1>\n    <span>\n      <p>\n        <b>Interim Software Developer</b>\n        <br>\n        <b>(21st Century Education)</b>\n        <br>\n        Installed a company <u>server</u>\n        <br>\n        Set up a company <u>event page</u>\n        <br>\n        Wrote code for <u>21Vocab</u>\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <h1>Teaching<br>Experience</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Math and Coding</b> (2015-16)\n          <br>\n          Taught <u>Tkinter</u> to children\n          <br>\n          at San Jose Library\n        </li>\n        <li>\n          <b>Coding for Fun</b> (Fall 2015)\n          <br>\n          Taught <u>Scratch</u> to children\n          <br>\n          at Carden Academy Almaden\n        </li>\n      </ul>\n    </span>\n  </div>\n\n  <!--\n  <div class=\"content slide\">\n    <h1>Activities</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Chair</b> (2015-17)\n          <br>\n          Leland Congressional Debate</li>\n        <li>\n          <b>Secretary</b> (2015-17)\n          <br>\n          Leland Magic Club\n        </li>\n        <li>\n          <b>Secretary</b> (2014-16)\n          <br>\n          Leland Domino Club\n        </li>\n      </ul>\n    </span>\n  </div>\n  -->\n\n  <div class=\"content slide\">\n    <h1>Skills</h1>\n    <span>\n      <ul>\n        <li>\n          <b>Backend</b>: Python, Django\n          <br>\n          Java, SQL</li>\n        <li>\n          <b>Frontend</b>: HTML, CSS, JS,\n          <br>\n          AngularJS, Vue.js, Jekyll\n        </li>\n        <li>\n          <b>Misc</b>: Linux, Git, GPG\n          <br>\n          SSH, Pandoc, LATEX\n        </li>\n      </ul>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page projects-page\">\n\n  <div class=\"content slide\">\n    <img id=\"fastflow\" class=\"page-fit page-background\"></img>\n    <h1><span>FastFlow</span></h1>\n    <span>\n      <p>\n        <b>Software for better\n        <br>\n        and faster debate.</b>\n        <br>\n        Wrote <u>interface</u> code\n        <br>\n        and <u>project website</u>.\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"leaflet\" class=\"page-fit page-background\"></img>\n    <h1><span>Leaflet</span></h1>\n    <span>\n      <p>\n        <b>Minimalistic and\n        <br>\n        effective notetaking.</b>\n        <br>\n        Wrote a <u>GraphQL</u> API\n        <br>\n        with <u>Django</u> and <u>Python</u>.\n      </p>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev projects-button\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next projects-button\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download projects-button\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator projects-button\" id=\"indicator\"></div>\n";
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

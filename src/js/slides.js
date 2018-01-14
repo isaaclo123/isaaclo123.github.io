@@ -56,11 +56,11 @@ export default class {
 
   // sets slideshow to page with id
   goto(id) {
+    this.indicate();
     for (let i = 0; i < this.slides.length; i += 1) {
       this.slides[i].style.display = 'none';
     }
     this.slides[id].style.display = 'block';
-    this.indicate();
   }
 
   // set page
