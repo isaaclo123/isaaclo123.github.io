@@ -562,7 +562,7 @@ exports.default = function () {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "public/525c315f15c8af10642af234c90715e2.png";
+module.exports = __webpack_require__.p + "public/5e8949b3fa02c93504efc5649a43f2bb.png";
 
 /***/ }),
 /* 11 */
@@ -592,7 +592,7 @@ module.exports = "<div class=\"page resume-page\">\n  <div class=\"content slide
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page projects-page\">\n\n  <div class=\"content slide\">\n    <img id=\"fastflow\" class=\"page-fit page-background\"></img>\n    <h1><span>FastFlow</span></h1>\n    <span>\n      <p>\n        <b>Software for better\n        <br>\n        and faster debate.</b>\n        <br>\n        Wrote <u>interface</u> code\n        <br>\n        and <u>project website</u>.\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"leaflet\" class=\"page-fit page-background\"></img>\n    <h1><span>Leaflet</span></h1>\n    <span>\n      <p>\n        <b>Minimalistic and\n        <br>\n        effective notetaking.</b>\n        <br>\n        Wrote a <u>GraphQL</u> API\n        <br>\n        with <u>Django</u> and <u>Python</u>.\n      </p>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev projects-button\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next projects-button\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download projects-button\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator projects-button\" id=\"indicator\"></div>\n";
+module.exports = "<div class=\"page projects-page\">\n\n  <div class=\"content slide\">\n    <img id=\"fastflow\" class=\"page-fit page-background\"></img>\n    <h1><span>FastFlow</span></h1>\n    <span>\n      <p>\n        <b>Software for better\n        <br>\n        and faster debate.</b>\n        <br>\n        Wrote <u>interface</u> code\n        <br>\n        and <u>project website</u>.\n      </p>\n    </span>\n  </div>\n\n  <div class=\"content slide\">\n    <img id=\"leaflet\" class=\"page-fit page-background\"></img>\n    <h1><span>Leaflet</span></h1>\n    <span>\n      <p>\n        <b>Minimalistic and\n        <br>\n        effective notetaking.</b>\n        <br>\n        Wrote a <u>GraphQL</u> API\n        <br>\n        with <u>Django</u> and <u>Python</u>.\n      </p>\n    </span>\n  </div>\n\n</div>\n<div class=\"button button-prev\" onclick=\"slides.prev()\"><i class=\"fa fa-angle-left\"></i></div>\n<div class=\"button button-next\" onclick=\"slides.next()\"><i class=\"fa fa-angle-right\"></i></div>\n<div class=\"button button-download\" onclick=\"gotoUrl('/resume.pdf')\"><i class=\"fa fa-arrow-down\"></i></div>\n<div class=\"button button-indicator\" id=\"indicator\"></div>\n";
 
 /***/ }),
 /* 16 */

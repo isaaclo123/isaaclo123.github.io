@@ -9,7 +9,7 @@
   box-sizing: border-box;
   border-radius: 50%;
   //border: $border-size $primary solid !important;
-  z-index: 0;
+  z-index: -1;
   font-family: $serif-font;
 
   // vertically align pages

@@ -1,8 +1,7 @@
 .resume-page {
   background-color: #0d47a1;
   color: #fafafa;
-  border-radius: 50%;
-  border: 0.4375rem #fafafa solid; }
+  border-radius: 50%; }
   .resume-page .content {
     color: #fafafa !important; }
 .projects-page {
@@ -16,20 +15,17 @@
         font-size: inherit;
         font-weight: inherit;
         font-family: inherit;
-        padding: 0.4375rem !important;
-        background-color: rgba(0, 0, 0, 0.7); }
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 0.4375rem !important; }
     .projects-page .content p {
-      padding: 0.4375rem !important;
-      background-color: rgba(0, 0, 0, 0.7); }
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 0.4375rem !important; }
     .projects-page .content .page-background {
       position: absolute;
       top: calc(50% - 11.5rem);
       left: calc(50% - 11.5rem);
       z-index: -1;
       margin-bottom: -1.1rem !important; }
-
-.projects-button {
-  color: #0d47a1 !important; }
 html, body {
   padding: 0 auto;
   margin: 0 auto;
@@ -263,17 +259,27 @@ nav {
   margin: 0 auto;
   overflow: hidden;
   pointer-events: none; }
-  #circle-frame:after {
-    border: 0.25rem #0d47a1 solid !important;
+  #circle-frame:before {
+    position: absolute;
+    display: block;
+    content: '';
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
-    top: calc(50% - 23rem/2);
-    left: calc(50% - 23rem/2);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
+  #circle-frame:after {
+    box-sizing: border-box;
+    top: calc(50% - 11.0625rem);
+    left: calc(50% - 11.0625rem);
     content: '';
     position: absolute;
     border-radius: 100%;
-    width: 23rem;
-    height: 23rem;
-    box-shadow: 0px 0px 0px 2000px #fafafa; }
+    width: 22.125rem;
+    height: 22.125rem;
+    border: 0.25rem #0d47a1;
+    box-shadow: 0 0 0 0.1875rem #fafafa, 0 0 0 0.4375rem #0d47a1, 0 0 0 2000vmax #fafafa; }
 
 /*
 .pointer {
@@ -323,7 +329,7 @@ nav {
   left: calc(50% - 11.5rem);
   box-sizing: border-box;
   border-radius: 50%;
-  z-index: 0;
+  z-index: -1;
   font-family: Anonymous Pro, monospace;
   display: flex;
   justify-content: center;
