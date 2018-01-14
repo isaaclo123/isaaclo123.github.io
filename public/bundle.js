@@ -116,7 +116,7 @@ var _class = function () {
     this.interval = interval;
 
     // creates timer
-    window.timer = setInterval(function () {
+    this.timer = setInterval(function () {
       _this.slideshow();
     }, this.interval);
     // init
@@ -140,8 +140,8 @@ var _class = function () {
     value: function timerReset() {
       var _this2 = this;
 
-      clearInterval(window.timer);
-      window.timer = setInterval(function () {
+      clearInterval(this.timer);
+      this.timer = setInterval(function () {
         _this2.slideshow();
       }, this.interval);
     }
@@ -156,7 +156,7 @@ var _class = function () {
         this.slideId = 0;
       }
       this.goto(this.slideId);
-      clearInterval(window.timer);
+      clearInterval(this.timer);
       this.timerReset();
     }
 
@@ -178,18 +178,10 @@ var _class = function () {
   }, {
     key: 'goto',
     value: function goto(id) {
-      this.indicate();
       for (var i = 0; i < this.slides.length; i += 1) {
         this.slides[i].style.display = 'none';
       }
       this.slides[id].style.display = 'block';
-    }
-
-    // set page
-
-  }, {
-    key: 'indicate',
-    value: function indicate() {
       this.indicator.textContent = String(this.slideId + 1) + ' / ' + String(this.slides.length);
     }
   }]);

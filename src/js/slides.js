@@ -12,7 +12,7 @@ export default class {
     this.interval = interval;
 
     // creates timer
-    window.timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
     // init
@@ -27,8 +27,8 @@ export default class {
 
   // resets timer
   timerReset() {
-    clearInterval(window.timer);
-    window.timer = setInterval(() => {
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
   }
@@ -40,7 +40,7 @@ export default class {
       this.slideId = 0;
     }
     this.goto(this.slideId);
-    clearInterval(window.timer);
+    clearInterval(this.timer);
     this.timerReset();
   }
 
@@ -56,15 +56,10 @@ export default class {
 
   // sets slideshow to page with id
   goto(id) {
-    this.indicate();
     for (let i = 0; i < this.slides.length; i += 1) {
       this.slides[i].style.display = 'none';
     }
     this.slides[id].style.display = 'block';
-  }
-
-  // set page
-  indicate() {
     this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slides.length)}`;
   }
 }
