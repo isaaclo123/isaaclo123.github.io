@@ -58,7 +58,7 @@ export default class {
       this.timerReset();
     }
   }
-
+  /*
   // sets slideshow to page with id
   goto(id) {
     for (let i = 0; i < this.slides.length; i += 1) {
@@ -66,5 +66,21 @@ export default class {
     }
     this.slides[id].style.display = 'block';
     this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slides.length)}`;
+  }
+   *
+  */
+  // sets slideshow to page with id
+  goto(id) {
+    function gotoId(theId, slides, callback) {
+      for (let i = 0; i < slides.length; i += 1) {
+        slides[i].style.display = 'none'; // eslint-disable-line no-param-reassign
+      }
+      slides[theId].style.display = 'block'; // eslint-disable-line no-param-reassign
+      callback();
+    }
+
+    gotoId(id, this.slides, () => {
+      this.indicator.textContent = `${String(this.slideId + 1)} / ${String(this.slides.length)}`;
+    });
   }
 }
