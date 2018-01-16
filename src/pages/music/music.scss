@@ -1,0 +1,46 @@
+@import "../../sass/variables";
+
+.music-page {
+  color: $background;
+  border-radius: 50%;
+
+  .content {
+    color: $background !important;
+    .button-download {
+      z-index: 2;
+      font-size: ($nav-font-size*0.6) !important;
+      top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem});
+    }
+    h1 {
+      font-size: (0.75*$page-title-size) !important;
+    }
+    p {
+      font-family: $serif-font !important;
+    }
+  }
+  .resume-background {
+    background-color: lighten(black, 2) !important;
+  }
+}
+
+@mixin label($color) {
+  $center-offset: (0.25rem + 6rem);
+  z-index: -1;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: white;
+  border: 6rem solid $color;
+  box-shadow: 0px 0px 0px 1rem darken($color, 6), 0px 0px 0px 1.5rem black;
+	border-radius: 50%;
+  position: absolute;
+  top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
+}
+
+.label {
+  &-stone-free {
+    @include label(red);
+  }
+  &-crossroads {
+    @include label(blue);
+  }
+}

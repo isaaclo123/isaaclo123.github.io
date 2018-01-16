@@ -1,10 +1,35 @@
-<div class="content">
-music
-music
-music
-music
-music
-music
-music
-music
+<div class="page music-page">
+  <img id="vinyl" class="page-background page-border"></img>
+  <div class="page-background page-border resume-backgound"></div>
+
+  <div class="content slide">
+    <div class="label-stone-free"></div>
+    <h1>Stone Free</h1>
+      <p style="text-align: center">
+        <br>
+        Jimi Hendrix
+        <br>
+        Isaac Lo
+      </p>
+    <div class="button button-download" onclick="gotoUrl('#')"><i class="fa fa-play"></i></div>
+  </div>
+
+  <div class="content slide">
+    <div class="label-crossroads"></div>
+    <h1>Crossroads</h1>
+      <p>
+        <b>Software for better
+        <br>
+        and faster debate.</b>
+        <br>
+        Wrote <u>interface</u> code
+        <br>
+        and <u>project website</u>.
+      </p>
+    <div class="button button-download" onclick="gotoUrl('#')"><i class="fa fa-play"></i></div>
+  </div>
+
 </div>
+<div class="button button-prev" onclick="slides.prev()"><i class="fa fa-angle-left"></i></div>
+<div class="button button-next" onclick="slides.next()"><i class="fa fa-angle-right"></i></div>
+<div class="button button-indicator" id="indicator"></div>

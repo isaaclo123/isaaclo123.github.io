@@ -4,7 +4,7 @@ $new-border: ($border-size*1.75);
 $translucent-color: rgba(0,0,0,0.6);
 
 @mixin translucent-highlight {
-  background-color: $translucent-color;
+  background-color: $translucent-color !important;
   padding: $new-border !important;
 }
 
@@ -13,7 +13,6 @@ $translucent-color: rgba(0,0,0,0.6);
   border-radius: 50%;
 
   .content {
-    pointer-events: none;
     color: $background !important;
     h1 {
       span {
@@ -27,17 +26,10 @@ $translucent-color: rgba(0,0,0,0.6);
     p {
       @include translucent-highlight;
     }
-    .page-background {
-      position: absolute;
-      top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
-      z-index: -1;
-      margin-bottom: (-1 * $page-font-size) !important;
-    }
     .button-download {
       z-index: 5 !important;
       font-size: ($nav-font-size*0.6) !important;
-      top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
-      pointer-events: auto !important;
+      top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem});
     }
   }
 }

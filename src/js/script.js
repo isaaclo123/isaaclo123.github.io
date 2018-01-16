@@ -12,11 +12,13 @@ window.hover = hover;
 const homeLoad = require('pages/home/home');
 const resumeLoad = require('pages/resume/resume');
 const projectLoad = require('pages/projects/projects');
+const musicLoad = require('pages/music/music');
 
 // import pages
 const home = require('pages/home/home.html');
 const resume = require('pages/resume/resume.html');
 const projects = require('pages/projects/projects.html');
+const music = require('pages/music/music.html');
 
 // import css/sass
 require('sass/style.scss');
@@ -60,8 +62,8 @@ const routes = {
     // script: projectLoad(), // eslint-disable-line no-undef
   },
   music: {
-    page: './pages/music/music.html',
-    // script: musicLoad(), // eslint-disable-line no-undef
+    page: music,
+    load: musicLoad,
   },
   contact: {
     page: './pages/contact/contact.html',

@@ -72,21 +72,16 @@ nav {
   margin:0 auto;
   overflow:hidden;
   pointer-events: none;
-  &:before {
-    position: absolute; display: block; content: '';
-    border: 1px solid red;
-    height: 100%; width: 100%;
-      box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-    }
 
   &:after{
+    border: $border-size $primary solid !important;
     box-sizing: border-box;
-    top: calc(50% - #{$content-radius/2 - (1.75*$border-size)}); left: calc(50% - #{$content-radius/2 - (1.75*$border-size)});
+    top: calc(50% - #{23rem/2}); left: calc(50% - #{23rem/2});
+    // left: calc(50% - #{23rem/2});
     content:'';
     position:absolute;
     border-radius:100%;
-    width:($content-radius - 2*(1.75*$border-size)); height:($content-radius - 2*(1.75*$border-size));
-    border: $border-size $primary;
-    box-shadow: 0 0 0 (0.75*$border-size) $background, 0 0 0 (1.75*$border-size) $primary, 0 0 0 2000vmax $background;
+    width:($content-radius); height:($content-radius);
+    box-shadow: 0px 0px 0px 2000px $background;
   }
 }

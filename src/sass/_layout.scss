@@ -8,9 +8,9 @@
   top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
   box-sizing: border-box;
   border-radius: 50%;
-  //border: $border-size $primary solid !important;
-  z-index: -1;
+  z-index: 0;
   font-family: $serif-font;
+  border-radius: 50%;
 
   // vertically align pages
   display: flex;
@@ -18,7 +18,6 @@
   align-items: center;
 
   .content {
-    pointer-events: auto !important;
     padding: 0;
     margin-bottom: $page-font-size;
     height: auto; width: auto;
@@ -56,9 +55,18 @@
       margin-top: (0.5 * $page-font-size);
     }
   }
-}
+  &-border{
+    border: ($border-size * 1.75) $background solid;
+  }
+  &-background {
+    $new-border: (0.75*$border-size);
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+    z-index: -1;
+    margin-bottom: (-1 * $page-font-size) !important;
+    border-radius: 50%;
+    height: $content-radius; width: $content-radius;
+  }
 
-.page-fit {
-  border-radius: 50%;
-  height: $content-radius; width: $content-radius;
 }
