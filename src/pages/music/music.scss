@@ -18,21 +18,11 @@ $dark-record-color: darken($record-color, 3);
       font-size: ($nav-font-size*0.6) !important;
       top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem});
     }
-    p {
-      font-family: $serif-font !important;
-    }
-    h1 {
-      width: ($center-offset * 2);
-      height: ($center-offset);
-      top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
-      position: absolute;
-      margin: 0;
-    }
   }
 }
 
 // creates record css label
-@mixin label($color1, $color2) {
+@mixin record($color1, $color2) {
   z-index: -1;
   width: $circle-width;
   height: $circle-width;
@@ -53,20 +43,90 @@ $dark-record-color: darken($record-color, 3);
   }
 }
 
-#stone-free {
-  $text-color: #EF6C00;
-  $font-size: 2rem;
-  .label {
-    @include label($text-color, #CFD8DC);
+.label {
+  $font-size: 0.9rem;
+  $title-font-size: 1.8rem;
+  $record-offset: $center-offset + ($font-size/2);
+  position: absolute;
+  height: $font-size;
+  // color: $text-color-2;
+  font-weight: bold;
+  font-size: $font-size !important;
+  font-family: $sans-serif-font !important;
+  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  // vertically align pages
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-top {
+    width: ($record-offset * 2);
+    height: ($record-offset);
+    top: calc(50% - #{$record-offset}); left: calc(50% - #{$record-offset});
+    //color: $text-color-1;
+    font-family: $serif-font !important;
+    font-size: $title-font-size !important;
+    line-height: ($title-font-size*0.9) !important;
   }
-  h1 {
-    color: $text-color;
-    margin-top: 0.8rem;
+
+  &-left {
+    width: $record-offset;
+    left: calc(50% - #{$record-offset});
+    top: calc(50% - #{$font-size/2});
+  }
+  &-right {
+    width: $record-offset;
+    left: calc(50%);
+    top: calc(50% - #{$font-size/2});
+  }
+  &-bottom{
+    line-height: ($font-size * 1.1) !important;
+    height: ($record-offset); width: (2*$record-offset);
+    top: calc(50% - #{$font-size/2});
+    left: calc(50% - #{$record-offset});
+  }
+}
+
+#stone-free {
+  $text-color-dark: #EF6C00;
+  $text-color-light: #fbe9e7;
+  .record{
+    @include record($text-color-dark, $text-color-light);
+  }
+  .label {
+    color: $text-color-light;
+    &-top {
+      color: $text-color-dark;
+      margin-top: 0rem !important;
+    }
+    &-left {
+    }
+    &-right {
+    }
+    &-bottom{
+    }
   }
 }
 
 #crossroads {
+  $text-color-dark: #283593;
+  $text-color-light: #e8eaf6;
+  .record{
+    @include record($text-color-dark, $text-color-light);
+  }
   .label {
-    @include label(#EF6C00, #5E35B1);
+    color: $text-color-light;
+    &-top {
+      color: $text-color-dark;
+      margin-top: 0rem !important;
+    }
+    &-left {
+    }
+    &-right {
+    }
+    &-bottom{
+    }
   }
 }
