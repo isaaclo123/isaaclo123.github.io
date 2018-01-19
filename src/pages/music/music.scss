@@ -21,30 +21,9 @@ $dark-record-color: darken($record-color, 3);
   }
 }
 
-// creates record css label
-@mixin record($color1, $color2) {
-  z-index: -1;
-  width: $circle-width;
-  height: $circle-width;
-  background-color: $dark-record-color;
-  border: $border-radius solid $color1;
-  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 2.3rem $dark-record-color;
-	border-radius: 50%;
-  position: absolute;
-  top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
-  &::after {
-    position: absolute;
-    content: '';
-    top: inherit; left: inherit;
-    width: ($center-offset * 2);
-    height: ($center-offset - 0.7rem);
-    background-color: $color2;
-    border-radius: $center-offset $center-offset 0 0;
-  }
-}
-
+// css for record labels
 .label {
-  $font-size: 0.9rem;
+  $font-size: 1rem;
   $title-font-size: 1.8rem;
   $record-offset: $center-offset + ($font-size/2);
   position: absolute;
@@ -89,6 +68,42 @@ $dark-record-color: darken($record-color, 3);
   }
 }
 
+@mixin label($text-color-dark, $text-color-light, $title-font-size) {
+  color: $text-color-light;
+  &-top {
+    font-size: $title-font-size !important;
+    color: $text-color-dark !important;
+  }
+  &-left {
+  }
+  &-right {
+  }
+  &-bottom{
+  }
+}
+
+// creates record css background
+@mixin record($color1, $color2) {
+  z-index: -1;
+  width: $circle-width;
+  height: $circle-width;
+  background-color: $dark-record-color;
+  border: $border-radius solid $color1;
+  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 2.3rem $dark-record-color;
+	border-radius: 50%;
+  position: absolute;
+  top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
+  &::after {
+    position: absolute;
+    content: '';
+    top: inherit; left: inherit;
+    width: ($center-offset * 2);
+    height: ($center-offset - 0.8rem);
+    background-color: $color2;
+    border-radius: $center-offset $center-offset 0 0;
+  }
+}
+
 #stone-free {
   $text-color-dark: #EF6C00;
   $text-color-light: #fbe9e7;
@@ -96,17 +111,7 @@ $dark-record-color: darken($record-color, 3);
     @include record($text-color-dark, $text-color-light);
   }
   .label {
-    color: $text-color-light;
-    &-top {
-      color: $text-color-dark;
-      margin-top: 0rem !important;
-    }
-    &-left {
-    }
-    &-right {
-    }
-    &-bottom{
-    }
+    @include label($text-color-dark, $text-color-light,1.8rem);
   }
 }
 
@@ -117,16 +122,6 @@ $dark-record-color: darken($record-color, 3);
     @include record($text-color-dark, $text-color-light);
   }
   .label {
-    color: $text-color-light;
-    &-top {
-      color: $text-color-dark;
-      margin-top: 0rem !important;
-    }
-    &-left {
-    }
-    &-right {
-    }
-    &-bottom{
-    }
+    @include label($text-color-dark, $text-color-light,1.8rem);
   }
 }
