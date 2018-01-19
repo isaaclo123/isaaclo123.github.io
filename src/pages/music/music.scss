@@ -1,6 +1,10 @@
 @import "../../sass/variables";
 
 $record-color: #263238;
+$circle-width: 0.5rem;
+$border-radius: 5rem;
+$center-offset: (($circle-width/2) + $border-radius);
+$dark-record-color: darken($record-color, 3);
 
 .music-page {
   color: $background;
@@ -14,41 +18,27 @@ $record-color: #263238;
       font-size: ($nav-font-size*0.6) !important;
       top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem});
     }
-    h1 {
-      font-size: (0.75*$page-title-size) !important;
-    }
     p {
       font-family: $serif-font !important;
+    }
+    h1 {
+      width: ($center-offset * 2);
+      height: ($center-offset);
+      top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
+      position: absolute;
+      margin: 0;
     }
   }
 }
 
-/*
-@function vinyl-box-shadow($color)
-{
-  $box-shadow: '0 0 0 ' + ' 1rem ' + darken($color, 6) + ', ';
-  @for $i from 0 through (5) {
-    $shadows: '0 0 0 ' + ($i) +'rem black' + ', 0 0 0 ' + ($i + 0.25) +'rem ' + lighten(black, 100);
-    $box-shadow: $box-shadow + $shadows + ' ,';
-    }
-  $shadows: '0 0 0 ' + (5 + 0.75 * $border-size) +'rem black';
-  $box-shadow: $box-shadow + $shadows;
-  @return str_slice(unquote($box-shadow), 0, str_length($box-shadow)-1) ;
-}
-*/
-
+// creates record css label
 @mixin label($color1, $color2) {
-  $circle-width: 0.5rem;
-  $border-radius: 6rem;
-  $center-offset: (($circle-width/2) + $border-radius);
-  $dark-record-color: darken($record-color, 3);
   z-index: -1;
   width: $circle-width;
   height: $circle-width;
   background-color: $dark-record-color;
   border: $border-radius solid $color1;
-  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 2.5rem $dark-record-color;
-  // box-shadow: vinyl-box-shadow($color);
+  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 2.3rem $dark-record-color;
 	border-radius: 50%;
   position: absolute;
   top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
@@ -56,25 +46,27 @@ $record-color: #263238;
     position: absolute;
     content: '';
     top: inherit; left: inherit;
-    font-weight: bold;
-    font-size: (0.75*$page-title-size);
-    color: $color1;
     width: ($center-offset * 2);
-    height: ($center-offset - 1rem);
+    height: ($center-offset - 0.7rem);
     background-color: $color2;
     border-radius: $center-offset $center-offset 0 0;
   }
 }
 
-.label {
-  &-stone-free {
-    @include label(#EF6C00, #CFD8DC);
-    h1 {
-      padding-bottom: 10rem !important;
-      color: red;
-    }
+#stone-free {
+  $text-color: #EF6C00;
+  $font-size: 2rem;
+  .label {
+    @include label($text-color, #CFD8DC);
   }
-  &-crossroads {
+  h1 {
+    color: $text-color;
+    margin-top: 0.8rem;
+  }
+}
+
+#crossroads {
+  .label {
     @include label(#EF6C00, #5E35B1);
   }
 }
