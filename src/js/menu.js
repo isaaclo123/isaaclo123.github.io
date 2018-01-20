@@ -32,10 +32,16 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
 
     if (name !== 'seperator') {
       // add linking to character
-      inner.setAttribute('onclick', `gotoHash('${name}')`);
+      inner.onclick = () => {
+        gotoHash(name);
+      };
       // add hover behavior
-      inner.setAttribute('onmouseover', 'hover(this)');
-      inner.setAttribute('onmouseout', 'hover(this)');
+      inner.onmouseover = () => {
+        hover(inner);
+      };
+      inner.onmouseout = () => {
+        hover(inner);
+      };
     }
 
     // get text for the letter
@@ -91,10 +97,17 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
     icon.className += social[j][0];
     icon.setAttribute('aria-hidden', 'true');
     // add linking
-    icon.setAttribute('onclick', `gotoUrl('${social[j][1]}')`);
+    icon.onclick = () => {
+      gotoUrl(social[j][1]);
+    };
+
     // add hover behavior
-    icon.setAttribute('onmouseover', 'hover(this)');
-    icon.setAttribute('onmouseout', 'hover(this)');
+    icon.onmouseover = () => {
+      hover(icon);
+    };
+    icon.onmouseout = () => {
+      hover(icon);
+    };
 
     // add letter to DOM
     letter.appendChild(icon);

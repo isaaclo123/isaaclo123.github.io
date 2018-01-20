@@ -111,7 +111,7 @@ $dark-record-color: darken($record-color, 3);
     @include record($text-color-dark, $text-color-light);
   }
   .label {
-    @include label($text-color-dark, $text-color-light,1.8rem);
+    @include label($text-color-dark, $text-color-light, 1.8rem);
   }
 }
 
@@ -122,6 +122,6 @@ $dark-record-color: darken($record-color, 3);
     @include record($text-color-dark, $text-color-light);
   }
   .label {
-    @include label($text-color-dark, $text-color-light,1.8rem);
+    @include label($text-color-dark, $text-color-light, 1.8rem);
   }
 }

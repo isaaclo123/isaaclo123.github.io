@@ -2,11 +2,7 @@
 
 // import libraries
 import router from 'lib/router';
-import { gotoUrl, gotoHash, hover, menuInit } from 'lib/menu';
-
-window.gotoUrl = gotoUrl;
-window.gotoHash = gotoHash;
-window.hover = hover;
+import { gotoUrl, gotoHash, hover, menuInit } from 'lib/menu'; // eslint-disable-line no-unused-vars
 
 // page scripts
 const homeLoad = require('pages/home/home');
@@ -54,19 +50,17 @@ const routes = {
   resume: {
     page: resume,
     load: resumeLoad,
-    // script: './pages/resume/resume.js',
   },
   projects: {
     page: projects,
     load: projectLoad,
-    // script: projectLoad(), // eslint-disable-line no-undef
   },
   music: {
     page: music,
     load: musicLoad,
   },
   contact: {
-    page: './pages/contact/contact.html',
+    page: null,
     // script: contactLoad(), // eslint-disable-line no-undef
   },
 };

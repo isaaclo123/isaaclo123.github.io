@@ -1,4 +1,4 @@
-// navigation buttons
+// slide buttons
 
 @import "variables";
 /*
@@ -24,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  -moz-user-select: none;
 
   &-prev {
     font-size: ($nav-font-size) !important;
@@ -35,7 +36,7 @@
     left: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
   }
 
-  &-download {
+  &-action {
     font-size: ($nav-font-size*0.6) !important;
     top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem}});
   }
