@@ -73,8 +73,8 @@
   z-index: -1;
   width: 10.5rem;
   height: 10.5rem;
-  background-color: #EF6C00;
-  box-shadow: 0 0 0 0.4rem #fbe9e7, 0 0 0 0.7rem #EF6C00, 0 0 0 2.3rem #202a2f;
+  background-color: #e65100;
+  box-shadow: 0 0 0 0.4rem #fbe9e7, 0 0 0 0.7rem #e65100, 0 0 0 2.3rem #202a2f;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - 5.25rem);
@@ -93,10 +93,10 @@
     content: '';
     width: 0.5rem;
     height: 0.5rem;
-    top: calc(50% - 0.35rem);
-    left: calc(50% - 0.35rem);
+    top: calc(50% - 0.325rem);
+    left: calc(50% - 0.325rem);
     background-color: #202a2f;
-    border: 0.2rem solid #fbe9e7;
+    border: 0.15rem solid #fbe9e7;
     border-radius: 50%; }
 
 #stone-free .label {
@@ -111,7 +111,7 @@
 */ }
   #stone-free .label-top {
     font-size: 1.8rem !important;
-    color: #EF6C00 !important; }
+    color: #e65100 !important; }
 
 #crossroads .record {
   z-index: -1;
@@ -137,10 +137,10 @@
     content: '';
     width: 0.5rem;
     height: 0.5rem;
-    top: calc(50% - 0.35rem);
-    left: calc(50% - 0.35rem);
+    top: calc(50% - 0.325rem);
+    left: calc(50% - 0.325rem);
     background-color: #202a2f;
-    border: 0.2rem solid #e8eaf6;
+    border: 0.15rem solid #e8eaf6;
     border-radius: 50%; }
 
 #crossroads .label {

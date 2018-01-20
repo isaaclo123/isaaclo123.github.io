@@ -102,7 +102,7 @@ $dark-record-color: darken($record-color, 3);
   }
   &::after{
     $dot-width: 0.5rem;
-    $border-width: 0.2rem;
+    $border-width: 0.15rem;
     $dot-offset: (($dot-width + $border-width)/2);
     position: absolute;
     content: '';
@@ -115,7 +115,7 @@ $dark-record-color: darken($record-color, 3);
 }
 
 #stone-free {
-  $text-color-dark: #EF6C00;
+  $text-color-dark: #e65100;
   $text-color-light: #fbe9e7;
   .record{
     @include record($text-color-dark, $text-color-light);
