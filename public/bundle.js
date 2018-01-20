@@ -133,7 +133,7 @@ var _class = function () {
     // create prev button
     var prevEl = iconButtonCreate('prev', 'fa-angle-left');
     prevEl.onclick = function () {
-      _this.next();
+      _this.prev();
     };
 
     // add buttons to view
