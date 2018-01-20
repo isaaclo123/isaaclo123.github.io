@@ -2,7 +2,7 @@
 
 export default class {
   constructor( // eslint-disable-line no-unused-vars
-    actionIcon = 'fa-link',
+    icon = 'fa-link',
     interval = 10000,
     slideClass = 'slide',
     view = 'view',
@@ -27,27 +27,25 @@ export default class {
       return el;
     }
 
-    // function for creating icon elements
-    function iconCreate(iconType) {
-      const el = document.createElement('i');
-      el.classList.add('fa');
-      el.classList.add(String(iconType));
+    // creates buttons with icon inside
+    function iconButtonCreate(buttonType, iconType) {
+      const el = buttonCreate(buttonType);
+      const elIcon = document.createElement('i');
+      elIcon.classList.add('fa');
+      elIcon.classList.add(String(iconType));
+      el.appendChild(elIcon);
       return el;
     }
 
     // add forward and backwards buttons
 
     // create next button
-    const nextEl = buttonCreate('next');
-    const nextIcon = iconCreate('fa-angle-right');
-    nextEl.appendChild(nextIcon);
+    const nextEl = iconButtonCreate('next', 'fa-angle-right');
     nextEl.onclick = () => { this.next(); };
 
     // create prev button
-    const prevEl = buttonCreate('prev');
-    const prevIcon = iconCreate('fa-angle-left');
-    prevEl.appendChild(prevIcon);
-    prevEl.onclick = () => { this.prev(); };
+    const prevEl = iconButtonCreate('prev', 'fa-angle-left');
+    prevEl.onclick = () => { this.next(); };
 
     // add buttons to view
     this.view.appendChild(nextEl);
@@ -62,13 +60,13 @@ export default class {
 
     // add actions to page
 
-    for (let i = 0; i < actions.urls.length; i += 1) {
-      const actionEl = buttonCreate('action');
-      const actionIcon = iconCreate(String(actions.icon));
-      actionEl.appendChild(actionIcon);
+    for (let i = 0; i < this.slides.length; i += 1) {
+      const link = this.slides[i].getAttribute('data-link');
+      const actionEl = iconButtonCreate('action', String(icon));
       actionEl.onclick = () => {
-        window.location.href = actions.urls[i];
+        window.location.href = link;
       };
+      this.slides[i].appendChild(actionEl);
     }
 
     this.goto(this.slideId);
