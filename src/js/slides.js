@@ -45,7 +45,7 @@ export default class {
 
     // create prev button
     const prevEl = iconButtonCreate('prev', 'fa-angle-left');
-    prevEl.onclick = () => { this.next(); };
+    prevEl.onclick = () => { this.prev(); };
 
     // add buttons to view
     this.view.appendChild(nextEl);
