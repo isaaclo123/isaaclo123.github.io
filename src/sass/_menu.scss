@@ -28,7 +28,7 @@ nav {
 
   // internal character span css
   span {
-    color: $primary !important;
+    color: $primary;
     font: $menu-font-size $serif-font;
     font-weight: bold;
     height: $menu-text-radius; width: $menu-font-size;
@@ -61,7 +61,7 @@ nav {
   // links characters css
   @for $i from 1 through 60 {
     .char#{$i} {
-      transform: rotate((($i*6)-(6*4.5))+deg) !important;
+      transform: rotate((($i*6)-(6*4.4))+deg);
     };
   };
 }
@@ -77,7 +77,7 @@ nav {
   pointer-events: none;
 
   &:after{
-    border: $border-size $primary solid !important;
+    border: $border-size $primary solid;
     box-sizing: border-box;
     top: calc(50% - #{23rem/2}); left: calc(50% - #{23rem/2});
     // left: calc(50% - #{23rem/2});

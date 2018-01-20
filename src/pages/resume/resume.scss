@@ -2,8 +2,8 @@
 
 .resume-page {
   background-color: $primary;
-  color: $background;
   .content {
-    color: $background !important;
+    margin-bottom: $page-font-size;
+    color: $background;
   }
 }

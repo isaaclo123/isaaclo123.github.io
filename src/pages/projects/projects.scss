@@ -4,16 +4,14 @@ $new-border: ($border-size*1.75);
 $translucent-color: rgba(0,0,0,0.6);
 
 @mixin translucent-highlight {
-  background-color: $translucent-color !important;
-  padding: $new-border !important;
+  background-color: $translucent-color;
+  padding: $new-border;
 }
 
 .projects-page {
-  color: $background;
-  border-radius: 50%;
-
   .content {
-    color: $background !important;
+    margin-bottom: 0;
+    color: $background;
     h1 {
       span {
         font-size: inherit;
@@ -21,15 +19,10 @@ $translucent-color: rgba(0,0,0,0.6);
         font-family: inherit;
         @include translucent-highlight;
       }
-      margin-bottom: ($new-border*1.5) !important;
+      margin-bottom: ($new-border * 1.5) !important;
     }
     p {
       @include translucent-highlight;
-    }
-    .button-download {
-      z-index: 5 !important;
-      font-size: ($nav-font-size*0.6) !important;
-      top: calc(50% - #{($nav-font-size/2) - ($content-radius/2) + 1.5rem});
     }
   }
 }

@@ -18,10 +18,12 @@
   align-items: center;
 
   .content {
-    padding: 0;
-    margin-bottom: $page-font-size;
     height: auto; width: auto;
-    color: $primary;
+
+    .justify {
+      text-align: justify;
+      text-align-last: justify;
+    }
 
     h1 {
       // text-align: center;
@@ -32,6 +34,7 @@
       font-family: $serif-font;
       line-height: ($page-title-size*0.9);
     }
+/*
     span {
       padding: 0;
       margin: 0;
@@ -40,19 +43,17 @@
       font-size: $page-font-size;
       font-family: $sans-serif-font;
     }
+*/
     ul {
-      padding: 0;
-      margin: 0;
+      padding: 0; margin: 0;
     }
     li {
-      padding: 0;
-      margin: 0;
       margin-top: (0.5 * $page-font-size);
+      font-family: $sans-serif-font;
     }
     p {
-      padding: 0;
-      margin: 0;
       margin-top: (0.5 * $page-font-size);
+      font-family: $sans-serif-font;
     }
   }
   &-border{
@@ -64,7 +65,7 @@
     position: absolute;
     top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
     z-index: -1;
-    margin-bottom: (-1 * $page-font-size) !important;
+    margin-bottom: (-1 * $page-font-size);
     border-radius: 50%;
     height: $content-radius; width: $content-radius;
     pointer-events: none;
