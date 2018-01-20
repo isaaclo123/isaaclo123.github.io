@@ -1,9 +1,7 @@
 @import "../../sass/variables";
 
 $record-color: #263238;
-$circle-width: 0.5rem;
-$border-radius: 5rem;
-$center-offset: (($circle-width/2) + $border-radius);
+$circle-radius: 5.25rem;
 $dark-record-color: darken($record-color, 3);
 
 .music-page {
@@ -25,7 +23,7 @@ $dark-record-color: darken($record-color, 3);
 .label {
   $font-size: 1rem;
   $title-font-size: 1.8rem;
-  $record-offset: $center-offset + ($font-size/2);
+  $record-offset: $circle-radius + ($font-size/2);
   position: absolute;
   height: $font-size;
   // color: $text-color-2;
@@ -74,33 +72,45 @@ $dark-record-color: darken($record-color, 3);
     font-size: $title-font-size !important;
     color: $text-color-dark !important;
   }
+/*
   &-left {
   }
   &-right {
   }
   &-bottom{
   }
+*/
 }
 
 // creates record css background
 @mixin record($color1, $color2) {
   z-index: -1;
-  width: $circle-width;
-  height: $circle-width;
-  background-color: $dark-record-color;
-  border: $border-radius solid $color1;
+  width: ($circle-radius*2); height: ($circle-radius*2);
+  background-color: $color1;
   box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 2.3rem $dark-record-color;
 	border-radius: 50%;
   position: absolute;
-  top: calc(50% - #{$center-offset}); left: calc(50% - #{$center-offset});
-  &::after {
+  top: calc(50% - #{$circle-radius}); left: calc(50% - #{$circle-radius});
+  &::before {
     position: absolute;
     content: '';
     top: inherit; left: inherit;
-    width: ($center-offset * 2);
-    height: ($center-offset - 0.8rem);
+    width: ($circle-radius * 2);
+    height: ($circle-radius - 0.8rem);
     background-color: $color2;
-    border-radius: $center-offset $center-offset 0 0;
+    border-radius: $circle-radius $circle-radius 0 0;
+  }
+  &::after{
+    $dot-width: 0.5rem;
+    $border-width: 0.2rem;
+    $dot-offset: (($dot-width + $border-width)/2);
+    position: absolute;
+    content: '';
+    width: $dot-width; height: $dot-width;
+    top: calc(50% - #{$dot-offset}); left: calc(50% - #{$dot-offset});
+    background-color: $dark-record-color;
+    border: $border-width solid $color2;
+    border-radius: 50%;
   }
 }
 

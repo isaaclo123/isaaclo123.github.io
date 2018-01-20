@@ -71,16 +71,15 @@
 
 #stone-free .record {
   z-index: -1;
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: #202a2f;
-  border: 5rem solid #EF6C00;
+  width: 10.5rem;
+  height: 10.5rem;
+  background-color: #EF6C00;
   box-shadow: 0 0 0 0.4rem #fbe9e7, 0 0 0 0.7rem #EF6C00, 0 0 0 2.3rem #202a2f;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - 5.25rem);
   left: calc(50% - 5.25rem); }
-  #stone-free .record::after {
+  #stone-free .record::before {
     position: absolute;
     content: '';
     top: inherit;
@@ -89,25 +88,42 @@
     height: 4.45rem;
     background-color: #fbe9e7;
     border-radius: 5.25rem 5.25rem 0 0; }
+  #stone-free .record::after {
+    position: absolute;
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    top: calc(50% - 0.35rem);
+    left: calc(50% - 0.35rem);
+    background-color: #202a2f;
+    border: 0.2rem solid #fbe9e7;
+    border-radius: 50%; }
 
 #stone-free .label {
-  color: #fbe9e7; }
+  color: #fbe9e7;
+  /*
+  &-left {
+  }
+  &-right {
+  }
+  &-bottom{
+  }
+*/ }
   #stone-free .label-top {
     font-size: 1.8rem !important;
     color: #EF6C00 !important; }
 
 #crossroads .record {
   z-index: -1;
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: #202a2f;
-  border: 5rem solid #283593;
+  width: 10.5rem;
+  height: 10.5rem;
+  background-color: #283593;
   box-shadow: 0 0 0 0.4rem #e8eaf6, 0 0 0 0.7rem #283593, 0 0 0 2.3rem #202a2f;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - 5.25rem);
   left: calc(50% - 5.25rem); }
-  #crossroads .record::after {
+  #crossroads .record::before {
     position: absolute;
     content: '';
     top: inherit;
@@ -116,9 +132,27 @@
     height: 4.45rem;
     background-color: #e8eaf6;
     border-radius: 5.25rem 5.25rem 0 0; }
+  #crossroads .record::after {
+    position: absolute;
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    top: calc(50% - 0.35rem);
+    left: calc(50% - 0.35rem);
+    background-color: #202a2f;
+    border: 0.2rem solid #e8eaf6;
+    border-radius: 50%; }
 
 #crossroads .label {
-  color: #e8eaf6; }
+  color: #e8eaf6;
+  /*
+  &-left {
+  }
+  &-right {
+  }
+  &-bottom{
+  }
+*/ }
   #crossroads .label-top {
     font-size: 1.8rem !important;
     color: #283593 !important; }
