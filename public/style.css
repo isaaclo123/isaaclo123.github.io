@@ -78,8 +78,8 @@
       content: '';
       width: 0.5rem;
       height: 0.5rem;
-      top: calc(50% - 0.325rem);
-      left: calc(50% - 0.325rem);
+      top: calc(50% - 0.4rem);
+      left: calc(50% - 0.4rem);
       background-color: #202a2f;
       border: 0.15rem solid #fbe9e7;
       border-radius: 50%; }
@@ -120,8 +120,8 @@
       content: '';
       width: 0.5rem;
       height: 0.5rem;
-      top: calc(50% - 0.325rem);
-      left: calc(50% - 0.325rem);
+      top: calc(50% - 0.4rem);
+      left: calc(50% - 0.4rem);
       background-color: #202a2f;
       border: 0.15rem solid #e8eaf6;
       border-radius: 50%; }

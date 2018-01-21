@@ -92,7 +92,7 @@ $dark-record-color: darken($record-color, 3);
     &::after{
       $dot-width: 0.5rem;
       $border-width: 0.15rem;
-      $dot-offset: (($dot-width + $border-width)/2);
+      $dot-offset: (($dot-width)/2 + $border-width);
       position: absolute;
       content: '';
       width: $dot-width; height: $dot-width;
