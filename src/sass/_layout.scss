@@ -4,8 +4,8 @@
 
 .page {
   position: absolute;
-  height: $content-radius; width: $content-radius;
-  top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+  height: $content-width; width: $content-width;
+  top: calc(50% - #{$content-width/2}); left: calc(50% - #{$content-width/2});
   box-sizing: border-box;
   border-radius: 50%;
   z-index: 0;
@@ -58,11 +58,11 @@
     $new-border: (0.75*$border-size);
     box-sizing: border-box;
     position: absolute;
-    top: calc(50% - #{$content-radius/2}); left: calc(50% - #{$content-radius/2});
+    top: calc(50% - #{$content-width/2}); left: calc(50% - #{$content-width/2});
     z-index: -1;
     margin-bottom: (-1 * $page-font-size);
     border-radius: 50%;
-    height: $content-radius; width: $content-radius;
+    height: $content-width; width: $content-width;
     pointer-events: none;
     -moz-user-select: none;
   }

@@ -81,10 +81,10 @@ nav {
     box-sizing: border-box;
     top: calc(50% - #{23rem/2}); left: calc(50% - #{23rem/2});
     // left: calc(50% - #{23rem/2});
-    content:'';
-    position:absolute;
+    content: '';
+    position: absolute;
     border-radius:100%;
-    width:($content-radius); height:($content-radius);
+    width:($content-width); height:($content-width);
     box-shadow: 0px 0px 0px 2000px $background;
   }
 }

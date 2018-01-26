@@ -9,12 +9,14 @@ const homeLoad = require('pages/home/home');
 const resumeLoad = require('pages/resume/resume');
 const projectLoad = require('pages/projects/projects');
 const musicLoad = require('pages/music/music');
+const contactLoad = require('pages/contact/contact');
 
 // import pages
 const home = require('pages/home/home.html');
 const resume = require('pages/resume/resume.html');
 const projects = require('pages/projects/projects.html');
 const music = require('pages/music/music.html');
+const contact = require('pages/contact/contact.html');
 
 // import css/sass
 require('sass/style.scss');
@@ -60,8 +62,8 @@ const routes = {
     load: musicLoad,
   },
   contact: {
-    page: null,
-    // script: contactLoad(), // eslint-disable-line no-undef
+    page: contact,
+    load: contactLoad,
   },
 };
 

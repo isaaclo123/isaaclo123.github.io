@@ -1,0 +1,88 @@
+@import "../../sass/variables";
+
+$record-color: #263238;
+$circle-radius: 6rem;
+$dark-record-color: darken($record-color, 3);
+$label-color-dark: #757575;
+$label-color-light: #fafafa;
+$phone-color-dark: #c62828;
+$phone-color-medium: #ef9a9a;
+$phone-color-light: #ffcdd2;
+
+// creates phone dial css background
+@mixin phone-dial($color1, $color2, $phone-color1, $phone-color2) {
+  z-index: -1;
+  width: ($circle-radius*2); height: ($circle-radius*2);
+  background-color: $color1;
+  // box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 (0.4 + 0.75*0.8rem) $phone-color2;
+  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - #{$circle-radius}); left: calc(50% - #{$circle-radius});
+  &::before {
+    position: absolute;
+    content: '';
+    top: inherit; left: inherit;
+    width: ($circle-radius * 2);
+    height: ($circle-radius - 0.8rem);
+    background-color: $color2;
+    border-radius: $circle-radius $circle-radius 0 0;
+  }
+}
+
+/*
+.page-border {
+  border: ($border-size * 1.75) $phone-color-dark solid !important;
+}
+*/
+
+.contact-page {
+  background-color: $phone-color-dark;
+  border-radius: 50%;
+
+  // creates dial background
+  .dial-label{
+    // @include phone-dial($label-color-light, $label-color-dark, $phone-color-light, $phone-color-dark);
+    @include phone-dial($background, $phone-color-dark, $phone-color-light, $phone-color-dark);
+  }
+
+  // css for phone labels
+  .label {
+    $font-size: 0.9rem;
+    $title-font-size: 1.8rem;
+    $dial-offset: $circle-radius + ($font-size/2);
+    position: absolute;
+    height: $font-size;
+    font-weight: bold;
+    font-family: $sans-serif-font;
+    text-align: center;
+    color: $label-color-light;
+    margin: 0; padding: 0;
+
+    // vertically align pages
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-top {
+      width: ($dial-offset * 2);
+      height: ($dial-offset);
+      top: calc(50% - #{$dial-offset}); left: calc(50% - #{$dial-offset});
+      //color: $text-color-1;
+      color: $background;
+      font-family: $serif-font;
+      font-size: $title-font-size;
+      line-height: ($title-font-size*0.9);
+    }
+
+    &-bottom{
+      font-size: $font-size;
+      line-height: ($font-size * 1.1);
+      color: $phone-color-dark;
+      height: ($dial-offset); width: (2*$dial-offset);
+      top: calc(50% - #{$font-size/2});
+      left: calc(50% - #{$dial-offset});
+      margin-top: (-1 * $font-size);
+    }
+  }
+}
