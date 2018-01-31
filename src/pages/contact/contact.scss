@@ -1,21 +1,23 @@
 @import "../../sass/variables";
+@import "../../sass/trig";
 
 $record-color: #263238;
-$circle-radius: 6rem;
-$dark-record-color: darken($record-color, 3);
-$label-color-dark: #757575;
-$label-color-light: #fafafa;
-$phone-color-dark: #c62828;
-$phone-color-medium: #ef9a9a;
-$phone-color-light: #ffcdd2;
+$circle-radius: 5rem;
+$label-font-size: 0.75rem;
+$phone-color-dark: #00796b;
+$phone-color-light: #e0f2f1;
+$label-color-dark: #00695c;
+$label-color-light: $background;
+$dial-width: 3rem;
 
 // creates phone dial css background
-@mixin phone-dial($color1, $color2, $phone-color1, $phone-color2) {
+
+@mixin phone-dial($color1, $color2) {
   z-index: -1;
   width: ($circle-radius*2); height: ($circle-radius*2);
   background-color: $color1;
   // box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 (0.4 + 0.75*0.8rem) $phone-color2;
-  box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1;
+  box-shadow: 0 0 0 (0.3rem) $color2, 0 0 0 (0.3 + $dial-width) $phone-color-light;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - #{$circle-radius}); left: calc(50% - #{$circle-radius});
@@ -43,20 +45,19 @@ $phone-color-light: #ffcdd2;
   // creates dial background
   .dial-label{
     // @include phone-dial($label-color-light, $label-color-dark, $phone-color-light, $phone-color-dark);
-    @include phone-dial($background, $phone-color-dark, $phone-color-light, $phone-color-dark);
+    @include phone-dial($label-color-light, $label-color-dark);
   }
 
   // css for phone labels
   .label {
-    $font-size: 0.9rem;
-    $title-font-size: 1.8rem;
-    $dial-offset: $circle-radius + ($font-size/2);
+    $title-font-size: 1.7rem;
+    $dial-offset: $circle-radius + ($label-font-size/2);
     position: absolute;
-    height: $font-size;
+    height: $label-font-size;
     font-weight: bold;
     font-family: $sans-serif-font;
     text-align: center;
-    color: $label-color-light;
+    color: $background;
     margin: 0; padding: 0;
 
     // vertically align pages
@@ -69,20 +70,42 @@ $phone-color-light: #ffcdd2;
       height: ($dial-offset);
       top: calc(50% - #{$dial-offset}); left: calc(50% - #{$dial-offset});
       //color: $text-color-1;
-      color: $background;
+      color: $label-color-light;
       font-family: $serif-font;
       font-size: $title-font-size;
       line-height: ($title-font-size*0.9);
+      // font-style: italic;
+      margin-top: (0.4 * $label-font-size);
     }
 
     &-bottom{
-      font-size: $font-size;
-      line-height: ($font-size * 1.1);
-      color: $phone-color-dark;
+      font-size: $label-font-size;
+      line-height: ($label-font-size * 1.2);
+      color: $label-color-dark;
       height: ($dial-offset); width: (2*$dial-offset);
-      top: calc(50% - #{$font-size/2});
+      top: calc(50% - #{$label-font-size/2});
       left: calc(50% - #{$dial-offset});
-      margin-top: (-1 * $font-size);
+      margin-top: (-1.1 * $label-font-size);
     }
   }
 }
+
+// dots characters css
+@for $i from 1 through 10 {
+  $dot-radius: 0.2rem;
+  $dot-border: 1rem;
+  $dot-offset: ($dot-radius + $dot-border);
+  .dot#{$i} {
+    $circle-radius: 6.75rem;
+    $deg-inc: 30deg;
+    $start-deg: 135deg;
+    position: absolute;
+    width: ($dot-radius*2); height: ($dot-radius*2);
+    top: calc(50% - #{$dot-offset + ($circle-radius * sin($i*$deg-inc - $start-deg))});
+    left: calc(50% - #{$dot-offset + ($circle-radius * cos($i*$deg-inc - $start-deg))});
+    background-color: $phone-color-light;
+    border: $dot-border solid $phone-color-dark;
+    border-radius: 50%;
+    margin: 0; padding: 0;
+  };
+};
