@@ -2,13 +2,14 @@
 @import "../../sass/trig";
 
 $record-color: #263238;
-$circle-radius: 5.2rem;
-$label-font-size: 0.85rem;
+$circle-radius: 5.9rem;
+$label-font-size: 1rem;
 $phone-color-dark: #00796b;
 $phone-color-light: #e0f2f1;
 $label-color-dark: #00695c;
 $label-color-light: $background;
-$dial-width: 3rem;
+$label-color-accent: #00bfa5;
+$dial-width: 3.4rem;
 
 // creates phone dial css background
 
@@ -85,7 +86,21 @@ $dial-width: 3rem;
       height: ($dial-offset); width: (2*$dial-offset);
       top: calc(50% - #{$label-font-size/2});
       left: calc(50% - #{$dial-offset});
-      margin-top: (-1.15 * $label-font-size);
+      margin-top: (-1 * $label-font-size);
+    }
+
+    a {
+      color: $label-color-dark;
+      outline: 0;
+      &:hover {
+        color: $label-color-accent;
+      }
+      &:active {
+        color: $label-color-dark;
+      }
+      &:visited {
+        color: $label-color-dark;
+      }
     }
   }
 }
@@ -93,10 +108,11 @@ $dial-width: 3rem;
 // dots characters css
 @for $i from 1 through 10 {
   $dot-radius: 0.2rem;
-  $dot-border: 1rem;
+  $dot-border: 1.2rem;
   $dot-offset: ($dot-radius + $dot-border);
+  $circle-offset: calc($circle-radius + $dial-width);
   .dot#{$i} {
-    $circle-radius: 6.95rem;
+    $circle-radius: 7.85rem;
     $deg-inc: 30deg;
     $start-deg: 135deg;
     position: absolute;
