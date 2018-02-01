@@ -2,14 +2,14 @@
 @import "../../sass/trig";
 
 $record-color: #263238;
-$circle-radius: 5.9rem;
-$label-font-size: 1rem;
+$circle-radius: 5.4rem;
+$label-font-size: 0.9rem;
 $phone-color-dark: #00796b;
 $phone-color-light: #e0f2f1;
 $label-color-dark: #00695c;
 $label-color-light: $background;
 $label-color-accent: #00bfa5;
-$dial-width: 3.4rem;
+$dial-width: 3.2rem;
 
 // creates phone dial css background
 
@@ -49,6 +49,23 @@ $dial-width: 3.4rem;
     @include phone-dial($label-color-light, $label-color-dark);
   }
 
+  // dial hook
+  .dial-hook {
+    $hook-width: 0.8rem;
+    z-index: 3;
+    background-color: none;
+    font: $menu-font-size $serif-font;
+    font-weight: bold;
+    height: 6rem; width: $hook-width;
+    position: absolute;
+    text-align: center;
+    transform-origin: top center;
+    top: calc(50%); left: calc(50% - #{$hook-width/2});
+    pointer-events: none;
+    transform: rotate(-62deg);
+    border-bottom: solid 4rem #90a4ae;
+  }
+
   // css for phone labels
   .label {
     $title-font-size: 1.7rem;
@@ -86,7 +103,7 @@ $dial-width: 3.4rem;
       height: ($dial-offset); width: (2*$dial-offset);
       top: calc(50% - #{$label-font-size/2});
       left: calc(50% - #{$dial-offset});
-      margin-top: (-1 * $label-font-size);
+      margin-top: (-1.1 * $label-font-size);
     }
 
     a {
@@ -108,13 +125,13 @@ $dial-width: 3.4rem;
 // dots characters css
 @for $i from 1 through 10 {
   $dot-radius: 0.2rem;
-  $dot-border: 1.2rem;
+  $dot-border: 1.1rem;
   $dot-offset: ($dot-radius + $dot-border);
   $circle-offset: calc($circle-radius + $dial-width);
   .dot#{$i} {
-    $circle-radius: 7.85rem;
+    $circle-radius: 7.25rem;
     $deg-inc: 30deg;
-    $start-deg: 135deg;
+    $start-deg: 165deg;
     position: absolute;
     width: ($dot-radius*2); height: ($dot-radius*2);
     top: calc(50% - #{$dot-offset + ($circle-radius * sin($i*$deg-inc - $start-deg))});
