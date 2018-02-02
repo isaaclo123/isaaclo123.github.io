@@ -15,7 +15,7 @@ export default class {
 
     // creates timer
     this.interval = interval;
-    this.timer = setInterval(() => {
+    window.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
 
@@ -80,8 +80,8 @@ export default class {
 
   // resets timer
   timerReset() {
-    clearInterval(this.timer);
-    this.timer = setInterval(() => {
+    clearInterval(window.timer);
+    window.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
   }
@@ -94,7 +94,7 @@ export default class {
     }
     this.goto(this.slideId);
     if (reset) {
-      this.timerReset();
+      window.timerReset();
     }
   }
 
@@ -106,7 +106,7 @@ export default class {
     }
     this.goto(this.slideId);
     if (reset) {
-      this.timerReset();
+      window.timerReset();
     }
   }
 
