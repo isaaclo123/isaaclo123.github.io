@@ -43,6 +43,7 @@ $dark-record-color: darken($record-color, 3);
       top: calc(50% - #{$font-size/2});
     }
     &-right {
+      font-size: $font-size;
       width: $record-offset;
       left: calc(50%);
       top: calc(50% - #{$font-size/2});

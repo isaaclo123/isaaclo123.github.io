@@ -1,14 +1,33 @@
 @import "../../sass/variables";
 @import "../../sass/trig";
 
-$record-color: #263238;
 $circle-radius: 5.4rem;
 $label-font-size: 0.9rem;
-$phone-color-dark: #00796b;
-$phone-color-light: #e0f2f1;
-$label-color-dark: #00695c;
+// $phone-color-dark: #00796b;
+// $phone-color-light: #e0f2f1;
+// $label-color-dark: #00695c;
+
+$hook-color:  #90a4ae;
+
+$phone-color-dark: #263238;
+$phone-color-light: #eceff1;
+$label-color-dark: #37474f;
+//$label-color-dark: #37474f;
+//$label-color-dark: #263238;
+$label-color-light: $phone-color-light;
+$label-color-accent: #00bfa5;
+
+/*
+$phone-color-dark: #b71c1c;
+// $phone-color-light: #ffebee;
+$phone-color-light: #fafafa;
+$label-color-dark: #c62828;
+*/
+
+/*
 $label-color-light: $background;
 $label-color-accent: #00bfa5;
+*/
 $dial-width: 3.2rem;
 
 // creates phone dial css background
@@ -18,7 +37,7 @@ $dial-width: 3.2rem;
   width: ($circle-radius*2); height: ($circle-radius*2);
   background-color: $color1;
   // box-shadow: 0 0 0 0.4rem $color2, 0 0 0 (0.4 + 0.75*0.4rem) $color1, 0 0 0 (0.4 + 0.75*0.8rem) $phone-color2;
-  box-shadow: 0 0 0 (0.3rem) $color2, 0 0 0 (0.3 + $dial-width) $phone-color-light;
+  box-shadow: 0 0 0 (0.3rem) $color2, 0 0 0 (0.3 + $dial-width) $label-color-light;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - #{$circle-radius}); left: calc(50% - #{$circle-radius});
@@ -30,6 +49,15 @@ $dial-width: 3.2rem;
     height: ($circle-radius - 0.75rem);
     background-color: $color2;
     border-radius: $circle-radius $circle-radius 0 0;
+  }
+  &::after{
+    box-shadow: 0 0 0 (0.3rem) $phone-color-dark;
+    position: absolute;
+    content: '';
+    top: inherit; left: inherit;
+    width: ($circle-radius * 2);
+    height: ($circle-radius * 2);
+    border-radius: 50%;
   }
 }
 
@@ -63,7 +91,7 @@ $dial-width: 3.2rem;
     top: calc(50%); left: calc(50% - #{$hook-width/2});
     pointer-events: none;
     transform: rotate(-62deg);
-    border-bottom: solid 4rem #90a4ae;
+    border-bottom: solid 4rem $hook-color;
   }
 
   // css for phone labels

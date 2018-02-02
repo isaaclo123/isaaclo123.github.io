@@ -45,6 +45,7 @@
       left: calc(50% - 5.75rem);
       top: calc(50% - 0.5rem); }
     .music-page .label-right {
+      font-size: 1rem;
       width: 5.75rem;
       left: calc(50%);
       top: calc(50% - 0.5rem); }
@@ -139,19 +140,29 @@
       font-size: 1.8rem;
       color: #283593; }
 /*
+$phone-color-dark: #b71c1c;
+// $phone-color-light: #ffebee;
+$phone-color-light: #fafafa;
+$label-color-dark: #c62828;
+*/
+/*
+$label-color-light: $background;
+$label-color-accent: #00bfa5;
+*/
+/*
 .page-border {
   border: ($border-size * 1.75) $phone-color-dark solid !important;
 }
 */
 .contact-page {
-  background-color: #00796b;
+  background-color: #263238;
   border-radius: 50%; }
   .contact-page .dial-label {
     z-index: -1;
     width: 10.8rem;
     height: 10.8rem;
-    background-color: #fafafa;
-    box-shadow: 0 0 0 0.3rem #00695c, 0 0 0 3.5rem #e0f2f1;
+    background-color: #eceff1;
+    box-shadow: 0 0 0 0.3rem #37474f, 0 0 0 3.5rem #eceff1;
     border-radius: 50%;
     position: absolute;
     top: calc(50% - 5.4rem);
@@ -163,8 +174,17 @@
       left: inherit;
       width: 10.8rem;
       height: 4.65rem;
-      background-color: #00695c;
+      background-color: #37474f;
       border-radius: 5.4rem 5.4rem 0 0; }
+    .contact-page .dial-label::after {
+      box-shadow: 0 0 0 0.3rem #263238;
+      position: absolute;
+      content: '';
+      top: inherit;
+      left: inherit;
+      width: 10.8rem;
+      height: 10.8rem;
+      border-radius: 50%; }
   .contact-page .dial-hook {
     z-index: 3;
     background-color: none;
@@ -197,7 +217,7 @@
       height: 5.85rem;
       top: calc(50% - 5.85rem);
       left: calc(50% - 5.85rem);
-      color: #fafafa;
+      color: #eceff1;
       font-family: Anonymous Pro, monospace;
       font-size: 1.7rem;
       line-height: 1.53rem;
@@ -205,21 +225,21 @@
     .contact-page .label-bottom {
       font-size: 0.9rem;
       line-height: 1.08rem;
-      color: #00695c;
+      color: #37474f;
       height: 5.85rem;
       width: 11.7rem;
       top: calc(50% - 0.45rem);
       left: calc(50% - 5.85rem);
       margin-top: -0.99rem; }
     .contact-page .label a {
-      color: #00695c;
+      color: #37474f;
       outline: 0; }
       .contact-page .label a:hover {
         color: #00bfa5; }
       .contact-page .label a:active {
-        color: #00695c; }
+        color: #37474f; }
       .contact-page .label a:visited {
-        color: #00695c; }
+        color: #37474f; }
 
 .dot1 {
   position: absolute;
@@ -227,8 +247,8 @@
   height: 0.4rem;
   top: calc(50% - -3.82652rem);
   left: calc(50% - -3.82652rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -239,8 +259,8 @@
   height: 0.4rem;
   top: calc(50% - -5.70296rem);
   left: calc(50% - -0.57644rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -251,8 +271,8 @@
   height: 0.4rem;
   top: calc(50% - -5.70296rem);
   left: calc(50% - 3.17644rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -263,8 +283,8 @@
   height: 0.4rem;
   top: calc(50% - -3.82652rem);
   left: calc(50% - 6.42652rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -275,8 +295,8 @@
   height: 0.4rem;
   top: calc(50% - -0.57644rem);
   left: calc(50% - 8.30296rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -287,8 +307,8 @@
   height: 0.4rem;
   top: calc(50% - 3.17644rem);
   left: calc(50% - 8.30296rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -299,8 +319,8 @@
   height: 0.4rem;
   top: calc(50% - 6.42652rem);
   left: calc(50% - 6.42652rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -311,8 +331,8 @@
   height: 0.4rem;
   top: calc(50% - 8.30296rem);
   left: calc(50% - 3.17644rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -323,8 +343,8 @@
   height: 0.4rem;
   top: calc(50% - 8.30296rem);
   left: calc(50% - -0.57644rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
@@ -335,8 +355,8 @@
   height: 0.4rem;
   top: calc(50% - 6.42652rem);
   left: calc(50% - -3.82652rem);
-  background-color: #e0f2f1;
-  border: 1.1rem solid #00796b;
+  background-color: #eceff1;
+  border: 1.1rem solid #263238;
   border-radius: 50%;
   margin: 0;
   padding: 0; }
