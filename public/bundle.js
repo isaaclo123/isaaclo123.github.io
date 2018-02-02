@@ -100,9 +100,7 @@ var _class = function () {
 
     // creates timer
     this.interval = interval;
-    this.timer = setInterval(function () {
-      _this.slideshow();
-    }, this.interval);
+    this.timerReset();
 
     // function for creating indicator slide buttons
     function buttonCreate(buttonType) {
@@ -181,8 +179,10 @@ var _class = function () {
     value: function timerReset() {
       var _this2 = this;
 
-      clearInterval(this.timer);
-      this.timer = setInterval(function () {
+      if (typeof window.timer !== 'undefined') {
+        clearInterval(window.timer);
+      }
+      window.timer = setInterval(function () {
         _this2.slideshow();
       }, this.interval);
     }
@@ -200,7 +200,7 @@ var _class = function () {
       }
       this.goto(this.slideId);
       if (reset) {
-        this.timerReset();
+        window.timerReset();
       }
     }
 
@@ -217,7 +217,7 @@ var _class = function () {
       }
       this.goto(this.slideId);
       if (reset) {
-        this.timerReset();
+        window.timerReset();
       }
     }
 

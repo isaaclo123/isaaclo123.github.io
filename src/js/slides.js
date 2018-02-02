@@ -15,9 +15,7 @@ export default class {
 
     // creates timer
     this.interval = interval;
-    window.timer = setInterval(() => {
-      this.slideshow();
-    }, this.interval);
+    this.timerReset();
 
     // function for creating indicator slide buttons
     function buttonCreate(buttonType) {
@@ -80,7 +78,9 @@ export default class {
 
   // resets timer
   timerReset() {
-    clearInterval(window.timer);
+    if (typeof window.timer !== 'undefined') {
+      clearInterval(window.timer);
+    }
     window.timer = setInterval(() => {
       this.slideshow();
     }, this.interval);
