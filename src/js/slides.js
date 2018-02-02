@@ -94,7 +94,6 @@ export default class {
     }
     this.goto(this.slideId);
     if (reset) {
-      clearInterval(this.timer);
       this.timerReset();
     }
   }
@@ -106,9 +105,7 @@ export default class {
       this.slideId = this.slides.length - 1;
     }
     this.goto(this.slideId);
-    this.timerReset();
     if (reset) {
-      clearInterval(this.timer);
       this.timerReset();
     }
   }

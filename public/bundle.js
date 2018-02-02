@@ -200,7 +200,6 @@ var _class = function () {
       }
       this.goto(this.slideId);
       if (reset) {
-        clearInterval(this.timer);
         this.timerReset();
       }
     }
@@ -217,9 +216,7 @@ var _class = function () {
         this.slideId = this.slides.length - 1;
       }
       this.goto(this.slideId);
-      this.timerReset();
       if (reset) {
-        clearInterval(this.timer);
         this.timerReset();
       }
     }
