@@ -3,31 +3,15 @@
 
 $circle-radius: 5.4rem;
 $label-font-size: 0.9rem;
-// $phone-color-dark: #00796b;
-// $phone-color-light: #e0f2f1;
-// $label-color-dark: #00695c;
-
-$hook-color:  #90a4ae;
 
 $phone-color-dark: #263238;
 $phone-color-light: #eceff1;
 $label-color-dark: #37474f;
-//$label-color-dark: #37474f;
-//$label-color-dark: #263238;
-$label-color-light: $phone-color-light;
-$label-color-accent: #00bfa5;
-
-/*
-$phone-color-dark: #b71c1c;
-// $phone-color-light: #ffebee;
-$phone-color-light: #fafafa;
-$label-color-dark: #c62828;
-*/
-
-/*
 $label-color-light: $background;
-$label-color-accent: #00bfa5;
-*/
+
+$label-color-accent: $accent;
+$hook-color:  #90a4ae;
+
 $dial-width: 3.2rem;
 
 // creates phone dial css background
@@ -61,20 +45,13 @@ $dial-width: 3.2rem;
   }
 }
 
-/*
-.page-border {
-  border: ($border-size * 1.75) $phone-color-dark solid !important;
-}
-*/
-
 .contact-page {
   background-color: $phone-color-dark;
   border-radius: 50%;
 
   // creates dial background
   .dial-label{
-    // @include phone-dial($label-color-light, $label-color-dark, $phone-color-light, $phone-color-dark);
-    @include phone-dial($label-color-light, $label-color-dark);
+    @include phone-dial($background, $label-color-dark);
   }
 
   // dial hook
@@ -116,7 +93,7 @@ $dial-width: 3.2rem;
       height: ($dial-offset);
       top: calc(50% - #{$dial-offset}); left: calc(50% - #{$dial-offset});
       //color: $text-color-1;
-      color: $label-color-light;
+      color: $background;
       font-family: $serif-font;
       font-size: $title-font-size;
       line-height: ($title-font-size*0.9);
@@ -164,9 +141,40 @@ $dial-width: 3.2rem;
     width: ($dot-radius*2); height: ($dot-radius*2);
     top: calc(50% - #{$dot-offset + ($circle-radius * sin($i*$deg-inc - $start-deg))});
     left: calc(50% - #{$dot-offset + ($circle-radius * cos($i*$deg-inc - $start-deg))});
-    background-color: $phone-color-light;
+    background-color: $label-color-light;
     border: $dot-border solid $phone-color-dark;
     border-radius: 50%;
     margin: 0; padding: 0;
   };
 };
+
+// number characters css
+@for $i from 1 through 10 {
+  $number-font-size: $page-font-size;
+  $dot-radius: 1.2rem;
+  $dot-offset: ($dot-radius);
+  $circle-offset: calc($circle-radius + $dial-width);
+  .num#{$i} {
+    $circle-radius: 10rem;
+    $deg-inc: 30deg;
+    $start-deg: 165deg;
+    position: absolute;
+    width: $number-font-size; height: $number-font-size;
+    top: calc(50% - #{$number-font-size/2 + ($circle-radius * sin($i*$deg-inc - $start-deg))});
+    left: calc(50% - #{$number-font-size/2 + ($circle-radius * cos($i*$deg-inc - $start-deg))});
+    color: $phone-color-light;
+    border-radius: 50%;
+    margin: 0; padding: 0;
+
+    // vertically and horizontally align text
+    font-size: $label-font-size;
+    font-weight: bold;
+    font-family: $sans-serif-font;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -moz-user-select: none;
+  };
+};
+
