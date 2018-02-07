@@ -581,7 +581,7 @@ nav {
     border-radius: 100%;
     width: 23rem;
     height: 23rem;
-    box-shadow: 0px 0px 0px 2000px #fafafa; }
+    box-shadow: 0 0 0 2000rem #fafafa; }
 
 /*
 .pointer {
