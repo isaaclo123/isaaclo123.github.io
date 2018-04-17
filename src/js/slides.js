@@ -3,7 +3,7 @@
 export default class {
   constructor( // eslint-disable-line no-unused-vars
     icon = 'fa-link',
-    interval = 10000,
+    interval = 20000,
     slideClass = 'slide',
     view = 'view',
   ) {
