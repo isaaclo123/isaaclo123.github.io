@@ -1,8 +1,8 @@
 .DS_STORE
 *.log
 
-node_modules
-node_modules/*
+/node_modules
+/node_modules/*
 
-.sass-cache
-.sass-cache/*
+/.sass-cache
+/.sass-cache/*
