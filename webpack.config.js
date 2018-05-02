@@ -5,8 +5,10 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractScss = new ExtractTextPlugin('public/style.css');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -55,14 +57,39 @@ module.exports = {
           use: ['css-loader', 'sass-loader'],
         }),
       },
+      /*
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      */
     ],
   },
   plugins: [
     extractScss,
+    /*
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+    */
     new HtmlWebpackPlugin({
       title: 'Isaac Lo',
       filename: './index.html',
       template: './src/index.template.html',
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        html5: true,
+        minifyCSS: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+      },
     }),
     new CopyWebpackPlugin([
       {
@@ -70,14 +97,8 @@ module.exports = {
         to: './public/resume.pdf',
       },
     ]),
-    /*
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
-    */
     new CleanWebpackPlugin(['public', 'index.html']),
+    new UglifyJsPlugin({}),
   ],
   resolve: {
     modules: [
