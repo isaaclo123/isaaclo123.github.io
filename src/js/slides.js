@@ -8,10 +8,15 @@ export default class {
     view = 'view',
   ) {
     this.slideId = 0;
-    this.slides = document.getElementsByClassName(slideClass);
     this.view = document.getElementById(view);
+    this.slides = this.view.getElementsByClassName(slideClass);
 
     // init
+
+    // create timer
+    window.timer = null;
+
+    console.log('new slide created');
 
     // boolean for currently in animation
     this.inAnimation = false;
@@ -141,7 +146,7 @@ export default class {
     this.slides[prevId].style.display = 'block';
     this.slides[prevId].classList.add('fade-out');
 
-    setTimeout(() => {
+    const animateTimeout = setTimeout(() => {
       // remove fade class from old slide
       this.slides[prevId].classList.remove('fade-out');
       // hide previous slide

@@ -3,35 +3,46 @@
 export default (routeData, element = 'view') => { // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
-    const view = document.getElementById(element);
+    // get change view to old view
+    const oldView = document.getElementById(element);
+    oldView.id = `${element}-old`;
 
-    // script loader
+    // create view for new content
+    const view = document.createElement('div');
+    view.id = element;
+    view.style.opacity = 0;
+    // add new content view to DOM
+    document.body.appendChild(view);
+
+    // changes new view's page
+    view.innerHTML = routeData[route].page;
+
+    // load scripts for new view
     const script = document.createElement('script');
-
     script.onload = () => {
       load(); // eslint-disable-line no-undef
     };
 
-    // changes page
-    view.innerHTML = routeData[route].page;
+    // animate
+    let opacity = 0;
 
-    // stop any timers running for any slides or pages
-    console.log('stop timers');
-    console.log('before');
-    console.log(window.timer);
+    const animationInterval = setInterval(() => {
+      if (opacity >= 1) {
+        // set opacity to full
+        view.style.opacity = 1;
+        // stop this interval
+        clearInterval(animationInterval);
+        // remove old view
+        oldView.parentNode.removeChild(oldView);
+      } else {
+        console.log(opacity);
+        opacity += 0.05;
+        view.style.opacity = opacity;
+      }
+    }, 0.1);
 
-    // stop timer
-    if (window.timer) {
-      clearInterval(window.timer);
-    }
+    // script loader
 
-    console.log('after');
-    console.log(window.timer);
-    console.log('----');
-
-    setTimeout(() => {
-      // animate
-    }, 400);
     if ('load' in routeData[route]) {
       routeData[route].load.default();
     }
