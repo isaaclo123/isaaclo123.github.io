@@ -54,15 +54,3 @@
     left: calc(50% - #{$menu-font-size/2 + $page-font-size*0.3});
   }
 }
-
-.fade-out {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 0.1s, opacity 0.1s linear;
-}
-
-.fade-in {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.2s linear;
-}

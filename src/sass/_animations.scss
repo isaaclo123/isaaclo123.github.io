@@ -1,0 +1,14 @@
+// animations
+
+.fade {
+  &-out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+  }
+  &-in {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+  }
+}

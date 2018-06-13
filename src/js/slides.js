@@ -95,10 +95,7 @@ export default class {
       return;
     }
     const prevId = this.slideId;
-    this.slideId += 1;
-    if (this.slideId > this.slides.length - 1) {
-      this.slideId = 0;
-    }
+    this.slideId = (this.slideId + 1) % this.slides.length;
     this.goto(this.slideId, prevId);
     if (reset) {
       this.timerReset();
@@ -112,10 +109,7 @@ export default class {
       return;
     }
     const prevId = this.slideId;
-    this.slideId -= 1;
-    if (this.slideId < 0) {
-      this.slideId = this.slides.length - 1;
-    }
+    this.slideId = (this.slideId - 1) % this.slides.length;
     this.goto(this.slideId, prevId);
     if (reset) {
       this.timerReset();
@@ -130,29 +124,32 @@ export default class {
     console.log(id);
     console.log('----');
 
+    // hide all slides
     for (let i = 0; i < this.slides.length; i += 1) {
-      // hide all slides
       this.slides[i].style.display = 'none'; // eslint-disable-line no-param-reassign
     }
 
     // indicate animation is starting
     this.inAnimation = true;
 
+    // put new slide on bottom
+    this.slides[id].style.zIndex = 0;
+    // make new slide visible
+    this.slides[id].style.display = 'block';
+
     // leave previous slide visible, add fade-out class
-    this.slides[prevId].style.display = 'block'; // eslint-disable-line no-param-reassign
+    this.slides[prevId].style.display = 'block';
     this.slides[prevId].classList.add('fade-out');
 
-    // make new slide visible, add  fade in class
-    this.slides[id].style.display = 'block'; // eslint-disable-line no-param-reassign
-    this.slides[id].classList.add('fade-in');
-
     setTimeout(() => {
-      // remove fade classes
-      this.slides[id].classList.remove('fade-in');
+      // remove fade class from old slide
       this.slides[prevId].classList.remove('fade-out');
-
       // hide previous slide
       this.slides[prevId].style.display = 'none'; // eslint-disable-line no-param-reassign
+
+      // put new slide on top
+      this.slides[id].style.zIndex = 1;
+
       // no longer in animatoin
       this.inAnimation = false;
     }, 200);
