@@ -1,4 +1,4 @@
-require('./contact.scss');
+require('@/pages/contact/contact.scss');
 
 export default () => {
 };

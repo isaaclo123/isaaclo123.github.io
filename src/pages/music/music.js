@@ -1,6 +1,6 @@
-import Slides from 'lib/slides';
+import Slides from '@/js/slides';
 
-require('./music.scss');
+require('@/pages/music/music.scss');
 
 export default () => {
   window.slides = new Slides('fa-play');

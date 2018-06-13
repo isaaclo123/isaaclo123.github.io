@@ -1,6 +1,6 @@
-import Slides from 'lib/slides';
+import Slides from '@/js/slides';
 
-require('./resume.scss');
+require('@/pages/resume/resume.scss');
 
 export default () => {
   window.slides = new Slides('fa-arrow-down');

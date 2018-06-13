@@ -14,6 +14,21 @@ export default (routeData, element = 'view') => { // eslint-disable-line no-unus
 
     // changes page
     view.innerHTML = routeData[route].page;
+
+    // stop any timers running for any slides
+    console.log('stop timers');
+    console.log('before');
+    console.log(window.timer);
+
+    // stop timer
+    if (window.timer) {
+      clearInterval(window.timer);
+    }
+
+    console.log('after');
+    console.log(window.timer);
+    console.log('----');
+
     setTimeout(() => {
       // animate
     }, 400);

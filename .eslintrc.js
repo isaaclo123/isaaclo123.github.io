@@ -9,6 +9,10 @@ module.exports = {
     "browser": true,
     "node": true,
   },
+  "rules": {
+    //added to prevent unexpected console statement error
+    'no-console':'off',
+  },
   "settings": {
     "import/resolver": "webpack",
   }

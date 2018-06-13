@@ -105,10 +105,7 @@ module.exports = {
       'node_modules',
     ],
     alias: {
-      lib: path.resolve(__dirname, 'src', 'js'),
-      pages: path.resolve(__dirname, 'src', 'pages'),
-      sass: path.resolve(__dirname, 'src', 'sass'),
-      npm: path.resolve(__dirname, 'node_modules'),
+      '@': path.resolve('src'),
     },
   },
 };
