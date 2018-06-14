@@ -99,7 +99,13 @@ export default class {
     if (this.inAnimation) {
       return;
     }
+
     const prevId = this.slideId;
+    this.slideId += 1;
+    if (this.slideId > this.slides.length - 1) {
+      this.slideId = 0;
+    }
+
     this.slideId = (this.slideId + 1) % this.slides.length;
     this.goto(this.slideId, prevId);
     if (reset) {
@@ -113,8 +119,13 @@ export default class {
     if (this.inAnimation) {
       return;
     }
+
     const prevId = this.slideId;
-    this.slideId = (this.slideId - 1) % this.slides.length;
+    this.slideId -= 1;
+    if (this.slideId < 0) {
+      this.slideId = this.slides.length - 1;
+    }
+
     this.goto(this.slideId, prevId);
     if (reset) {
       this.timerReset();
