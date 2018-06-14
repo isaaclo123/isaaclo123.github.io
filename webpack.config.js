@@ -89,7 +89,8 @@ module.exports = {
     ],
   },
   plugins: [
-    extractScss,
+    new ExtractTextPlugin('public/style.css'),
+    // extractScss,
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: cssnano,
