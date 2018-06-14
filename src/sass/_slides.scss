@@ -30,6 +30,10 @@
   align-items: center;
   -moz-user-select: none;
 
+  &:hover {
+    color: $background-2;
+  }
+
   &-prev {
     font-size: ($nav-font-size) !important;
     left: calc(50% - #{($nav-font-size/2) + ($content-width/2) - 1.5rem}});
@@ -52,5 +56,9 @@
     font-size: ($nav-font-size*0.6) !important;
     top: calc(50% - #{($nav-font-size/2) + ($content-width/2) - 1.5rem}});
     left: calc(50% - #{$menu-font-size/2 + $page-font-size*0.3});
+
+    &:hover {
+      color: $background;
+    }
   }
 }

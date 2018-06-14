@@ -54,8 +54,14 @@ nav {
   }
 
   // highlight
+
   .highlight {
-    color: $accent;
+    &-hover, &-page {
+      color: $accent;
+    }
+    &-click {
+      color: $accent-2;
+    }
   }
 
   // links characters css

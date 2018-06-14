@@ -24,6 +24,18 @@ module.exports = {
     filename: 'public/bundle.js',
   },
   module: {
+    loaders: [
+      // the url-loader uses DataUrls.
+      // the file-loader emits files.
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+      },
+    ],
     rules: [
       {
         test: /\.(html)$/,
@@ -57,15 +69,10 @@ module.exports = {
           use: ['css-loader', 'sass-loader'],
         }),
       },
-      /*
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
+        use: ['style-loader', 'css-loader'],
       },
-      */
     ],
   },
   plugins: [
@@ -96,6 +103,12 @@ module.exports = {
         from: './src/pages/resume/resume.pdf',
         to: './public/resume.pdf',
       },
+      /*
+      {
+        from: './node_modules/font-awesome/css/font-awesome.min.css',
+        to: './public/font-awesome.min.css',
+      },
+      */
     ]),
     new CleanWebpackPlugin(['public', 'index.html']),
     new UglifyJsPlugin({}),

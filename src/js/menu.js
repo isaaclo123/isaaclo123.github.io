@@ -11,11 +11,24 @@ function gotoHash(hash) { // eslint-disable-line no-unused-vars
 
 function hover(el) { // eslint-disable-line no-unused-vars
   // highlight or unhighlight element
+  console.log('hover event');
   const className = el.classList.item(0);
   const elements = document.getElementsByClassName(className);
 
   for (let i = 0; i < elements.length; i += 1) {
-    elements[i].classList.toggle('highlight');
+    elements[i].classList.toggle('highlight-hover');
+    elements[i].classList.toggle('highlight-click', false);
+  }
+}
+
+function click(el) { // eslint-disable-line no-unused-vars
+  // highlight or unhighlight element
+  console.log('click event');
+  const className = el.classList.item(0);
+  const elements = document.getElementsByClassName(className);
+
+  for (let i = 0; i < elements.length; i += 1) {
+    elements[i].classList.toggle('highlight-click');
   }
 }
 
@@ -41,6 +54,13 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
       };
       inner.onmouseout = () => {
         hover(inner);
+      };
+      // add mouseclick behavior
+      inner.onmousedown = () => {
+        click(inner);
+      };
+      inner.onmouseup = () => {
+        click(inner);
       };
     }
 
@@ -107,6 +127,13 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
     };
     icon.onmouseout = () => {
       hover(icon);
+    };
+    // add mouseclick behavior
+    icon.onmousedown = () => {
+      click(icon);
+    };
+    icon.onmouseup = () => {
+      click(icon);
     };
 
     // add letter to DOM

@@ -10,6 +10,7 @@ $label-color-dark: #37474f;
 $label-color-light: $background;
 
 $label-color-accent: $accent;
+$label-color-accent-2: $accent-2;
 $hook-color:  #90a4ae;
 
 $dial-width: 3.2rem;
@@ -118,7 +119,7 @@ $dial-width: 3.2rem;
         color: $label-color-accent;
       }
       &:active {
-        color: $label-color-dark;
+        color: $label-color-accent-2;
       }
       &:visited {
         color: $label-color-dark;

@@ -22,7 +22,6 @@ const contact = require('@/pages/contact/contact.html');
 require('@/sass/style.scss');
 
 // import fonts
-// require('npm/font-awesome/css/font-awesome.min.css');
 
 const pages = [
   ['home', 'ISAAC LO'],
