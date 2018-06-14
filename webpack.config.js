@@ -3,6 +3,7 @@
 // const webpack = require('webpack');
 const path = require('path');
 const cssnano = require('cssnano');
+const defaultPreset = require('cssnano-preset-default');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -88,12 +89,15 @@ module.exports = {
     ],
   },
   plugins: [
-    // extractScss,
-    new ExtractTextPlugin('public/styles.css'),
+    extractScss,
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: cssnano,
-      cssProcessorOptions: { discardComments: { removeAll: true } },
+      cssProcessorOptions: defaultPreset({
+        discardComments: {
+          removeAll: true,
+        },
+      }),
       canPrint: true,
     }),
     /*
