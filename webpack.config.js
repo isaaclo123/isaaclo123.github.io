@@ -2,6 +2,7 @@
 
 // const webpack = require('webpack');
 const path = require('path');
+const cssnano = require('cssnano');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,6 +10,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractScss = new ExtractTextPlugin('public/style.css');
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -71,12 +73,29 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        // use: ['style-loader', 'css-loader'],
       },
+      /*
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      */
     ],
   },
   plugins: [
-    extractScss,
+    // extractScss,
+    new ExtractTextPlugin('public/styles.css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: cssnano,
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true,
+    }),
     /*
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
