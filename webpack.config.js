@@ -9,7 +9,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractScss = new ExtractTextPlugin('public/style.css');
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -110,7 +110,7 @@ module.exports = {
       },
       */
     ]),
-    new CleanWebpackPlugin(['public', 'index.html']),
+    // new CleanWebpackPlugin(['public', 'index.html']),
     new UglifyJsPlugin({}),
   ],
   resolve: {
