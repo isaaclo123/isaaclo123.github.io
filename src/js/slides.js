@@ -106,7 +106,6 @@ export default class {
       this.slideId = 0;
     }
 
-    this.slideId = (this.slideId + 1) % this.slides.length;
     this.goto(this.slideId, prevId);
     if (reset) {
       this.timerReset();

@@ -130,7 +130,19 @@ module.exports = {
       */
     ]),
     new CleanWebpackPlugin(['public', 'index.html']),
-    new UglifyJsPlugin({}),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          beautify: false,
+          comments: false,
+        },
+        compress: {
+          drop_console: true,
+        },
+        ie8: true,
+        safari10: true,
+      },
+    }),
   ],
   resolve: {
     modules: [
