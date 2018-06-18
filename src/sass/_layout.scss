@@ -3,14 +3,14 @@
 @import "variables";
 
 .page {
+  $content-mod: #{$content-width - (2 * $border-size)};
   position: absolute;
-  height: $content-width; width: $content-width;
-  top: calc(50% - #{$content-width/2}); left: calc(50% - #{$content-width/2});
+  height: $content-mod; width: $content-mod;
+  top: calc(50% - #{$content-mod/2}); left: calc(50% - #{$content-mod/2});
   box-sizing: border-box;
   border-radius: 50%;
   z-index: 0;
   font-family: $serif-font;
-  border-radius: 50%;
 
   // vertically align pages
   display: flex;
@@ -52,19 +52,14 @@
     }
   }
   &-border{
-    border: ($border-size * 1.75) $background solid;
+    border: ($border-size * 0.75) $background solid;
+    box-shadow: 0 0 0 $border-size $primary;
+  }
+  &-no-border{
+    box-shadow: 0 0 0 $border-size $primary;
   }
   &-background {
-    $new-border: (0.75*$border-size);
-    box-sizing: border-box;
-    position: absolute;
-    top: calc(50% - #{$content-width/2}); left: calc(50% - #{$content-width/2});
     z-index: -1;
-    margin-bottom: (-1 * $page-font-size);
-    border-radius: 50%;
-    height: $content-width; width: $content-width;
-    pointer-events: none;
-    -moz-user-select: none;
   }
 
 }
