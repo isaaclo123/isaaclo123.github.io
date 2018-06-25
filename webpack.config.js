@@ -118,6 +118,7 @@ module.exports = {
         { family: 'Roboto' },
       ],
       local: true,
+      filename: 'public/font/fonts.css',
       path: 'public/font/',
     }),
     new CopyWebpackPlugin([
