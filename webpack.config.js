@@ -5,7 +5,7 @@ const cssnano = require('cssnano');
 const defaultPreset = require('cssnano-preset-default');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
+const GoogleFontsPlugin = require('google-fonts-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
