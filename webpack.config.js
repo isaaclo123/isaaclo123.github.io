@@ -5,6 +5,7 @@ const cssnano = require('cssnano');
 const defaultPreset = require('cssnano-preset-default');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -110,6 +111,14 @@ module.exports = {
         removeComments: true,
         removeEmptyAttributes: true,
       },
+    }),
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: 'Anonymous Pro' },
+        { family: 'Roboto' },
+      ],
+      local: true,
+      path: 'public/font/',
     }),
     new CopyWebpackPlugin([
       {

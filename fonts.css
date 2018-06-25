@@ -1,0 +1,29 @@
+/* === Anonymous Pro - regular */
+@font-face {
+	font-family: 'Anonymous Pro';
+	font-style: normal;
+	font-weight: 400;
+	src: url("./public/font/AnonymousPro-Regular.eot");
+	src: local("Anonymous Pro Regular"),
+		local("AnonymousPro-Regular"),
+		url("./public/font/AnonymousPro-Regular.eot") format("embedded-opentype"),
+		url("./public/font/AnonymousPro-Regular.woff2") format("woff2"),
+		url("./public/font/AnonymousPro-Regular.woff") format("woff"),
+		url("./public/font/AnonymousPro-Regular.ttf") format("truetype"),
+		url("./public/font/AnonymousPro-Regular.svg") format("svg");
+}
+
+/* === Roboto - regular */
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url("./public/font/Roboto-Regular.eot");
+	src: local("Roboto"),
+		local("Roboto-Regular"),
+		url("./public/font/Roboto-Regular.eot") format("embedded-opentype"),
+		url("./public/font/Roboto-Regular.woff2") format("woff2"),
+		url("./public/font/Roboto-Regular.woff") format("woff"),
+		url("./public/font/Roboto-Regular.ttf") format("truetype"),
+		url("./public/font/Roboto-Regular.svg") format("svg");
+}
