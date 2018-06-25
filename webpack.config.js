@@ -1,6 +1,5 @@
-// webpack config dev
+// webpack config
 
-// const webpack = require('webpack');
 const path = require('path');
 const cssnano = require('cssnano');
 const defaultPreset = require('cssnano-preset-default');
@@ -10,7 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractScss = new ExtractTextPlugin('public/style.css');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -27,18 +25,6 @@ module.exports = {
     filename: 'public/bundle.js',
   },
   module: {
-    loaders: [
-      // the url-loader uses DataUrls.
-      // the file-loader emits files.
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      },
-      {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-      },
-    ],
     rules: [
       {
         test: /\.(html)$/,
@@ -66,31 +52,42 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      },
+      {
         test: /\.scss$/,
         use: extractScss.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         }),
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
-        // use: ['style-loader', 'css-loader'],
-      },
-      /*
-      {
-        test: /\.css$/,
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+            options: {
+              outputPath: 'public/',
+            },
+          },
         ],
       },
-      */
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'public/',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new ExtractTextPlugin('public/style.css'),
-    // extractScss,
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: cssnano,
@@ -101,14 +98,6 @@ module.exports = {
       }),
       canPrint: true,
     }),
-    /*
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
-    */
     new HtmlWebpackPlugin({
       title: 'Isaac Lo',
       filename: './index.html',
@@ -127,12 +116,6 @@ module.exports = {
         from: './src/pages/resume/resume.pdf',
         to: './public/resume.pdf',
       },
-      /*
-      {
-        from: './node_modules/font-awesome/css/font-awesome.min.css',
-        to: './public/font-awesome.min.css',
-      },
-      */
     ]),
     new CleanWebpackPlugin(['public', 'index.html']),
     new UglifyJsPlugin({

@@ -19,9 +19,10 @@ const music = require('@/pages/music/music.html');
 const contact = require('@/pages/contact/contact.html');
 
 // import css/sass
-require('@/sass/style.scss');
+import '@/../node_modules/font-awesome/scss/font-awesome.scss';
+import '@/sass/style.scss';
 
-// import fonts
+// menu info
 
 const pages = [
   ['home', 'ISAAC LO'],

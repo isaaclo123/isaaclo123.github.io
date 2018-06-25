@@ -7,6 +7,13 @@ html, body {
   height: 100%; width: 100%;
 }
 
+// fonts
+
+@import url("https://fonts.googleapis.com/css?family=Anonymous+Pro");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+// imports
+
 @import "breakpoints";
 @import "menu";
 @import "slides";
