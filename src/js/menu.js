@@ -2,7 +2,7 @@
 
 function gotoUrl(url) { // eslint-disable-line no-unused-vars
   // goes to URL
-  window.open(url);
+  window.location.href = url;
 }
 
 function gotoHash(hash) { // eslint-disable-line no-unused-vars
