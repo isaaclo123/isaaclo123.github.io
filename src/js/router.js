@@ -1,5 +1,7 @@
 // router
 
+const DEFAULT_TITLE = 'Isaac Lo';
+
 export default (routeData, element = 'view') => { // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
@@ -40,6 +42,13 @@ export default (routeData, element = 'view') => { // eslint-disable-line no-unus
         view.style.opacity = opacity;
       }
     }, 0.1);
+
+    // change document title
+    if (routeData[route].title) {
+      document.title = routeData[route].title;
+    } else {
+      document.title = DEFAULT_TITLE;
+    }
 
     // script loader
 

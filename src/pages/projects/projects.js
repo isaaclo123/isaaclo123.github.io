@@ -1,15 +1,17 @@
 import Slides from '@/js/slides';
 import loadImage from '@/js/image';
 
-import fastflow from '@/pages/projects/FastFlowIcon.png';
-import leaflet from '@/pages/projects/leafGreen.png';
 import kanetus from '@/pages/projects/kanetus.png';
+import sol from '@/pages/projects/solstudios.png';
+import leaflet from '@/pages/projects/leafGreen.png';
+import fastflow from '@/pages/projects/FastFlowIcon.png';
 
 require('@/pages/projects/projects.scss');
 
 export default () => {
   window.slides = new Slides();
-  loadImage(fastflow, 'fastflow');
-  loadImage(leaflet, 'leaflet');
   loadImage(kanetus, 'kanetus');
+  loadImage(sol, 'sol');
+  loadImage(leaflet, 'leaflet');
+  loadImage(fastflow, 'fastflow');
 };

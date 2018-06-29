@@ -4,6 +4,10 @@
 import router from '@/js/router';
 import { gotoUrl, gotoHash, hover, menuInit } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
+// import css/sass
+import '@/../node_modules/font-awesome/scss/font-awesome.scss';
+import '@/sass/style.scss';
+
 // page scripts
 const homeLoad = require('@/pages/home/home');
 const resumeLoad = require('@/pages/resume/resume');
@@ -17,10 +21,6 @@ const resume = require('@/pages/resume/resume.html');
 const projects = require('@/pages/projects/projects.html');
 const music = require('@/pages/music/music.html');
 const contact = require('@/pages/contact/contact.html');
-
-// import css/sass
-import '@/../node_modules/font-awesome/scss/font-awesome.scss';
-import '@/sass/style.scss';
 
 // menu info
 
@@ -44,26 +44,32 @@ const routes = {
   '': {
     page: home,
     load: homeLoad,
+    title: 'Isaac Lo - Home',
   },
   home: {
     page: home,
     load: homeLoad,
+    title: 'Isaac Lo - Home',
   },
   resume: {
     page: resume,
     load: resumeLoad,
+    title: 'Isaac Lo - Resume',
   },
   projects: {
     page: projects,
     load: projectLoad,
+    title: 'Isaac Lo - Projects',
   },
   music: {
     page: music,
     load: musicLoad,
+    title: 'Isaac Lo - Music',
   },
   contact: {
     page: contact,
     load: contactLoad,
+    title: 'Isaac Lo - Contact',
   },
 };
 
