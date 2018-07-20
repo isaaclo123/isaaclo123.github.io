@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GoogleFontsPlugin = require('google-fonts-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractScss = new ExtractTextPlugin('public/style.css');
@@ -128,6 +130,13 @@ module.exports = {
       },
     ]),
     new CleanWebpackPlugin(['public', 'index.html']),
+    new AsyncStylesheetWebpackPlugin({
+      preloadPolyfill: true,
+      noscriptFallback: true,
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+    }),
     new UglifyJsPlugin({
       uglifyOptions: {
         output: {
