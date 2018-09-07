@@ -1,5 +1,6 @@
 @import "~@/sass/variables";
 
+$image-width: 14rem;
 $new-border: ($border-size*1.75);
 $translucent-color: rgba(0,0,0,0.6);
 
@@ -24,5 +25,12 @@ $translucent-color: rgba(0,0,0,0.6);
     p {
       @include translucent-highlight;
     }
+  }
+
+  .img-center {
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: $image-width; width: $image-width;
   }
 }

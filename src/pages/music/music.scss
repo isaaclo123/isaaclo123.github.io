@@ -104,6 +104,17 @@ $dark-record-color: darken($record-color, 3);
     }
   }
 
+  #lover-man {
+    $text-color-dark: #d81b60;
+    $text-color-light: #fbe9e7;
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.8rem);
+    }
+  }
+
   #stone-free {
     $text-color-dark: #e65100;
     $text-color-light: #fbe9e7;
