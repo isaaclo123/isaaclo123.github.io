@@ -22,7 +22,8 @@ output: pdf_document
 ## Skills
 
 * Programs: Microsoft Word, Latex, Pandoc, Jekyll, Git, Apache, Linux, Electron, RESTful, GraphQL
-* Computer Languages: Python, Django, Javascript, AngularJS, Vue.js, HTML, SASS/CSS, Java, SQL
+* Computer Languages: Python, Django, Javascript, AngularJS, Vue.js, HTML, SASS/CSS, Java, SQL, 
+  C/C++
 
 ## Related Experience
 
