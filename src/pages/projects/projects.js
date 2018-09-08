@@ -1,10 +1,10 @@
 import Slides from '@/js/slides';
 import loadImage from '@/js/image';
 
-import kanetus from '@/pages/projects/kanetus.png';
-import sol from '@/pages/projects/solstudios.png';
-import leaflet from '@/pages/projects/leafGreen.png';
-import fastflow from '@/pages/projects/FastFlowIcon.png';
+import kanetus from '@/pages/projects/kanetuslogo.png';
+import sol from '@/pages/projects/solcircle.png';
+import leaflet from '@/pages/projects/leafWhite.png';
+import fastflow from '@/pages/projects/fficon.png';
 
 require('@/pages/projects/projects.scss');
 
