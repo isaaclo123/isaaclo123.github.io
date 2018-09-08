@@ -1,0 +1,29 @@
+/* === Anonymous Pro - regular */
+@font-face {
+	font-family: 'Anonymous Pro';
+	font-style: normal;
+	font-weight: 400;
+	src: url(".//AnonymousPro-Regular.eot");
+	src: local("Anonymous Pro Regular"),
+		local("AnonymousPro-Regular"),
+		url(".//AnonymousPro-Regular.eot") format("embedded-opentype"),
+		url(".//AnonymousPro-Regular.woff2") format("woff2"),
+		url(".//AnonymousPro-Regular.woff") format("woff"),
+		url(".//AnonymousPro-Regular.ttf") format("truetype"),
+		url(".//AnonymousPro-Regular.svg") format("svg");
+}
+
+/* === Roboto - regular */
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url(".//Roboto-Regular.eot");
+	src: local("Roboto"),
+		local("Roboto-Regular"),
+		url(".//Roboto-Regular.eot") format("embedded-opentype"),
+		url(".//Roboto-Regular.woff2") format("woff2"),
+		url(".//Roboto-Regular.woff") format("woff"),
+		url(".//Roboto-Regular.ttf") format("truetype"),
+		url(".//Roboto-Regular.svg") format("svg");
+}
