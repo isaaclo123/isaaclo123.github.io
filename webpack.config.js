@@ -14,6 +14,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const extractScss = new ExtractTextPlugin('public/style.css');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 module.exports = {
   devServer: {
@@ -136,6 +139,27 @@ module.exports = {
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
+    }),
+    new PrerenderSPAPlugin({
+      // Index.html is in the root directory.
+      staticDir: path.join(__dirname),
+      outputDir: path.join(__dirname),
+      // indexPath: path.join(__dirname, 'index.html'),
+      routes: ['/'],
+
+      // Optional minification.
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        decodeEntities: true,
+        keepClosingSlash: true,
+        sortAttributes: true,
+      },
+
+      renderer: new Renderer({
+        // renderAfterTime: 5000, // Wait 5 seconds.
+        // headless: false,
+      }),
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
