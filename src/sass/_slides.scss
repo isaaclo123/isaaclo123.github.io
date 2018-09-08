@@ -1,22 +1,14 @@
 // slide buttons
 
+@import "layout";
 @import "variables";
-/*
-.pointer {
-  z-index: 2;
-  font-size: $menu-font-size !important;
-  font-family: $serif-font;
-  color: $primary;
-  position: absolute;
-  top: calc(50% - #{$menu-text-radius} - 2.5rem); left: calc(50% - #{$menu-font-size/2});
-}
-*/
 
 .slide {
   position: absolute;
 }
 
 .button {
+  @extend .noselect;
   z-index: 2;
   position: fixed;
   font-family: $serif-font;
@@ -28,7 +20,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  -moz-user-select: none;
 
   &:hover {
     color: $background-2;

@@ -148,34 +148,3 @@ $dial-width: 3.2rem;
     margin: 0; padding: 0;
   };
 };
-
-// number characters css
-// @for $i from 1 through 10 {
-//   $number-font-size: $page-font-size;
-//   $dot-radius: 1.2rem;
-//   $dot-offset: ($dot-radius);
-//   $circle-offset: calc($circle-radius + $dial-width);
-//   .num#{$i} {
-//     $circle-radius: 10rem;
-//     $deg-inc: 30deg;
-//     $start-deg: 165deg;
-//     position: absolute;
-//     width: $number-font-size; height: $number-font-size;
-//     top: calc(50% - #{$number-font-size/2 + ($circle-radius * sin($i*$deg-inc - $start-deg))});
-//     left: calc(50% - #{$number-font-size/2 + ($circle-radius * cos($i*$deg-inc - $start-deg))});
-//     color: $phone-color-light;
-//     border-radius: 50%;
-//     margin: 0; padding: 0;
-//
-//     // vertically and horizontally align text
-//     font-size: $label-font-size;
-//     font-weight: bold;
-//     font-family: $sans-serif-font;
-//     text-align: center;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     -moz-user-select: none;
-//   };
-// };
-//

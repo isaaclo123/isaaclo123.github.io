@@ -1,5 +1,6 @@
 // menu scss
 
+@import "layout";
 @import "variables";
 
 // spin animation
@@ -13,6 +14,7 @@
 // the circular text of the menu
 
 nav {
+  @extend .noselect;
   z-index: 2;
   position: absolute;
   top: calc(50% - #{($menu-text-radius)}); right: calc(50% - #{$menu-text-radius});
@@ -24,7 +26,6 @@ nav {
 */
   pointer-events: none;
   width: ($menu-text-radius*2); height: ($menu-text-radius*2);
-  -moz-user-select: none;
 
   // internal character span css
   span {
