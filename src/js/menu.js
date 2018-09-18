@@ -41,7 +41,7 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
     outer.classList.add(`char${i.toString()}`);
     const inner = document.createElement('p');
     // add rotated character styling class
-    inner.classList.add(name);
+    inner.classList.add(`menu-${name}`);
 
     if (name !== 'seperator') {
       // add linking to character
