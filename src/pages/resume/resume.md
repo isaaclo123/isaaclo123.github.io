@@ -12,12 +12,12 @@ output: pdf_document
 * isaaclo123@gmail.com
 * [https://isaaclo.site/](https://isaaclo.site/)
 
-## Education / Skills
+## Education and Skills
 
 * **Bachelor of Computer Science**, Expected May 2021
 * **College of Science and Engineering**, University of Minnesota-Twin Cities, Minneapolis, MN
 * Current GPA: 3.78
-* Academic Awards: CSE Dean's List, National Merit Finalist, Stokes Scholarship Finalist
+* Academic Awards: CSE Dean's List, National Merit Finalist, Stokes Scholarship Finalist \
 * Programs: Microsoft Word, Latex, Pandoc, Jekyll, Git, Apache, Linux, Electron, RESTful, GraphQL
 * Computer Languages: Python, Django, Javascript, AngularJS, Vue.js, HTML, SASS/CSS, Java, SQL, 
   C/C++
@@ -28,14 +28,14 @@ output: pdf_document
     * Currently creating a GPS-guided tour application with the startup Kanetus. Am in charge of 
       Nativescript application development with Vue.js. While working for Kanetus, the company 
       earned a TBSr Innovation award, was accepted to the YC startup school, and earned \$3000 of 
-      funding from the University of Minnesota.
-* **Personal Website** [https://isaaclo.site/](https://isaaclo.site/)
-    * Designed and created my personal website. Used HTML, SASS/CSS, and javascript.
+      funding from the University of Minnesota Twin Cities.
 * **Transcriber_bot** 
   [https://github.com/isaaclo123/transcriber_bot](https://github.com/isaaclo123/transcriber_bot)
     * Wrote a python bot for transcribing the text within reddit image posts, helping to aid the 
       visually impaired. Used OpenCV and Pytesseract to read text from images, Sqlite for logging 
       information, and coverage/pytest for testing.
+* **Personal Website** [https://isaaclo.site/](https://isaaclo.site/)
+    * Designed and created my personal website. Used HTML, SASS/CSS, and Javascript.
 * **Leaflet** 
   [https://github.com/Zarkoix/LeafletServer/](https://github.com/Zarkoix/LeafletServer/)
     * Collaborated with a fellow student to create a minimalistic note-taking web application. 
