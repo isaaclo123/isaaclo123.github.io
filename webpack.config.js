@@ -140,6 +140,7 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
+    /*
     new PrerenderSPAPlugin({
       // Index.html is in the root directory.
       staticDir: path.join(__dirname),
@@ -161,6 +162,7 @@ module.exports = {
         // headless: false,
       }),
     }),
+    */
     new UglifyJsPlugin({
       uglifyOptions: {
         output: {
