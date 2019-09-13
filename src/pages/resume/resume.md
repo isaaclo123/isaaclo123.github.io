@@ -17,7 +17,9 @@ output: pdf_document
 * **Bachelor of Computer Science**, Expected May 2020
 * **College of Science and Engineering**, University of Minnesota-Twin Cities, Minneapolis, MN
 * Current GPA: 3.84 (CSE Dean's List)
-* **Coursework**: Databases, Networking, Internet Programming
+* **Completed Coursework**: Data Structures, Machine Architecture, Adv. Programming Principles,
+  Program Design
+* **Current Coursework**: Databases, Networking, Internet Programming
 * **Programs**: Microsoft Word, Latex, Pandoc, Jekyll, Git, Gitlab, Apache, Nginx, Linux, Electron,
   RESTful, GraphQL
 * **Languages**: Python, Django, Javascript, AngularJS, Vue.js, React.js, HTML, SASS/CSS,
@@ -41,10 +43,12 @@ output: pdf_document
       company earned a TBSr Innovation award, was accepted to the YC startup school, and earned
       \$3000 of funding from the University of Minnesota Twin Cities.
 * **Interim software developer**, 21st Century Education (2015-2017)
-    * Set up a corporate server. Installed a Linux OS and configured a firewall, VPN, and data
-      storage system. Increased company security and productivity.
-    * Set up a company event webpage using Jekyll, informing customers and increasing publicity.
-    * Wrote an Angular JS front-end and a Node JS back-end code for a key company application.
+    * Migrated an existing cloud server instance to server hardware. Installed a Linux OS and
+      configured a firewall, VPN, and data storage system. Reduced overall company operation
+      costs and increased company security.
+    * Set up a company event webpage using Jekyll, informing prospective customers and increasing
+      event publicity.
+    * Wrote an Angular JS frontend and a Node JS backend for a key company education application.
 
 ## Projects
 
