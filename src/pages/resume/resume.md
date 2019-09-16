@@ -12,34 +12,36 @@ output: pdf_document
 * isaaclo123@gmail.com
 * [https://isaaclo.site/](https://isaaclo.site/)
 
-## Education and Skills
+## Education
 
 * **Bachelor of Computer Science**, Expected May 2020
 * **College of Science and Engineering**, University of Minnesota-Twin Cities, Minneapolis, MN
-* Current GPA: 3.84 (CSE Dean's List)
+* **Current GPA**: 3.84 (CSE Dean's List)
 * **Completed Coursework**: Data Structures, Machine Architecture, Adv. Programming Principles,
   Program Design
 * **Current Coursework**: Databases, Networking, Internet Programming
-* **Programs**: Microsoft Word, Latex, Pandoc, Jekyll, Git, Gitlab, Apache, Nginx, Linux, Electron,
-  RESTful, GraphQL
-* **Languages**: Python, Django, Javascript, AngularJS, Vue.js, React.js, HTML, SASS/CSS,
-  Bootstrap, Java, C/C++, NixOS, OCaml, SQL
+
+## Skills
+
+* **Programs**: Git/Gitlab, Ansible, Docker, Apache, Nginx, Bash, NixOS, Electron, RESTful, GraphQL
+* **Languages**: Python/Django, Node.js, Angular, Vue, React, HTML, SASS/CSS, Bootstrap, Java,
+  C/C++, OCaml, SQL
 
 ## Work Experience
 
-* **Tier 2 Application Support**, Country Financial (Summer of 2019 - Present)
+* **Tier 2 Application Support**, COUNTRY Financial (Summer of 2019 - Present)
     * Developed a Call Dashboard Application for displaying current Call Queue information.
       Created a Django backend to access call data from a legacy SQL server and created a
       customizable frontend using React.js, Bootstrap CSS, and HTML. Configurated automated code
       deployments with Gitlab pipelines and Ansible. The application is currently used in
-      Country Financial offices in Bloomington, Illinois and Minneapolis, MN, increasing
+      COUNTRY Financial offices in Bloomington, Illinois and Minneapolis, MN, increasing
       call data readability and call response times.
-    * Currently migrating Country Financial's on-call system to Target's GoAlert solution. Am using
+    * Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution. Am using
       Docker and Ansible to deploy GoAlert code to provisioned servers. Will improve ease of use
       and contact.
-* **Voy** [http://www.kanetus.com/](http://www.kanetus.com/) (2018)
+* **App developer**, Voy (Spring-Winter of 2018)
     * Helped create a GPS-guided tour application with the startup Voy, (formerly Kanetus). Was
-      in charge of Nativescript application development with Vue.js. While working for Kanetus, the
+      in charge of Nativescript application development with Vue.js. While working for Voy, the
       company earned a TBSr Innovation award, was accepted to the YC startup school, and earned
       \$3000 of funding from the University of Minnesota Twin Cities.
 * **Interim software developer**, 21st Century Education (2015-2017)

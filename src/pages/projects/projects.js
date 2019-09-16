@@ -1,6 +1,7 @@
 import Slides from '@/js/slides';
 import loadImage from '@/js/image';
 
+import ansible from '@/pages/projects/ansible.png';
 import nixos from '@/pages/projects/nixos.png';
 import kanetus from '@/pages/projects/kanetuslogo.png';
 import reddit from '@/pages/projects/reddit.png';
@@ -11,6 +12,7 @@ require('@/pages/projects/projects.scss');
 
 export default () => {
   window.slides = new Slides();
+  loadImage(ansible, 'ansible');
   loadImage(nixos, 'nixos');
   loadImage(kanetus, 'kanetus');
   loadImage(reddit, 'reddit');
