@@ -51,6 +51,7 @@ output: pdf_document
     * Set up a company event webpage using Jekyll, informing prospective customers and increasing
       event publicity.
     * Wrote an Angular JS frontend and a Node JS backend for a key company education application.
+      Delivered a presentation to investors and shareholders about the project.
 
 ## Projects
 
