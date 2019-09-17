@@ -20,6 +20,7 @@
     "babel-plugin-check-es2015-constants": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2016": "^6.24.1",
+    "browserslist": "^4.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.11",
@@ -57,5 +58,10 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "normalize.css": "^8.0.1"
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ]
 }
