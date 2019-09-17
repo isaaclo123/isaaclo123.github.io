@@ -14,9 +14,21 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const extractScss = new ExtractTextPlugin('public/style.css');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
+// const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    ident: 'postcss',
+    plugins: loader => [ // eslint-disable-line no-unused-vars
+      require('autoprefixer')(), // eslint-disable-line global-require
+      require('postcss-preset-env')(), // eslint-disable-line global-require
+      require('postcss-flexbugs-fixes')(), // eslint-disable-line global-require
+    ],
+  },
+};
 
 module.exports = {
   devServer: {
@@ -59,13 +71,22 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader',
+          postcssLoader,
+        ),
       },
       {
         test: /\.scss$/,
         use: extractScss.extract({
           fallback: 'style-loader',
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          use: [
+            'style-loader',
+            'css-loader',
+            postcssLoader,
+            'sass-loader',
+          ],
         }),
       },
       {
