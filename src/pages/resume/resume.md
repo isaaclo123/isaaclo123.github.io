@@ -25,7 +25,7 @@ header-includes: |
 ---
 
 \Large \textbf{Isaac Lo} \hfill \normalsize isaaclo123@gmail.com \
-https://isaaclo.site \hfill 1(650)-503-1253 \
+isaaclo.site \hfill 1(650)-503-1253 \
 Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{education}
@@ -72,27 +72,22 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{Projects}
 
-* **My Playbook** [https://github.com/isaaclo123/my-playbook](https://github.com/isaaclo123/my-playbook)
-    * Created a Ansible playbook for deploying my personal applications to a debian VPS instance.
+* **My Playbook** (github.com/isaaclo123/my-playbook)
+    * Created a Ansible playbook for deploying my personal applications to a Debian VPS instance.
       Used Nginx as a reverse proxy for applications like the ZNC IRC bouncer and the Radicale
       calendar server.
-* **NixOS Configuration** [https://github.com/isaaclo123/nix-config](https://github.com/isaaclo123/nix-config)
-    * Created configuration files for automated and revertable software deployments for my
-      personal computer running NixOS. NixOS is a linux distribution "with reliable and
-      reproducable" package management allowing "atomic upgrades and rollbacks". All configuration
-      files are written in the Nix expression language, and home-manager is used to manage
-      user-space configuration.
-* **Transcriber_bot**
-  [https://github.com/isaaclo123/transcriber_bot](https://github.com/isaaclo123/transcriber_bot)
+* **NixOS Configuration** (github.com/isaaclo123/nix-config)
+    * Created configuration files for declarative and revertable software deployments for my
+      personal computer running NixOS. All configuration files are written in the Nix expression
+      language, with Home-manager used for dotfile management.
+* **InFarm** (devpost.com/software/minnehacks)
+    * Created a SMS service to help farmers in developing countries advance their personal
+      education and increase their agricultural productivity. Wrote the service with Twilio and
+      Node.js. Submitted for Minnehack 2019.
+* **Transcriber bot** (github.com/isaaclo123/transcriber_bot)
     * Wrote a python bot for transcribing the text within reddit image posts, helping to aid the
       visually impaired. Used machine learning with OpenCV and Pytesseract to read text from
       images, Sqlite for logging information, and coverage/pytest for testing.
-* **Leaflet**
-  [https://github.com/Zarkoix/LeafletServer/](https://github.com/Zarkoix/LeafletServer/)
-    * Collaborated with a fellow student to create a minimalistic note-taking web application.
-      Wrote Django code for the application's RESTful/GraphQL backend.
-* **Prepdbot**
-  [https://github.com/isaaclo123/prepdbot_v3/](https://github.com/isaaclo123/prepdbot_v3/)
-    * Wrote a python article-saving web-scraping bot for the Prepd Extemp Offline software. The bot
-      saved and tagged over 500 articles a week, supporting Extemporaneous Speech team members in
-      their preparation.
+* **Personal Website** (isaaclo.site)
+    * Designed and created my personal website with HTML, SASS/CSS, and Javascript, using Webpack
+      for build minification and optimization.
