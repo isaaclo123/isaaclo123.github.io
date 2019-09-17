@@ -77,14 +77,20 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
     * Wrote a python bot for transcribing the text within reddit image posts, helping to aid the
       visually impaired. Used machine learning with OpenCV and Pytesseract to read text from
       images, Sqlite for logging information, and coverage/pytest for testing.
+\
+
 * **InFarm** (devpost.com/software/minnehacks)
     * Created a SMS service to help farmers in developing countries advance their personal
       education and increase their agricultural productivity. Wrote the service with Twilio and
       Node.js. Submitted for Minnehack 2019.
+\
+
 * **NixOS Configuration** (github.com/isaaclo123/nix-config)
     * Created configuration files for declarative and revertable software deployments for my
       personal computer running NixOS. All configuration files are written in the Nix expression
       language, with Home-manager used for dotfile management.
+\
+
 * **My Playbook** (github.com/isaaclo123/my-playbook)
     * Created a Ansible playbook for consistent and declarative deployments of my personal
       applications to a Debian VPS instance. Used Nginx as a reverse proxy for applications like
