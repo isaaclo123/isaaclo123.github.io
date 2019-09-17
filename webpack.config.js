@@ -33,6 +33,7 @@ const postcssLoader = {
       require('autoprefixer')(), // eslint-disable-line global-require
       require('postcss-preset-env')(), // eslint-disable-line global-require
       require('postcss-flexbugs-fixes')(), // eslint-disable-line global-require
+      require('postcss-normalize')(), // eslint-disable-line global-require
     ],
   },
 };

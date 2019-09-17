@@ -43,6 +43,7 @@
     "postcss": "^7.0.18",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "postcss-normalize": "^8.0.1",
     "postcss-preset-env": "^6.7.0",
     "prerender-spa-plugin": "^3.4.0",
     "sass": "^1.0.0-beta.4",
@@ -56,12 +57,11 @@
     "webpack-dev-server": "^2.11.5"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
-    "normalize.css": "^8.0.1"
+    "font-awesome": "^4.7.0"
   },
   "browserslist": [
-    "last 1 version",
-    "> 1%",
+    "> 0.1%",
+    "Firefox ESR",
     "IE 10"
   ]
 }

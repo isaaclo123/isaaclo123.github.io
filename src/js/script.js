@@ -5,7 +5,6 @@ import router from '@/js/router';
 import { gotoUrl, gotoHash, hover, menuInit } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
 // import css/sass
-import '@/../node_modules/normalize.css/normalize.css';
 import '@/../node_modules/font-awesome/scss/font-awesome.scss';
 import '@/sass/style.scss';
 
