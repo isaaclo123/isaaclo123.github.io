@@ -11,13 +11,13 @@ const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const extractScss = new ExtractTextPlugin('public/style.css');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 // const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
+const extractScss = new ExtractTextPlugin('public/style.css');
 const postcssLoader = {
   loader: 'postcss-loader',
   options: {
@@ -71,11 +71,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader',
-          postcssLoader,
-        ),
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
@@ -114,7 +110,9 @@ module.exports = {
     ],
   },
   plugins: [
+    // new ExtractTextPlugin('node_modules/normalize.css/normalize.css'),
     new ExtractTextPlugin('public/style.css'),
+
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: cssnano,
