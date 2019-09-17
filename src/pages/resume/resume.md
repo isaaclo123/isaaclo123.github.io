@@ -32,15 +32,16 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
   *B.S in Computer Science, College of Science and Engineering (GPA 3.84) \hfill 2017-2020*\
+  *M.S in Computer Science \hfill Projected 2020-2022*\
   Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
   Program Design\
   Current Coursework: Databases, Networking, Internet Programming
 
 \lineheader{skills}
 
-* **Tools**: Git/Gitlab, Ansible, Docker, Apache, Nginx, Bash, NixOS, Electron, RESTful, GraphQL, R
-* **Languages**: Python/Django, Node.js, Angular, Vue, React, HTML, SASS/CSS, Bootstrap, Java,
-  C/C++, OCaml, SQL
+* **Backend**: Python/Django, C/C++, Node.js, Java, SQL
+* **Frontend**: HTML, Angular, Vue, React, SASS/CSS
+* **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, R, Nginx, RESTful
 
 \lineheader{Work}
 
@@ -72,22 +73,19 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{Projects}
 
-* **My Playbook** (github.com/isaaclo123/my-playbook)
-    * Created a Ansible playbook for deploying my personal applications to a Debian VPS instance.
-      Used Nginx as a reverse proxy for applications like the ZNC IRC bouncer and the Radicale
-      calendar server.
-* **NixOS Configuration** (github.com/isaaclo123/nix-config)
-    * Created configuration files for declarative and revertable software deployments for my
-      personal computer running NixOS. All configuration files are written in the Nix expression
-      language, with Home-manager used for dotfile management.
-* **InFarm** (devpost.com/software/minnehacks)
-    * Created a SMS service to help farmers in developing countries advance their personal
-      education and increase their agricultural productivity. Wrote the service with Twilio and
-      Node.js. Submitted for Minnehack 2019.
 * **Transcriber bot** (github.com/isaaclo123/transcriber_bot)
     * Wrote a python bot for transcribing the text within reddit image posts, helping to aid the
       visually impaired. Used machine learning with OpenCV and Pytesseract to read text from
       images, Sqlite for logging information, and coverage/pytest for testing.
-* **Personal Website** (isaaclo.site)
-    * Designed and created my personal website with HTML, SASS/CSS, and Javascript, using Webpack
-      for build minification and optimization.
+* **InFarm** (devpost.com/software/minnehacks)
+    * Created a SMS service to help farmers in developing countries advance their personal
+      education and increase their agricultural productivity. Wrote the service with Twilio and
+      Node.js. Submitted for Minnehack 2019.
+* **NixOS Configuration** (github.com/isaaclo123/nix-config)
+    * Created configuration files for declarative and revertable software deployments for my
+      personal computer running NixOS. All configuration files are written in the Nix expression
+      language, with Home-manager used for dotfile management.
+* **My Playbook** (github.com/isaaclo123/my-playbook)
+    * Created a Ansible playbook for consistent and declarative deployments of my personal
+      applications to a Debian VPS instance. Used Nginx as a reverse proxy for applications like
+      the ZNC IRC bouncer and the Radicale calendar server.
