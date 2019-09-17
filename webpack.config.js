@@ -23,6 +23,13 @@ const postcssLoader = {
   options: {
     ident: 'postcss',
     plugins: loader => [ // eslint-disable-line no-unused-vars
+      cssnano({
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+        }],
+      }),
       require('autoprefixer')(), // eslint-disable-line global-require
       require('postcss-preset-env')(), // eslint-disable-line global-require
       require('postcss-flexbugs-fixes')(), // eslint-disable-line global-require
@@ -71,7 +78,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', postcssLoader],
       },
       {
         test: /\.scss$/,
@@ -111,10 +118,10 @@ module.exports = {
   },
   plugins: [
     // new ExtractTextPlugin('node_modules/normalize.css/normalize.css'),
-    new ExtractTextPlugin('public/style.css'),
+    new ExtractTextPlugin('[name].css'),
 
     new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.optimize\.css$/g,
+      assetNameRegExp: /\.min\.css$/,
       cssProcessor: cssnano,
       cssProcessorOptions: defaultPreset({
         discardComments: {
