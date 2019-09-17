@@ -13,8 +13,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
+// const PrerenderSPAPlugin = require('prerender-spa-plugin');
 // const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 const extractScss = new ExtractTextPlugin('public/style.css');
