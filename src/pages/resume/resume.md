@@ -1,59 +1,76 @@
 ---
-geometry: margin=1cm
+geometry: margin=1.5cm
 output: pdf_document
+
+header-includes: |
+    \usepackage{enumitem}
+    \usepackage{amsfonts}
+    \setlist[itemize,1]{label=$\bullet$,leftmargin=1em}
+    \setlist[itemize,2]{label=$\diamond$}
+
+    \pagenumbering{gobble}
+
+    \newcommand{\lineheader}[1]
+    {
+        \vspace{0.5em}
+        \normalsize
+        \uppercase
+        {#1}
+        \vspace{-0.9em}
+        \linebreak
+        \vspace{-0.5em}
+        \hspace{-0.5em}
+        \noindent\rule{\textwidth}{0.5pt}
+    }
 ---
 
-\pagenumbering{gobble}
+\Large \textbf{Isaac Lo} \hfill \normalsize isaaclo123@gmail.com \
+https://isaaclo.site \hfill 1(650)-503-1253 \
+Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
-# Isaac Lo
+\lineheader{education}
 
-* 1299 Quail Creek Circle, San Jose, CA 95120
-* 1(650)-503-1253
-* isaaclo123@gmail.com
-* [https://isaaclo.site/](https://isaaclo.site/)
+* **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
+  *B.S in Computer Science, College of Science and Engineering (GPA 3.84) \hfill 2017-2020*\
+  Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
+  Program Design\
+  Current Coursework: Databases, Networking, Internet Programming
 
-## Education
+\lineheader{skills}
 
-* **Bachelor of Computer Science**, Expected May 2020
-* **College of Science and Engineering**, University of Minnesota-Twin Cities, Minneapolis, MN
-* **Current GPA**: 3.84 (CSE Dean's List)
-* **Completed Coursework**: Data Structures, Machine Architecture, Adv. Programming Principles,
-  Program Design
-* **Current Coursework**: Databases, Networking, Internet Programming
-
-## Skills
-
-* **Programs**: Git/Gitlab, Ansible, Docker, Apache, Nginx, Bash, NixOS, Electron, RESTful, GraphQL
+* **Tools**: Git/Gitlab, Ansible, Docker, Apache, Nginx, Bash, NixOS, Electron, RESTful, GraphQL, R
 * **Languages**: Python/Django, Node.js, Angular, Vue, React, HTML, SASS/CSS, Bootstrap, Java,
   C/C++, OCaml, SQL
 
-## Work Experience
+\lineheader{Work}
 
-* **Tier 2 Application Support**, COUNTRY Financial (Summer of 2019 - Present)
-    * Developed a Call Dashboard Application for displaying current Call Queue information.
-      Created a Django backend to access call data from a legacy SQL server and created a
-      customizable frontend using React.js, Bootstrap CSS, and HTML. Configurated automated code
-      deployments with Gitlab pipelines and Ansible. The application is currently used in
-      COUNTRY Financial offices in Bloomington, Illinois and Minneapolis, MN, increasing
-      call data readability and call response times.
-    * Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution. Am using
-      Docker and Ansible to deploy GoAlert code to provisioned servers. Will improve ease of use
-      and contact.
-* **App developer**, Voy (Spring-Winter of 2018)
-    * Helped create a GPS-guided tour application with the startup Voy, (formerly Kanetus). Was
-      in charge of Nativescript application development with Vue.js. While working for Voy, the
-      company earned a TBSr Innovation award, was accepted to the YC startup school, and earned
-      \$3000 of funding from the University of Minnesota Twin Cities.
-* **Interim software developer**, 21st Century Education (2015-2017)
-    * Migrated an existing cloud server instance to server hardware. Installed a Linux OS and
-      configured a firewall, VPN, and data storage system. Reduced overall company operation
-      costs and increased company security.
+* **COUNTRY Financial** \hfill Minneapolis, MN\
+  *Software Developer Intern \hfill Summer 2019*
+    - Developed a customizable Call Dashboard Application, used in COUNTRY offices across the US.
+      Wrote the software with Django, React.js, Bootstrap CSS, and HTML and deployed it with Gitlab
+      pipelines and Ansible.
+    - Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution with
+      Docker.
+\
+
+* **Voy** \hfill Minneapolis, MN\
+  *App Developer \hfill 2018*
+    * Developed a GPS-guided tour application with the startup Voy with Nativescript and Vue.js.
+      The app helped the company earn a TBSr Innovation award, acceptance to the YC startup school,
+      and \$3000 of funding from the University of Minnesota Twin Cities.
+
+\
+
+* **21st Century Education** \hfill Santa Clara, CA\
+  *Software Deveoper Intern \hfill 2015-2017*
+    * Migrated an existing cloud server instance to server hardware. Configured a Linux OS with
+      a firewall, VPN, and data storage system, reducing overall operational costs.
     * Set up a company event webpage using Jekyll, informing prospective customers and increasing
       event publicity.
-    * Wrote an Angular JS frontend and a Node JS backend for a key company education application.
-      Delivered a presentation to investors and shareholders about the project.
+    * Wrote a key company education application with AngularJS, Node, and HTML. Delivered a
+      presentation to investors and shareholders about the project.
 
-## Projects
+\lineheader{Projects}
 
 * **My Playbook** [https://github.com/isaaclo123/my-playbook](https://github.com/isaaclo123/my-playbook)
     * Created a Ansible playbook for deploying my personal applications to a debian VPS instance.
