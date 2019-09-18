@@ -47,11 +47,11 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **COUNTRY Financial** \hfill Minneapolis, MN\
   *Software Developer Intern \hfill Summer 2019*
-    - Developed a customizable Call Dashboard Application, used in COUNTRY offices across the US.
+    * Developed a customizable Call Dashboard Application, used in COUNTRY offices across the US.
       Wrote the software with Django, React.js, Bootstrap CSS, and HTML and deployed it with Gitlab
       pipelines and Ansible.
-    - Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution with
-      Docker.
+    * Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution with
+      Docker and Ansible.
 \
 
 * **Voy** \hfill Minneapolis, MN\
