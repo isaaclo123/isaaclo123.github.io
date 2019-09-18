@@ -31,8 +31,8 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 \lineheader{education}
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
-  *B.S in Computer Science, College of Science and Engineering (GPA 3.84) \hfill 2017-2020*\
-  *M.S in Computer Science \hfill Projected 2020-2022*\
+  *B.S. in Computer Science, College of Science and Engineering (GPA 3.84) \hfill 2017-2020*\
+  *M.S. in Computer Science \hfill Projected 2020-2022*\
   Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
   Program Design\
   Current Coursework: Databases, Networking, Internet Programming
@@ -63,7 +63,7 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 \
 
 * **21st Century Education** \hfill Santa Clara, CA\
-  *Software Deveoper Intern \hfill 2015-2017*
+  *Software Developer Intern \hfill 2015-2017*
     * Migrated an existing cloud server instance to server hardware. Configured a Linux OS with
       a firewall, VPN, and data storage system, reducing overall operational costs.
     * Set up a company event webpage using Jekyll, informing prospective customers and increasing
