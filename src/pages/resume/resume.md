@@ -31,7 +31,8 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 \lineheader{education}
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
-  *B.S. in Computer Science, College of Science and Engineering (GPA 3.86) \hfill 2017- May 2020*\
+  *B.S. in Computer Science, College of Science and Engineering (GPA 3.86) \hfill Sept 2017 -
+  May 2020*\
   Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
   Program Design, Databases, Networking, Internet Programming\
   Current Coursework: AI, Machine Learning, Software Engineering
@@ -50,15 +51,16 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       application with message alerts. Written with Django, React.js, Bootstrap CSS, HTML. Deployed
       with Gitlab pipelines and Ansible.
     * Currently working to improve on-call system efficiency by migrating COUNTRY Financial's
-      on-call system to Target's GoAlert. Wrote an ansible playbook for deploying Goalert and a
+      on-call system to Target's GoAlert. Wrote an Ansible playbook for deploying Goalert and a
       Postgres database to a server.
 \
 
 * **Voy** \hfill Minneapolis, MN\
   *App Developer \hfill 2018*
-    * Developed a GPS-guided tour application with the startup Voy with Nativescript and Vue.js.
-      The app helped the company earn a TBSr Innovation award, acceptance to the YC startup school,
-      and \$3000 of funding from the University of Minnesota Twin Cities.
+    * Developed a GPS-guided tour application prototype with the startup Voy for Minnedemo 2018.
+      The app helped the company earn a TBSr Innovation award, acceptance to the YC startup
+      school, and \$3000 of funding from the University of Minnesota Twin Cities. Written with
+      Nativescript and Vue.js
 
 \
 
@@ -91,5 +93,5 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **System Configurations** (github.com/isaaclo123/nix-config) & (github.com/isaaclo123/my-playbook)
     * Created configuration files for declarative software deployments for my personal computer and
-      VPS instance. Personal computer files are written with the NixOS declarative language and the
-      VPS files are written with Ansible.
+      VPS instance. Personal computer configurations are written with the NixOS declarative language
+      and the VPS configurations are written with Ansible.
