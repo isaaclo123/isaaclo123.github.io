@@ -89,6 +89,13 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
     * Created a SMS service to help farmers in developing countries advance their personal
       education and increase their agricultural productivity. Wrote the service with Twilio and
       Node.js. Submitted for Minnehack 2019.
+
+\
+
+* **Personal Webpage** (github.com/isaaclo123/isaaclo123.github.io)
+    * Designed and created my own personal webpage. Wrote the website with SASS, CSS, Webpack, and
+      Javascript. Used minification and cached assets for web optimization.
+
 \
 
 * **System Configurations** (github.com/isaaclo123/nix-config) & (github.com/isaaclo123/my-playbook)
