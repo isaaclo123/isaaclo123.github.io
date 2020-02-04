@@ -31,11 +31,10 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 \lineheader{education}
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
-  *B.S. in Computer Science, College of Science and Engineering (GPA 3.84) \hfill 2017-2020*\
-  *M.S. in Computer Science \hfill Projected 2020-2022*\
+  *B.S. in Computer Science, College of Science and Engineering (GPA 3.86) \hfill 2017- May 2020*\
   Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
-  Program Design\
-  Current Coursework: Databases, Networking, Internet Programming
+  Program Design, Databases, Networking, Internet Programming\
+  Current Coursework: AI, Machine Learning, Software Engineering
 
 \lineheader{skills}
 
@@ -47,11 +46,12 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **COUNTRY Financial** \hfill Minneapolis, MN\
   *Software Developer Intern \hfill Summer 2019*
-    * Developed a customizable Call Dashboard Application, used in COUNTRY offices across the US.
-      Wrote the software with Django, React.js, Bootstrap CSS, and HTML and deployed it with Gitlab
-      pipelines and Ansible.
-    * Currently migrating COUNTRY Financial's on-call system to Target's GoAlert solution with
-      Docker and Ansible.
+    * Increased call response times by developing a customizable call monitoring dashboard
+      application with message alerts. Written with Django, React.js, Bootstrap CSS, HTML. Deployed
+      with Gitlab pipelines and Ansible.
+    * Currently working to improve on-call system efficiency by migrating COUNTRY Financial's
+      on-call system to Target's GoAlert. Wrote an ansible playbook for deploying Goalert and a
+      Postgres database to a server.
 \
 
 * **Voy** \hfill Minneapolis, MN\
@@ -64,19 +64,23 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **21st Century Education** \hfill Santa Clara, CA\
   *Software Developer Intern \hfill 2015-2017*
-    * Migrated an existing cloud server instance to server hardware. Configured a Linux OS with
-      a firewall, VPN, and data storage system, reducing overall operational costs.
-    * Set up a company event webpage using Jekyll, informing prospective customers and increasing
-      event publicity.
-    * Wrote a key company education application with AngularJS, Node, and HTML. Delivered a
-      presentation to investors and shareholders about the project.
+    * Reduced operational costs by migrating an existing cloud server instance to server hardware.
+      Configured a Linux OS with a firewall, VPN, and data storage system.
+    * Increased event publicity by setting up a company event webpage with Jekyll.
 
 \lineheader{Projects}
 
+* **Receipt Splitter** (github.com/isaaclo123/receipt-split)
+    * Wrote a web application enabling the easy and precise splitting of receipt costs. Allows for
+      the sharing of receipt costs and splitting the cost of individual receipt items amongst users.
+      Written with Typescript, Redux, React.js, Flask, and sqlite.
+
+\
+
 * **Transcriber bot** (github.com/isaaclo123/transcriber_bot)
-    * Wrote a python bot for transcribing the text within reddit image posts, helping to aid the
-      visually impaired. Used machine learning with OpenCV and Pytesseract to read text from
-      images, Sqlite for logging information, and coverage/pytest for testing.
+    * Wrote a python bot for transcribing the text within reddit image posts, aiding the
+      visually impaired. Used OpenCV and Pytesseract to read text from images, Sqlite for logging
+      information, and coverage/pytest for testing.
 \
 
 * **InFarm** (devpost.com/software/minnehacks)
@@ -85,13 +89,7 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       Node.js. Submitted for Minnehack 2019.
 \
 
-* **NixOS Configuration** (github.com/isaaclo123/nix-config)
-    * Created configuration files for declarative and revertable software deployments for my
-      personal computer running NixOS. All configuration files are written in the Nix expression
-      language, with Home-manager used for dotfile management.
-\
-
-* **My Playbook** (github.com/isaaclo123/my-playbook)
-    * Created a Ansible playbook for consistent and declarative deployments of my personal
-      applications to a Debian VPS instance. Used Nginx as a reverse proxy for applications like
-      the ZNC IRC bouncer and the Radicale calendar server.
+* **System Configurations** (github.com/isaaclo123/nix-config) & (github.com/isaaclo123/my-playbook)
+    * Created configuration files for declarative software deployments for my personal computer and
+      VPS instance. Personal computer files are written with the NixOS declarative language and the
+      VPS files are written with Ansible.
