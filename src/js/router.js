@@ -44,7 +44,7 @@ export default (routeData, element = 'view') => {
         opacity += 0.05;
         view.style.opacity = opacity;
       }
-    }, 0.4);
+    }, 0.2);
 
     // change document title
     if (routeData[route].title) {
