@@ -56,9 +56,10 @@ $dark-record-color: darken($record-color, 3);
     }
   }
 
-  @mixin label($text-color-dark, $text-color-light, $title-font-size) {
+  @mixin label($text-color-dark, $text-color-light, $title-font-size, $word-spacing:-0.5rem) {
     color: $text-color-light;
     &-top {
+      word-spacing: $word-spacing;
       font-size: $title-font-size;
       color: $text-color-dark;
     }
@@ -104,7 +105,7 @@ $dark-record-color: darken($record-color, 3);
     }
   }
 
-  #lover-man {
+  #vill-junct {
     $text-color-dark: #d81b60;
     $text-color-light: #fbe9e7;
     .record{
@@ -115,18 +116,7 @@ $dark-record-color: darken($record-color, 3);
     }
   }
 
-  #stone-free {
-    $text-color-dark: #e65100;
-    $text-color-light: #fbe9e7;
-    .record{
-      @include record($text-color-dark, $text-color-light);
-    }
-    .label {
-      @include label($text-color-dark, $text-color-light, 1.8rem);
-    }
-  }
-
-  #crossroads {
+  #fault-stars {
     $text-color-dark: #283593;
     $text-color-light: #e8eaf6;
     .record{
