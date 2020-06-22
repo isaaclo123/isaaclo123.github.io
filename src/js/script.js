@@ -33,7 +33,7 @@ const pages = [
 ];
 
 const social = [
-  ['fa-facebook fa', 'https://www.facebook.com/isaaclo123'],
+  ['fa-google fa', 'mailto:isaaclo123@gmail.com'],
   ['fa-linkedin fa', 'https://www.linkedin.com/in/isaac-lo-325587124/'],
   ['fa-github fa', 'https://github.com/isaaclo123'],
 ];
