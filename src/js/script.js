@@ -2,7 +2,7 @@
 
 // import libraries
 import router from '@/js/router';
-import { gotoUrl, gotoHash, hover, menuInit } from '@/js/menu'; // eslint-disable-line no-unused-vars
+import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
 // import css/sass
 import '@/../node_modules/font-awesome/scss/font-awesome.scss';
@@ -45,31 +45,37 @@ const routes = {
     page: home,
     load: homeLoad,
     title: 'Isaac Lo - Home',
+    menuname: 'home',
   },
   home: {
     page: home,
     load: homeLoad,
     title: 'Isaac Lo - Home',
+    menuname: 'home',
   },
   resume: {
     page: resume,
     load: resumeLoad,
     title: 'Isaac Lo - Resume',
+    menuname: 'resume',
   },
   projects: {
     page: projects,
     load: projectLoad,
     title: 'Isaac Lo - Projects',
+    menuname: 'projects',
   },
   music: {
     page: music,
     load: musicLoad,
     title: 'Isaac Lo - Music',
+    menuname: 'music',
   },
   contact: {
     page: contact,
     load: contactLoad,
     title: 'Isaac Lo - Contact',
+    menuname: 'contact',
   },
 };
 

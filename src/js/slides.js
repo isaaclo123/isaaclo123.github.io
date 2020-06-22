@@ -3,7 +3,7 @@
 export default class {
   constructor( // eslint-disable-line no-unused-vars
     icon = 'fa-link',
-    interval = 25000,
+    // interval = 25000,
     slideClass = 'slide',
     view = 'view',
   ) {
@@ -14,7 +14,7 @@ export default class {
     // init
 
     // create timer
-    window.timer = null;
+    // window.timer = null;
 
     console.log('new slide created');
 
@@ -22,8 +22,8 @@ export default class {
     this.inAnimation = false;
 
     // creates timer
-    this.interval = interval;
-    this.timerReset();
+    // this.interval = interval;
+    // this.timerReset();
 
     // function for creating indicator slide buttons
     function buttonCreate(buttonType) {
@@ -47,11 +47,15 @@ export default class {
 
     // create next button
     const nextEl = iconButtonCreate('next', 'fa-angle-right');
-    nextEl.onclick = () => { this.next(); };
+    nextEl.onclick = () => {
+      this.next();
+    };
 
     // create prev button
     const prevEl = iconButtonCreate('prev', 'fa-angle-left');
-    prevEl.onclick = () => { this.prev(); };
+    prevEl.onclick = () => {
+      this.prev();
+    };
 
     // add buttons to view
     this.view.appendChild(nextEl);
@@ -78,20 +82,20 @@ export default class {
     this.goto(this.slideId, this.slides.length - 1);
   }
 
-  // resets timer
-  timerReset() {
-    if (window.timer) {
-      clearInterval(window.timer);
-    }
-    window.timer = setInterval(() => {
-      this.slideshow();
-    }, this.interval);
-  }
+  // // resets timer
+  // timerReset() {
+  //   if (window.timer) {
+  //     clearInterval(window.timer);
+  //   }
+  //   window.timer = setInterval(() => {
+  //     this.slideshow();
+  //   }, this.interval);
+  // }
 
   // actions that actually show the slides
-  slideshow() {
-    this.next(false);
-  }
+  // slideshow() {
+  //   this.next(false);
+  // }
 
   // goes to next slide in slideshow, loops around
   next(reset = true) {
@@ -107,9 +111,9 @@ export default class {
     }
 
     this.goto(this.slideId, prevId);
-    if (reset) {
-      this.timerReset();
-    }
+    // if (reset) {
+    //   this.timerReset();
+    // }
   }
 
   // goes to previous slide in slideshow, loops around
@@ -126,9 +130,9 @@ export default class {
     }
 
     this.goto(this.slideId, prevId);
-    if (reset) {
-      this.timerReset();
-    }
+    // if (reset) {
+    //   this.timerReset();
+    // }
   }
 
   // sets slideshow to page with id

@@ -31,28 +31,25 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 \lineheader{education}
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
-  *B.S. in Computer Science, College of Science and Engineering (GPA 3.86) \hfill Sept 2017 -
-  May 2020*\
-  Completed Coursework: Data Structures, Machine Architecture, Adv. Programming Principles,
-  Program Design, Databases, Networking, Internet Programming\
-  Current Coursework: AI, Machine Learning, Software Engineering
+  *B.S. in Computer Science, College of Science and Engineering (GPA 3.82) \hfill Sept 2017 -
+  May 2021*\
+  Coursework: Data Structures, Machine Architecture, Adv. Programming Principles, Program Design,
+  Databases, Networking, Internet Programming, AI, Machine Learning, Software Engineering
 
 \lineheader{skills}
 
-* **Backend**: Python/Django, C/C++, Node.js, Java, SQL
-* **Frontend**: HTML, Angular, Vue, React, SASS/CSS
-* **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, R, Nginx, RESTful
+* **Backend**: Python/Django/Flask, C/C++, Node.js, Java, SQL
+* **Frontend**: HTML, Angular, Vue, React, SASS/CSS, Typescript
+* **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS
 
 \lineheader{Work}
 
 * **COUNTRY Financial** \hfill Minneapolis, MN\
   *Software Developer Intern \hfill Summer 2019*
-    * Increased call response times by developing a customizable call monitoring dashboard
-      application with message alerts. Written with Django, React.js, Bootstrap CSS, HTML. Deployed
-      with Gitlab pipelines and Ansible.
-    * Currently working to improve on-call system efficiency by migrating COUNTRY Financial's
-      on-call system to Target's GoAlert. Wrote an Ansible playbook for deploying Goalert and a
-      Postgres database to a server.
+    * Reduced call response times by developing a call monitoring dashboard application with
+      customizable filters and message alerts. Written with Django, React.js, Bootstrap CSS, and
+      HTML. Deployed the code with Gitlab pipelines and Ansible. The application is currently
+      running in production in COUNTRY offices across the US.
 \
 
 * **Voy** \hfill Minneapolis, MN\
@@ -66,7 +63,7 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **21st Century Education** \hfill Santa Clara, CA\
   *Software Developer Intern \hfill 2015-2017*
-    * Reduced operational costs by migrating an existing cloud server instance to server hardware.
+    * Reduced operational costs by migrating data and applications to a cloud service provider.
       Configured a Linux OS with a firewall, VPN, and data storage system.
     * Increased event publicity by setting up a company event webpage with Jekyll.
 
@@ -74,8 +71,8 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **Receipt Splitter** (github.com/isaaclo123/receipt-split)
     * Wrote a web application enabling the easy and precise splitting of receipt costs. Allows for
-      the sharing of receipt costs and splitting the cost of individual receipt items amongst users.
-      Written with Typescript, Redux, React.js, Flask, and sqlite.
+      the easy sharing of receipt costs and splitting the cost of individual receipt items amongst
+      users. Written with Typescript, Redux, React.js, Flask, and sqlite.
 
 \
 

@@ -1,15 +1,18 @@
 // sets up circular menu
 
-function gotoUrl(url) { // eslint-disable-line no-unused-vars
+function gotoUrl(url) {
+  // eslint-disable-line no-unused-vars
   // goes to URL
   window.location.href = url;
 }
 
-function gotoHash(hash) { // eslint-disable-line no-unused-vars
+function gotoHash(hash) {
+  // eslint-disable-line no-unused-vars
   window.location.hash = `/${hash}`;
 }
 
-function hover(el) { // eslint-disable-line no-unused-vars
+function hover(el) {
+  // eslint-disable-line no-unused-vars
   // highlight or unhighlight element
   console.log('hover event');
   const className = el.classList.item(0);
@@ -21,7 +24,8 @@ function hover(el) { // eslint-disable-line no-unused-vars
   }
 }
 
-function click(el) { // eslint-disable-line no-unused-vars
+function click(el) {
+  // eslint-disable-line no-unused-vars
   // highlight or unhighlight element
   console.log('click event');
   const className = el.classList.item(0);
@@ -32,7 +36,28 @@ function click(el) { // eslint-disable-line no-unused-vars
   }
 }
 
-function menuInit(pages, social) { // eslint-disable-line no-unused-vars
+function menuSelect(page) {
+  console.log(`menuSelect ${page}`);
+
+  const oldElements = document.querySelectorAll('.current-menu-item');
+  for (let i = 0; i < oldElements.length; i += 1) {
+    oldElements[i].classList.remove('current-menu-item');
+  }
+
+  const elements = document.querySelectorAll(`.menu-${page}`);
+  for (let i = 0; i < elements.length; i += 1) {
+    console.log('current-menu-item');
+    elements[i].classList.add('current-menu-item');
+  }
+
+  // for (let i = 0; i < elements.length; i += 1) {
+  //   elements[i].classList.toggle('highlight-hover');
+  //   elements[i].classList.toggle('highlight-click', false);
+  // }
+}
+
+function menuInit(pages, social) {
+  // eslint-disable-line no-unused-vars
   // initializes circular menu
 
   function createChar(i, name, character) {
@@ -147,4 +172,4 @@ function menuInit(pages, social) { // eslint-disable-line no-unused-vars
   addSeperator(i, el);
 }
 
-export { gotoUrl, gotoHash, hover, menuInit };
+export { gotoUrl, gotoHash, hover, menuInit, menuSelect };

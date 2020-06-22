@@ -1,8 +1,11 @@
 // router
 
+import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // eslint-disable-line no-unused-vars
+
 const DEFAULT_TITLE = 'Isaac Lo';
 
-export default (routeData, element = 'view') => { // eslint-disable-line no-unused-vars
+export default (routeData, element = 'view') => {
+  // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
     // get change view to old view
@@ -41,7 +44,7 @@ export default (routeData, element = 'view') => { // eslint-disable-line no-unus
         opacity += 0.05;
         view.style.opacity = opacity;
       }
-    }, 0.1);
+    }, 0.4);
 
     // change document title
     if (routeData[route].title) {
@@ -58,4 +61,7 @@ export default (routeData, element = 'view') => { // eslint-disable-line no-unus
   } else {
     window.location = '';
   }
+
+  // menu select the current page
+  menuSelect(routeData[route].menuname);
 };

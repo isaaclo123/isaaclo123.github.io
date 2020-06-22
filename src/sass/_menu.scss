@@ -65,6 +65,17 @@ nav {
     }
   }
 
+  .current-menu-item {
+    color: $accent;
+  }
+
+  .current-menu-item.highlight-hover {
+    color: $accent-2;
+  }
+  .current-menu-item.highlight-click {
+    color: $accent;
+  }
+
   // links characters css
   @for $i from 1 through 60 {
     .char#{$i} {
