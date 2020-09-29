@@ -12,7 +12,7 @@ import sol from '@/pages/projects/solcircle.png';
 require('@/pages/projects/projects.scss');
 
 export default () => {
-  window.slides = new Slides();
+  window.slides = new Slides(undefined, 'Link to Project');
   loadImage(receipt, 'receipt');
   loadImage(ansible, 'ansible');
   loadImage(nixos, 'nixos');

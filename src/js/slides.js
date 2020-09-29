@@ -3,6 +3,7 @@
 export default class {
   constructor( // eslint-disable-line no-unused-vars
     icon = 'fa-link',
+    tooltip = undefined,
     // interval = 25000,
     slideClass = 'slide',
     view = 'view',
@@ -26,16 +27,19 @@ export default class {
     // this.timerReset();
 
     // function for creating indicator slide buttons
-    function buttonCreate(buttonType) {
+    function buttonCreate(buttonType, tooltip) {
       const el = document.createElement('div');
+      if (tooltip !== undefined) {
+        el.title = tooltip;
+      }
       el.classList.add('button');
       el.classList.add(`button-${buttonType}`);
       return el;
     }
 
     // creates buttons with icon inside
-    function iconButtonCreate(buttonType, iconType) {
-      const el = buttonCreate(buttonType);
+    function iconButtonCreate(buttonType, iconType, tooltip) {
+      const el = buttonCreate(buttonType, tooltip);
       const elIcon = document.createElement('i');
       elIcon.classList.add('fa');
       elIcon.classList.add(String(iconType));
@@ -46,13 +50,13 @@ export default class {
     // add forward and backwards buttons
 
     // create next button
-    const nextEl = iconButtonCreate('next', 'fa-angle-right');
+    const nextEl = iconButtonCreate('next', 'fa-angle-right', 'Next Slide');
     nextEl.onclick = () => {
       this.next();
     };
 
     // create prev button
-    const prevEl = iconButtonCreate('prev', 'fa-angle-left');
+    const prevEl = iconButtonCreate('prev', 'fa-angle-left', 'Previous Slide');
     prevEl.onclick = () => {
       this.prev();
     };
@@ -72,7 +76,7 @@ export default class {
 
     for (let i = 0; i < this.slides.length; i += 1) {
       const link = this.slides[i].getAttribute('data-link');
-      const actionEl = iconButtonCreate('action', String(icon));
+      const actionEl = iconButtonCreate('action', String(icon), tooltip);
       actionEl.onclick = () => {
         window.location.href = link;
       };
