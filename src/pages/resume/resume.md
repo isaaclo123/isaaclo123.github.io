@@ -32,13 +32,13 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
   *B.S. in Computer Science, College of Science and Engineering (GPA 3.82) \hfill Sept 2017 -
-  May 2021*\
+  May 2020*\
   Coursework: Data Structures, Machine Architecture, Adv. Programming Principles, Program Design,
   Databases, Networking, Internet Programming, AI, Machine Learning, Software Engineering
 
 \lineheader{skills}
 
-* **Backend**: Python/Django/Flask, C/C++, Node.js, Java, SQL
+* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, SQL
 * **Frontend**: HTML, Angular, Vue, React, SASS/CSS, Typescript
 * **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS
 
@@ -72,7 +72,8 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 * **Receipt Splitter** (github.com/isaaclo123/receipt-split)
     * Wrote a web application enabling the easy and precise splitting of receipt costs. Allows for
       the easy sharing of receipt costs and splitting the cost of individual receipt items amongst
-      users. Written with Typescript, Redux, React.js, Flask, and sqlite.
+      users. Written with Typescript, Redux, React.js, Flask, and Sqlite. Deployed with Docker,
+      Ansible, and Travis CI to Google Cloud Compute.
 
 \
 
