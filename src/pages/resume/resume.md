@@ -1,5 +1,5 @@
 ---
-geometry: margin=1.5cm
+geometry: margin=2cm
 output: pdf_document
 
 header-includes: |
@@ -32,15 +32,16 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 * **University of Minnesota Twin Cities** \hfill Minneapolis, MN\
   *B.S. in Computer Science, College of Science and Engineering (GPA 3.82) \hfill Sept 2017 -
-  May 2020*\
-  Coursework: Data Structures, Machine Architecture, Adv. Programming Principles, Program Design,
+  May 2020*
+* **Coursework**: Data Structures, Machine Architecture, Adv. Programming Principles, Program 
+  Design,
   Databases, Networking, Internet Programming, AI, Machine Learning, Software Engineering
 
 \lineheader{skills}
 
-* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, SQL
+* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, SQL, DynamoDB
 * **Frontend**: HTML, Angular, Vue, React, SASS/CSS, Typescript
-* **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS
+* **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS, GCP
 
 \lineheader{Work}
 
@@ -50,7 +51,6 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       customizable filters and message alerts. Written with Django, React.js, Bootstrap CSS, and
       HTML. Deployed the code with Gitlab pipelines and Ansible. The application is currently
       running in production in COUNTRY offices across the US.
-\
 
 * **Voy** \hfill Minneapolis, MN\
   *App Developer \hfill 2018*
@@ -58,8 +58,6 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       The app helped the company earn a TBSr Innovation award, acceptance to the YC startup
       school, and \$3000 of funding from the University of Minnesota Twin Cities. Written with
       Nativescript and Vue.js
-
-\
 
 * **21st Century Education** \hfill Santa Clara, CA\
   *Software Developer Intern \hfill 2015-2017*
@@ -72,29 +70,22 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 * **Receipt Splitter** (github.com/isaaclo123/receipt-split)
     * Wrote a web application enabling the easy and precise splitting of receipt costs. Allows for
       the easy sharing of receipt costs and splitting the cost of individual receipt items amongst
-      users. Written with Typescript, Redux, React.js, Flask, and Sqlite. Deployed with Docker,
+      users. Written with Typescript, Redux, React.js, Flask, and SQL. Deployed with Docker, 
       Ansible, and Travis CI to Google Cloud Compute.
-
-\
 
 * **Transcriber bot** (github.com/isaaclo123/transcriber_bot)
     * Wrote a python bot for transcribing the text within reddit image posts, aiding the
       visually impaired. Used OpenCV and Pytesseract to read text from images, Sqlite for logging
       information, and coverage/pytest for testing.
-\
 
 * **InFarm** (devpost.com/software/minnehacks)
     * Created a SMS service to help farmers in developing countries advance their personal
       education and increase their agricultural productivity. Wrote the service with Twilio and
       Node.js. Submitted for Minnehack 2019.
 
-\
-
 * **Personal Webpage** (github.com/isaaclo123/isaaclo123.github.io)
     * Designed and created my own personal webpage. Wrote the website with SASS, CSS, Webpack, and
       Javascript. Used minification and cached assets for web optimization.
-
-\
 
 * **System Configurations** (github.com/isaaclo123/nix-config) & (github.com/isaaclo123/my-playbook)
     * Created configuration files for declarative software deployments for my personal computer and
