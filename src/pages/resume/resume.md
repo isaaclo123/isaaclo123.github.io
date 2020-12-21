@@ -39,7 +39,7 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{skills}
 
-* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, SQL, DynamoDB
+* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, Spring Bean, SQL, DynamoDB
 * **Frontend**: HTML, Angular, Vue, React, SASS/CSS, Typescript
 * **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS, GCP
 
