@@ -45,6 +45,13 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{Work}
 
+* **Cognizant** \hfill Minneapolis, MN\
+  *Software Developer \hfill Current*
+    * Wrote AWS Cloudformation templates to create a code pipeline for automated deployment of a 
+      web application. Developed a Java Spring Boot application connected to Amazon DynamoDB.
+    * Solved user issues in client applications in Microsoft Access, Ruby on Rails, Spring, and 
+      SQL.
+
 * **COUNTRY Financial** \hfill Minneapolis, MN\
   *Software Developer Intern \hfill Summer 2019*
     * Reduced call response times by developing a call monitoring dashboard application with
@@ -58,12 +65,6 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       The app helped the company earn a TBSr Innovation award, acceptance to the YC startup
       school, and \$3000 of funding from the University of Minnesota Twin Cities. Written with
       Nativescript and Vue.js
-
-* **21st Century Education** \hfill Santa Clara, CA\
-  *Software Developer Intern \hfill 2015-2017*
-    * Reduced operational costs by migrating data and applications to a cloud service provider.
-      Configured a Linux OS with a firewall, VPN, and data storage system.
-    * Increased event publicity by setting up a company event webpage with Jekyll.
 
 \lineheader{Projects}
 
@@ -91,3 +92,4 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
     * Created configuration files for declarative software deployments for my personal computer and
       VPS instance. Personal computer configurations are written with the NixOS declarative language
       and the VPS configurations are written with Ansible.
+
