@@ -5,7 +5,7 @@ const cssnano = require('cssnano');
 const defaultPreset = require('cssnano-preset-default');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const GoogleFontsPlugin = require('google-fonts-webpack-plugin');
+// const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -144,15 +144,15 @@ module.exports = {
         removeEmptyAttributes: true,
       },
     }),
-    new GoogleFontsPlugin({
-      fonts: [
-        { family: 'Anonymous Pro' },
-        { family: 'Roboto' },
-      ],
-      local: true,
-      filename: 'public/font/fonts.css',
-      path: 'public/font/',
-    }),
+    // new GoogleFontsPlugin({
+    //   fonts: [
+    //     { family: 'Anonymous Pro' },
+    //     { family: 'Roboto' },
+    //   ],
+    //   local: true,
+    //   filename: 'public/font/fonts.css',
+    //   path: 'public/font/',
+    // }),
     new CopyWebpackPlugin([
       {
         from: './src/pages/resume/resume.pdf',

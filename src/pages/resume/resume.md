@@ -1,5 +1,5 @@
 ---
-geometry: margin=2cm
+geometry: margin=1.5cm
 output: pdf_document
 
 header-includes: |
@@ -39,14 +39,21 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{skills}
 
-* **Backend**: Python/Django/Flask, C/C++, Rust, Node.js, Java, Spring Bean, SQL, DynamoDB
+* **Backend**: Python/Django/Flask, C/C#/C++, Rust, Node.js, Java, Spring Bean, SQL, DynamoDB
 * **Frontend**: HTML, Angular, Vue, React, SASS/CSS, Typescript
 * **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS, GCP
 
 \lineheader{Work}
 
+* **Beckman Coulter** \hfill Minneapolis, MN\
+  *Software Engineer \hfill Current*
+    * Writing and maintaining C# code for the Beckman Coulter Immunoassay Analyzer instrument UI.
+    * Took charge of Unit Test parallelization efforts, cutting UT pipeline run times by 50%, increasing
+      developer productivity.
+    * Wrote Powershell scripts to automate the installation and testing of new language translation packs.
+
 * **Cognizant** \hfill Minneapolis, MN\
-  *Software Developer \hfill Current*
+  *Software Developer \hfill 2021*
     * Wrote AWS Cloudformation templates to create a code pipeline for automated deployment of a 
       web application. Developed a Java Spring Boot application connected to Amazon DynamoDB.
     * Solved user issues in client applications in Microsoft Access, Ruby on Rails, Spring, and 
@@ -88,8 +95,7 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
     * Designed and created my own personal webpage. Wrote the website with SASS, CSS, Webpack, and
       Javascript. Used minification and cached assets for web optimization.
 
-* **System Configurations** (github.com/isaaclo123/nix-config) & (github.com/isaaclo123/my-playbook)
-    * Created configuration files for declarative software deployments for my personal computer and
-      VPS instance. Personal computer configurations are written with the NixOS declarative language
-      and the VPS configurations are written with Ansible.
-
+* **System Configurations** (github.com/isaaclo123/my-playbook)
+    * Created configuration files for declarative software deployments for my personal
+      VPS instance using Ansible. Set up a NGINX proxy with HTTPS, a calender server, and a file sync
+      solution.

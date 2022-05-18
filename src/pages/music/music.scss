@@ -54,6 +54,16 @@ $dark-record-color: darken($record-color, 3);
       top: calc(50% - #{$font-size/2});
       left: calc(50% - #{$record-offset});
     }
+
+    &-california-road{
+      font-family: $serif-font;
+      font-size: 1.7rem;
+      padding-top: 0.6rem;
+      padding-bottom: 0.2rem;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      border-bottom: 0.4rem double;
+    }
   }
 
   @mixin label($text-color-dark, $text-color-light, $title-font-size, $word-spacing:-0.5rem) {
@@ -102,6 +112,39 @@ $dark-record-color: darken($record-color, 3);
       background-color: $dark-record-color;
       border: $border-width solid $color2;
       border-radius: 50%;
+    }
+  }
+
+  #california-road {
+    $text-color-dark: #863694;
+    $text-color-light: #fbe9e7;
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.6rem);
+    }
+  }
+
+  #san-jose {
+    $text-color-dark: #027cb7;
+    $text-color-light: #fbe9e7;
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.8rem);
+    }
+  }
+
+  #san-jose {
+    $text-color-dark: #027cb7;
+    $text-color-light: #fbe9e7;
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.8rem);
     }
   }
 

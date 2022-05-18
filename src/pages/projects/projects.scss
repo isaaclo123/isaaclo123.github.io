@@ -46,5 +46,9 @@ $translucent-color: rgba(0,0,0,0.6);
       // if image is not circle, make it smaller
       max-height: 0.85 * $image-width; max-width: 0.85 * $image-width;
     }
+    &-vvvvvv {
+      // if image is not circle, make it smaller
+      max-height: 1.15 * $image-width; max-width: 1.15 * $image-width;
+    }
   }
 }
