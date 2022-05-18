@@ -39,7 +39,7 @@
     "node-hot-loader": "^1.20.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^3.2.1",
-    "postcss": "^7.0.32",
+    "postcss": "^7.0.36",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-loader": "^3.0.0",
     "postcss-normalize": "^8.0.1",
