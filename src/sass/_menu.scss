@@ -13,6 +13,17 @@
 
 // the circular text of the menu
 
+@keyframes menu-intro-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.7rem) scale(0.82);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 nav {
   @extend .noselect;
   z-index: 2;
@@ -46,12 +57,22 @@ nav {
     margin: 0;
     font-weight: bold;
     pointer-events: auto;
+
+    &.menu-intro {
+      opacity: 0;
+      animation: menu-intro-reveal 0.16s ease-out forwards;
+    }
   }
 
   i {
     font-size: ($menu-font-size * 0.85) !important;
     cursor: pointer;
     pointer-events: auto;
+
+    &.menu-intro {
+      opacity: 0;
+      animation: menu-intro-reveal 0.16s ease-out forwards;
+    }
   }
 
   // highlight
