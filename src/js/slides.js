@@ -7,10 +7,13 @@ export default class {
     // interval = 25000,
     slideClass = 'slide',
     view = 'view',
+    options = {},
   ) {
     this.slideId = 0;
     this.view = document.getElementById(view);
     this.slides = this.view.getElementsByClassName(slideClass);
+    this.actionHandler = options.actionHandler;
+    this.onSlideChange = options.onSlideChange;
 
     // init
 
@@ -78,6 +81,15 @@ export default class {
       const link = this.slides[i].getAttribute('data-link');
       const actionEl = iconButtonCreate('action', String(icon), tooltip);
       actionEl.onclick = () => {
+        if (this.actionHandler) {
+          this.actionHandler({
+            actionEl,
+            link,
+            slide: this.slides[i],
+            slideId: i,
+          });
+          return;
+        }
         window.location.href = link;
       };
       this.slides[i].appendChild(actionEl);
@@ -175,6 +187,15 @@ export default class {
 
       // no longer in animatoin
       this.inAnimation = false;
+
+      if (this.onSlideChange) {
+        this.onSlideChange({
+          currentSlide: this.slides[id],
+          currentSlideId: id,
+          previousSlide: this.slides[prevId],
+          previousSlideId: prevId,
+        });
+      }
     }, 200);
   }
 }
