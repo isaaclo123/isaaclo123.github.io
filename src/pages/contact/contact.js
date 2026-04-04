@@ -7,7 +7,7 @@ export default () => {
     return;
   }
 
-  const MAX_ROTATION = 330;
+  const FINGER_STOP_ANGLE = 28;
   const INNER_RADIUS_RATIO = 0.38;
   const OUTER_RADIUS_RATIO = 0.92;
 
@@ -15,6 +15,7 @@ export default () => {
   let isDragging = false;
   let pointerId = null;
   let previousAngle = null;
+  let maxRotation = 0;
 
   const normalizeDelta = (delta) => {
     if (delta > 180) {
@@ -25,6 +26,8 @@ export default () => {
     }
     return delta;
   };
+
+  const normalizePositiveAngle = angle => ((angle % 360) + 360) % 360;
 
   const getCenter = () => {
     const rect = wheel.getBoundingClientRect();
@@ -47,7 +50,7 @@ export default () => {
   };
 
   const applyRotation = (nextRotation) => {
-    rotation = Math.max(0, Math.min(MAX_ROTATION, nextRotation));
+    rotation = Math.max(0, Math.min(maxRotation, nextRotation));
     wheel.style.transform = `rotate(${rotation}deg)`;
   };
 
@@ -55,6 +58,7 @@ export default () => {
     isDragging = false;
     pointerId = null;
     previousAngle = null;
+    maxRotation = 0;
     wheel.classList.remove('is-dragging');
     applyRotation(0);
   };
@@ -72,6 +76,7 @@ export default () => {
     isDragging = true;
     pointerId = event.pointerId;
     previousAngle = angle;
+    maxRotation = normalizePositiveAngle(FINGER_STOP_ANGLE - angle);
     wheel.classList.add('is-dragging');
     wheel.setPointerCapture(pointerId);
     event.preventDefault();
