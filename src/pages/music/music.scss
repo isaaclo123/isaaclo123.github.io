@@ -1,8 +1,10 @@
+@use "sass:color";
+
 @import "~@/sass/variables";
 
 $record-color: #263238;
 $circle-radius: 5.25rem;
-$dark-record-color: darken($record-color, 3);
+$dark-record-color: color.adjust($record-color, $lightness: -3%);
 
 .music-page {
   background-color: $record-color;
