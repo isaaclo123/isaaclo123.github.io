@@ -9,7 +9,7 @@ $legal-ink: #3a2d1f;
 $legal-title: #2b2418;
 $legal-line-gap: 1.56rem;
 $legal-line-width: 1px;
-$resume-copy-width: 16.25rem;
+$resume-copy-width: 14rem;
 $resume-sheet-height: 13.1rem;
 $resume-title-gap: 0.55rem;
 $resume-title-line-height: 1.8rem;
@@ -55,6 +55,7 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     }
 
     &::after {
+      transform: translateY(0.2rem); // 👈 subtle nudge
       top: var(--resume-title-rule-top);
       left: 0;
       right: 0;
@@ -75,11 +76,11 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: $resume-copy-width;
+    width: max-content;
     min-height: $resume-sheet-height;
     box-sizing: border-box;
     z-index: 1;
+    transform: translate(-50%, -50%);
   }
 
   h1 {
@@ -89,11 +90,12 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     letter-spacing: 0.08rem;
     line-height: $resume-title-line-height;
     text-transform: uppercase;
-    width: 100%;
+    white-space: nowrap;
+    text-align: center;
   }
 
   .resume-copy {
-    width: 100%;
+    width: max-content;
     min-height: $resume-copy-min-height;
 
     p,
@@ -109,10 +111,14 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     li {
       line-height: $legal-line-gap;
       margin-top: 0;
+      white-space: nowrap;
     }
 
     ul {
       list-style: none;
+      width: max-content;
+      padding-left: 0;
+      margin-bottom: 0;
     }
 
     li + li {
