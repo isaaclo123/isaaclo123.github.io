@@ -47,11 +47,16 @@ export default () => {
   requestAnimationFrame(() => {
     alignResumeLines();
   });
-  window.addEventListener('resize', alignResumeLines);
+  const handleResize = () => {
+    requestAnimationFrame(() => {
+      alignResumeLines();
+    });
+  };
+  window.addEventListener('resize', handleResize);
 
   const previousCleanup = window.__slidesCleanup;
   window.__slidesCleanup = () => {
-    window.removeEventListener('resize', alignResumeLines);
+    window.removeEventListener('resize', handleResize);
     if (previousCleanup) {
       previousCleanup();
     }
