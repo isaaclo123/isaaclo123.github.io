@@ -9,12 +9,10 @@ $legal-ink: #3a2d1f;
 $legal-title: #2b2418;
 $legal-line-gap: 1.56rem;
 $legal-line-width: 1px;
-$resume-copy-width: 13.5rem;
 $resume-sheet-height: 13.1rem;
 $resume-title-gap: 0.55rem;
 $resume-title-line-height: 1.8rem;
-// $resume-copy-min-height: 9.8rem;
-$legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
+$resume-copy-min-height: 9.8rem;
 
 .resume-page {
   position: absolute;
@@ -27,6 +25,7 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
   .content {
     --resume-title-rule-top: 6rem;
     --resume-line-gap: #{$legal-line-gap};
+    --legal-margin-left: 20%;
     position: absolute;
     inset: 0;
     margin-bottom: 0;
@@ -48,14 +47,13 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     &::before {
       top: 0;
       bottom: 0;
-      left: $legal-margin-left;
+      left: var(--legal-margin-left);
       width: 0.1rem;
       background: $legal-margin;
       z-index: 0;
     }
 
     &::after {
-      transform: translateY(0.2rem); // 👈 subtle nudge
       top: var(--resume-title-rule-top);
       left: 0;
       right: 0;
@@ -77,7 +75,7 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
     top: 50%;
     left: 50%;
     width: max-content;
-    // min-height: $resume-sheet-height;
+    min-height: $resume-sheet-height;
     box-sizing: border-box;
     z-index: 1;
     transform: translate(-50%, -50%);
@@ -96,7 +94,8 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
 
   .resume-copy {
     width: max-content;
-    //  wmin-height: $resume-copy-min-height;
+    min-height: $resume-copy-min-height;
+    transform: translateY(-0.2rem);
 
     p,
     ul,

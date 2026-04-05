@@ -3,6 +3,8 @@ import Slides from '@/js/slides';
 require('@/pages/resume/resume.scss');
 
 export default () => {
+  const LEGAL_MARGIN_OFFSET = 14.4; // 0.9rem at 16px root
+
   const getVisibleSlides = () => Array.from(
     document.querySelectorAll('.resume-page .content.slide'),
   ).filter((slide) => window.getComputedStyle(slide).display !== 'none');
@@ -20,6 +22,7 @@ export default () => {
       }
 
       const slideRect = slide.getBoundingClientRect();
+      const copyRect = copy.getBoundingClientRect();
       const firstTextLineRect = firstLineEl.getClientRects()[0];
       const titleLineRect = title.getClientRects()[0];
 
@@ -29,9 +32,11 @@ export default () => {
 
       const lineHeight = parseFloat(window.getComputedStyle(firstLineEl).lineHeight);
       const titleRuleTop = titleLineRect.bottom - slideRect.top;
+      const legalMarginLeft = copyRect.left - slideRect.left - LEGAL_MARGIN_OFFSET;
 
       slide.style.setProperty('--resume-title-rule-top', `${titleRuleTop}px`);
       slide.style.setProperty('--resume-line-gap', `${lineHeight}px`);
+      slide.style.setProperty('--legal-margin-left', `${legalMarginLeft}px`);
     });
   };
 
@@ -47,11 +52,13 @@ export default () => {
   requestAnimationFrame(() => {
     alignResumeLines();
   });
+
   const handleResize = () => {
     requestAnimationFrame(() => {
       alignResumeLines();
     });
   };
+
   window.addEventListener('resize', handleResize);
 
   const previousCleanup = window.__slidesCleanup;
