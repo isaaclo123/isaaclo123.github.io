@@ -1,9 +1,144 @@
+@use "sass:color";
+
 @import "~@/sass/variables";
 
+$legal-paper: #f5e49c;
+$legal-line: rgba(78, 140, 214, 0.48);
+$legal-margin: rgba(193, 72, 72, 0.8);
+$legal-ink: #3a2d1f;
+$legal-title: #2b2418;
+$legal-line-gap: 1.56rem;
+$legal-line-width: 1px;
+$resume-copy-width: 16.25rem;
+$resume-sheet-height: 13.1rem;
+$resume-title-gap: 0.55rem;
+$resume-title-line-height: 1.8rem;
+$resume-copy-min-height: 9.8rem;
+$legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
+
 .resume-page {
-  background-color: $primary;
+  position: absolute;
+  color: $legal-ink;
+  perspective: 1200px;
+  box-shadow: 0 0 0 $border-size $primary;
+  overflow: hidden;
+  background: linear-gradient(180deg, $legal-paper 0%, $legal-paper 100%);
+
   .content {
-    margin-bottom: $page-font-size;
-    color: $background;
+    --resume-title-rule-top: 6rem;
+    --resume-line-gap: #{$legal-line-gap};
+    position: absolute;
+    inset: 0;
+    margin-bottom: 0;
+    color: inherit;
+    transform-origin: left center;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(180deg, $legal-paper 0%, $legal-paper 100%);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: $legal-margin-left;
+      width: 0.1rem;
+      background: $legal-margin;
+      z-index: 0;
+    }
+
+    &::after {
+      top: var(--resume-title-rule-top);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        $legal-line 0,
+        $legal-line $legal-line-width,
+        transparent $legal-line-width,
+        transparent var(--resume-line-gap)
+      );
+      background-repeat: repeat;
+      z-index: 0;
+    }
+  }
+
+  .resume-sheet {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 0.55rem);
+    transform: translate(-50%, -50%);
+    width: $resume-copy-width;
+    min-height: $resume-sheet-height;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  h1 {
+    color: $legal-title;
+    margin-top: 0;
+    margin-bottom: $resume-title-gap !important;
+    letter-spacing: 0.08rem;
+    line-height: $resume-title-line-height;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .resume-copy {
+    width: 100%;
+    min-height: $resume-copy-min-height;
+
+    p,
+    ul,
+    li {
+      position: relative;
+      z-index: 1;
+      color: $legal-ink;
+      background: transparent;
+    }
+
+    p,
+    li {
+      line-height: $legal-line-gap;
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li + li {
+      margin-top: 0;
+    }
+
+    b,
+    u {
+      color: color.adjust($legal-ink, $lightness: -6%);
+    }
+  }
+
+  .button,
+  .button-indicator {
+    color: $legal-title;
+
+    &:hover {
+      color: color.adjust($legal-title, $lightness: -10%);
+    }
+  }
+
+  .button-action {
+    color: #a3422a;
+
+    &:hover {
+      color: color.adjust(#a3422a, $lightness: -10%);
+    }
   }
 }

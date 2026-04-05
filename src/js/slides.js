@@ -14,6 +14,12 @@ export default class {
     this.slides = this.view.getElementsByClassName(slideClass);
     this.actionHandler = options.actionHandler;
     this.onSlideChange = options.onSlideChange;
+    this.transition = options.transition || 'fade';
+    this.animationDurationMs = this.transition === 'page-turn' ? 320 : 200;
+
+    if (window.__slidesCleanup) {
+      window.__slidesCleanup();
+    }
 
     // init
 
@@ -24,6 +30,31 @@ export default class {
 
     // boolean for currently in animation
     this.inAnimation = false;
+
+    this.keyHandler = (event) => {
+      const tagName = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : '';
+      if (tagName === 'input' || tagName === 'textarea' || event.target.isContentEditable) {
+        return;
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        this.next();
+      }
+
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        this.prev();
+      }
+    };
+    window.addEventListener('keydown', this.keyHandler);
+    window.__slidesCleanup = () => {
+      window.removeEventListener('keydown', this.keyHandler);
+      if (window.__slidesCleanup === this.cleanup) {
+        window.__slidesCleanup = null;
+      }
+    };
+    this.cleanup = window.__slidesCleanup;
 
     // creates timer
     // this.interval = interval;
@@ -172,13 +203,23 @@ export default class {
     // make new slide visible
     this.slides[id].style.display = 'block';
 
-    // leave previous slide visible, add fade-out class
+    // leave previous slide visible, add transition class
     this.slides[prevId].style.display = 'block';
-    this.slides[prevId].classList.add('fade-out');
+    if (this.transition === 'page-turn') {
+      this.slides[prevId].classList.remove('slide-page-exit-prev', 'slide-page-exit-next');
+
+      if (id > prevId || (id === 0 && prevId === this.slides.length - 1)) {
+        this.slides[prevId].classList.add('slide-page-exit-next');
+      } else {
+        this.slides[prevId].classList.add('slide-page-exit-prev');
+      }
+    } else {
+      this.slides[prevId].classList.add('fade-out');
+    }
 
     const animateTimeout = setTimeout(() => {
-      // remove fade class from old slide
-      this.slides[prevId].classList.remove('fade-out');
+      // remove transition classes from old slide
+      this.slides[prevId].classList.remove('fade-out', 'slide-page-exit-prev', 'slide-page-exit-next');
       // hide previous slide
       this.slides[prevId].style.display = 'none'; // eslint-disable-line no-param-reassign
 
@@ -196,6 +237,6 @@ export default class {
           previousSlideId: prevId,
         });
       }
-    }, 200);
+    }, this.animationDurationMs);
   }
 }

@@ -8,6 +8,11 @@ export default (routeData, element = 'view') => {
   // eslint-disable-line no-unused-vars
   const route = window.location.hash.slice(2, window.location.hash.length);
   if (route in routeData) {
+    if (window.__slidesCleanup) {
+      window.__slidesCleanup();
+      window.__slidesCleanup = null;
+    }
+
     // get change view to old view
     const oldView = document.getElementById(element);
     oldView.id = `${element}-old`;

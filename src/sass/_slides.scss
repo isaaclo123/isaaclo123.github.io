@@ -5,6 +5,35 @@
 
 .slide {
   position: absolute;
+
+  &-page-enter-next,
+  &-page-enter-prev,
+  &-page-exit-next,
+  &-page-exit-prev {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+  }
+
+  &-page-enter-next {
+    transform: none;
+    transition: none;
+  }
+
+  &-page-enter-prev {
+    transform: none;
+    transition: none;
+  }
+
+  &-page-exit-next {
+    transform: perspective(80rem) rotateY(-78deg);
+    transition: transform 0.32s ease-in;
+  }
+
+  &-page-exit-prev {
+    transform: perspective(80rem) rotateY(78deg);
+    transition: transform 0.32s ease-in;
+  }
 }
 
 .button {
