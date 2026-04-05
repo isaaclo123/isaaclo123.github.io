@@ -12,8 +12,12 @@ export default class {
     this.slideId = 0;
     this.view = document.getElementById(view);
     this.slides = this.view.getElementsByClassName(slideClass);
+    this.slidePanels = [];
     this.actionHandler = options.actionHandler;
     this.onSlideChange = options.onSlideChange;
+    this.animationDuration = 320;
+    this.transitionDirection = 'next';
+    this.hasInitialized = false;
 
     // init
 
@@ -67,32 +71,37 @@ export default class {
     // add buttons to view
     this.view.appendChild(nextEl);
     this.view.appendChild(prevEl);
+    this.indicatorEl = buttonCreate('indicator');
+    this.actionEl = iconButtonCreate('action', String(icon), tooltip);
+    this.actionEl.onclick = () => {
+      const slide = this.slides[this.slideId];
+      const link = slide.getAttribute('data-link');
 
-    // add indicator numbers to pages
+      if (this.actionHandler) {
+        this.actionHandler({
+          actionEl: this.actionEl,
+          link,
+          slide,
+          slideId: this.slideId,
+        });
+        return;
+      }
+      window.location.href = link;
+    };
+    this.view.appendChild(this.indicatorEl);
+    this.view.appendChild(this.actionEl);
+
+    // wrap existing slide content so only the inner panel animates
     for (let i = 0; i < this.slides.length; i += 1) {
-      const indicatorEl = buttonCreate('indicator');
-      indicatorEl.textContent = `${String(i + 1)} / ${String(this.slides.length)}`;
-      this.slides[i].appendChild(indicatorEl);
-    }
+      const panelEl = document.createElement('div');
+      panelEl.classList.add('slide-panel');
 
-    // add actions to page
+      while (this.slides[i].firstChild) {
+        panelEl.appendChild(this.slides[i].firstChild);
+      }
 
-    for (let i = 0; i < this.slides.length; i += 1) {
-      const link = this.slides[i].getAttribute('data-link');
-      const actionEl = iconButtonCreate('action', String(icon), tooltip);
-      actionEl.onclick = () => {
-        if (this.actionHandler) {
-          this.actionHandler({
-            actionEl,
-            link,
-            slide: this.slides[i],
-            slideId: i,
-          });
-          return;
-        }
-        window.location.href = link;
-      };
-      this.slides[i].appendChild(actionEl);
+      this.slides[i].appendChild(panelEl);
+      this.slidePanels.push(panelEl);
     }
 
     this.goto(this.slideId, this.slides.length - 1);
@@ -121,6 +130,7 @@ export default class {
     }
 
     const prevId = this.slideId;
+    this.transitionDirection = 'next';
     this.slideId += 1;
     if (this.slideId > this.slides.length - 1) {
       this.slideId = 0;
@@ -140,6 +150,7 @@ export default class {
     }
 
     const prevId = this.slideId;
+    this.transitionDirection = 'prev';
     this.slideId -= 1;
     if (this.slideId < 0) {
       this.slideId = this.slides.length - 1;
@@ -159,43 +170,84 @@ export default class {
     console.log(id);
     console.log('----');
 
-    // hide all slides
+    const nextSlide = this.slides[id];
+    const previousSlide = this.slides[prevId];
+    const nextPanel = this.slidePanels[id];
+    const previousPanel = this.slidePanels[prevId];
+    this.indicatorEl.textContent = `${String(id + 1)} / ${String(this.slides.length)}`;
+
+    // hide all slides and reset transition state
     for (let i = 0; i < this.slides.length; i += 1) {
       this.slides[i].style.display = 'none'; // eslint-disable-line no-param-reassign
+      this.slides[i].style.zIndex = '';
+      this.slides[i].classList.remove('is-active');
+      this.slidePanels[i].style.transform = '';
+      this.slidePanels[i].classList.remove('is-animating');
     }
+
+    if (!this.hasInitialized || id === prevId) {
+      nextSlide.style.display = 'block';
+      nextSlide.style.zIndex = 1;
+      nextSlide.classList.add('is-active');
+      this.hasInitialized = true;
+
+      if (this.onSlideChange) {
+        this.onSlideChange({
+          currentSlide: nextSlide,
+          currentSlideId: id,
+          previousSlide,
+          previousSlideId: prevId,
+        });
+      }
+
+      return;
+    }
+
+    const enteringTransform = this.transitionDirection === 'prev' ? 'translateX(-100%)' : 'translateX(100%)';
+    const leavingTransform = this.transitionDirection === 'prev' ? 'translateX(100%)' : 'translateX(-100%)';
 
     // indicate animation is starting
     this.inAnimation = true;
 
-    // put new slide on bottom
-    this.slides[id].style.zIndex = 0;
-    // make new slide visible
-    this.slides[id].style.display = 'block';
+    previousSlide.style.display = 'block';
+    previousSlide.style.zIndex = 0;
+    previousSlide.classList.add('is-active');
+    previousPanel.style.transform = 'translateX(0)';
+    previousPanel.classList.add('is-animating');
 
-    // leave previous slide visible, add fade-out class
-    this.slides[prevId].style.display = 'block';
-    this.slides[prevId].classList.add('fade-out');
+    nextSlide.style.display = 'block';
+    nextSlide.style.zIndex = 1;
+    nextSlide.classList.add('is-active');
+    nextPanel.style.transform = enteringTransform;
+    nextPanel.classList.add('is-animating');
 
-    const animateTimeout = setTimeout(() => {
-      // remove fade class from old slide
-      this.slides[prevId].classList.remove('fade-out');
-      // hide previous slide
-      this.slides[prevId].style.display = 'none'; // eslint-disable-line no-param-reassign
+    window.requestAnimationFrame(() => {
+      nextPanel.style.transform = 'translateX(0)';
+      previousPanel.style.transform = leavingTransform;
+    });
 
-      // put new slide on top
-      this.slides[id].style.zIndex = 1;
+    window.setTimeout(() => {
+      previousSlide.classList.remove('is-active');
+      previousSlide.style.display = 'none'; // eslint-disable-line no-param-reassign
+      previousSlide.style.zIndex = '';
+      previousPanel.classList.remove('is-animating');
+      previousPanel.style.transform = '';
 
-      // no longer in animatoin
+      nextSlide.style.zIndex = 1;
+      nextPanel.classList.remove('is-animating');
+      nextPanel.style.transform = '';
+
+      // no longer in animation
       this.inAnimation = false;
 
       if (this.onSlideChange) {
         this.onSlideChange({
-          currentSlide: this.slides[id],
+          currentSlide: nextSlide,
           currentSlideId: id,
-          previousSlide: this.slides[prevId],
+          previousSlide,
           previousSlideId: prevId,
         });
       }
-    }, 200);
+    }, this.animationDuration);
   }
 }
