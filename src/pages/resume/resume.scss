@@ -75,7 +75,7 @@ $resume-copy-min-height: 9.8rem;
     top: 50%;
     left: 50%;
     width: max-content;
-    min-height: $resume-sheet-height;
+    // min-height: $resume-sheet-height;
     box-sizing: border-box;
     z-index: 1;
     transform: translate(-50%, -50%);
@@ -94,7 +94,7 @@ $resume-copy-min-height: 9.8rem;
 
   .resume-copy {
     width: max-content;
-    min-height: $resume-copy-min-height;
+    // min-height: $resume-copy-min-height;
     transform: translateY(-0.2rem);
 
     p,
