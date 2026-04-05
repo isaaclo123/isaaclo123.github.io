@@ -15,7 +15,8 @@ export default class {
     this.slidePanels = [];
     this.actionHandler = options.actionHandler;
     this.onSlideChange = options.onSlideChange;
-    this.animationDuration = 320;
+    this.animationDuration = options.animationDuration || 320;
+    this.transitionMode = options.transitionMode || 'horizontal';
     this.transitionDirection = 'next';
     this.hasInitialized = false;
 
@@ -183,6 +184,8 @@ export default class {
       this.slides[i].classList.remove('is-active');
       this.slidePanels[i].style.transform = '';
       this.slidePanels[i].classList.remove('is-animating');
+      this.slidePanels[i].classList.remove('is-transitioning-in');
+      this.slidePanels[i].classList.remove('is-transitioning-out');
     }
 
     if (!this.hasInitialized || id === prevId) {
@@ -203,28 +206,47 @@ export default class {
       return;
     }
 
-    const enteringTransform = this.transitionDirection === 'prev' ? 'translateX(-100%)' : 'translateX(100%)';
-    const leavingTransform = this.transitionDirection === 'prev' ? 'translateX(100%)' : 'translateX(-100%)';
-
     // indicate animation is starting
     this.inAnimation = true;
 
     previousSlide.style.display = 'block';
     previousSlide.style.zIndex = 0;
     previousSlide.classList.add('is-active');
-    previousPanel.style.transform = 'translateX(0)';
-    previousPanel.classList.add('is-animating');
 
-    nextSlide.style.display = 'block';
-    nextSlide.style.zIndex = 1;
-    nextSlide.classList.add('is-active');
-    nextPanel.style.transform = enteringTransform;
-    nextPanel.classList.add('is-animating');
+    if (this.transitionMode === 'music-spin') {
+      nextSlide.style.display = 'none';
+      nextSlide.style.zIndex = '';
+      nextSlide.classList.remove('is-active');
+      previousPanel.classList.add('is-transitioning-out');
+    } else {
+      nextSlide.style.display = 'block';
+      nextSlide.style.zIndex = 1;
+      nextSlide.classList.add('is-active');
 
-    window.requestAnimationFrame(() => {
-      nextPanel.style.transform = 'translateX(0)';
-      previousPanel.style.transform = leavingTransform;
-    });
+      const enteringTransform = this.transitionDirection === 'prev' ? 'translateX(-100%)' : 'translateX(100%)';
+      const leavingTransform = this.transitionDirection === 'prev' ? 'translateX(100%)' : 'translateX(-100%)';
+
+      previousPanel.style.transform = 'translateX(0)';
+      previousPanel.classList.add('is-animating');
+      nextPanel.style.transform = enteringTransform;
+      nextPanel.classList.add('is-animating');
+
+      window.requestAnimationFrame(() => {
+        nextPanel.style.transform = 'translateX(0)';
+        previousPanel.style.transform = leavingTransform;
+      });
+    }
+
+    if (this.transitionMode === 'music-spin') {
+      window.setTimeout(() => {
+        previousSlide.classList.remove('is-active');
+        previousSlide.style.display = 'none'; // eslint-disable-line no-param-reassign
+        nextSlide.style.display = 'block';
+        nextSlide.style.zIndex = 1;
+        nextSlide.classList.add('is-active');
+        nextPanel.classList.add('is-transitioning-in');
+      }, Math.round(this.animationDuration * 0.45));
+    }
 
     window.setTimeout(() => {
       previousSlide.classList.remove('is-active');
@@ -236,6 +258,8 @@ export default class {
       nextSlide.style.zIndex = 1;
       nextPanel.classList.remove('is-animating');
       nextPanel.style.transform = '';
+      nextPanel.classList.remove('is-transitioning-in');
+      previousPanel.classList.remove('is-transitioning-out');
 
       // no longer in animation
       this.inAnimation = false;
