@@ -74,7 +74,7 @@ $legal-margin-left: calc(50% - #{($resume-copy-width / 2) + 0.9rem});
   .resume-sheet {
     position: absolute;
     top: 50%;
-    left: calc(50% + 0.55rem);
+    left: 50%;
     transform: translate(-50%, -50%);
     width: $resume-copy-width;
     min-height: $resume-sheet-height;
