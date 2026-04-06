@@ -97,8 +97,17 @@ export default class {
       const panelEl = document.createElement('div');
       panelEl.classList.add('slide-panel');
 
-      while (this.slides[i].firstChild) {
-        panelEl.appendChild(this.slides[i].firstChild);
+      const slideChildren = Array.from(this.slides[i].childNodes);
+      for (let j = 0; j < slideChildren.length; j += 1) {
+        const child = slideChildren[j];
+        if (
+          child.nodeType === Node.ELEMENT_NODE
+          && (child.classList.contains('slide-static') || child.hasAttribute('data-slide-static'))
+        ) {
+          continue;
+        } else {
+          panelEl.appendChild(child);
+        }
       }
 
       this.slides[i].appendChild(panelEl);

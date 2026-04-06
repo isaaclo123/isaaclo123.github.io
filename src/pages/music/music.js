@@ -139,7 +139,7 @@ export default () => {
 
   window.slides = new Slides('fa-play', 'Play Music', 'slide', 'view', {
     transitionMode: 'music-spin',
-    animationDuration: 560,
+    animationDuration: 420,
     actionHandler: async ({ actionEl, slide }) => {
       const audioSource = slide.dataset.audio;
       buttonState.set(actionEl, slide);

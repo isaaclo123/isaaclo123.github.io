@@ -5,24 +5,33 @@
 $record-color: #263238;
 $circle-radius: 5.25rem;
 $dark-record-color: color.adjust($record-color, $lightness: -3%);
-$page-ring-size: $content-width - (2 * $border-size);
+$page-border-width: $border-size * 0.75;
+$page-size: $content-width - (2 * $border-size);
+$progress-ring-stroke: ($page-border-width / $page-size) * 100;
+$progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
 
 .music-page {
   background-color: $record-color;
   border-radius: 50%;
+
+  &.page-border {
+    border-width: 0;
+    border-color: transparent;
+    box-shadow: 0 0 0 $border-size $primary;
+  }
 
   @keyframes headline-spin-out {
     0% {
       transform: scale(1) rotate(0deg);
     }
     100% {
-      transform: scale(0.16) rotate(720deg);
+      transform: scale(0) rotate(720deg);
     }
   }
 
   @keyframes headline-spin-in {
     0% {
-      transform: scale(0.16) rotate(-720deg);
+      transform: scale(0) rotate(-720deg);
     }
     100% {
       transform: scale(1) rotate(0deg);
@@ -33,35 +42,37 @@ $page-ring-size: $content-width - (2 * $border-size);
     --record-progress: 0;
     --record-progress-color: #{$accent};
     --record-rotation: 0deg;
+    overflow: visible;
   }
 
   .slide-panel {
+    padding: 0;
     transform-origin: 50% 50%;
 
     &.is-transitioning-out {
-      animation: headline-spin-out 0.26s cubic-bezier(0.25, 0.8, 0.45, 1) forwards;
+      animation: headline-spin-out 0.2s cubic-bezier(0.25, 0.8, 0.45, 1) forwards;
     }
 
     &.is-transitioning-in {
       transform: scale(0) rotate(-720deg);
-      animation: headline-spin-in 0.3s cubic-bezier(0.18, 0.9, 0.28, 1) forwards;
+      animation: headline-spin-in 0.22s cubic-bezier(0.18, 0.9, 0.28, 1) forwards;
     }
   }
 
   .record-face {
     position: absolute;
     inset: 0;
+    z-index: 1;
     transform-origin: center center;
     transform: rotate(var(--record-rotation));
   }
 
   .record-progress {
-    z-index: 2;
+    z-index: 5;
     position: absolute;
-    width: $page-ring-size;
-    height: $page-ring-size;
-    top: calc(50% - #{$page-ring-size / 2});
-    left: calc(50% - #{$page-ring-size / 2});
+    inset: 0;
+    width: 100%;
+    height: 100%;
     opacity: 1;
     pointer-events: none;
   }
@@ -73,18 +84,18 @@ $page-ring-size: $content-width - (2 * $border-size);
   .record-progress-track,
   .record-progress-fill {
     fill: none;
-    stroke-width: 1.05;
+    stroke-width: $progress-ring-stroke;
   }
 
   .record-progress-track {
-    stroke: transparent;
+    stroke: $background;
   }
 
   .record-progress-fill {
     stroke: var(--record-progress-color);
     stroke-linecap: butt;
-    stroke-dasharray: 311.52;
-    stroke-dashoffset: calc(311.52 * (1 - var(--record-progress)));
+    stroke-dasharray: #{2 * 3.141592653589793 * $progress-ring-radius};
+    stroke-dashoffset: calc(#{2 * 3.141592653589793 * $progress-ring-radius} * (1 - var(--record-progress)));
     opacity: 0;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
