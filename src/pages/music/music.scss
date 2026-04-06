@@ -162,6 +162,14 @@ $progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
       padding-right: 0.2rem;
       border-bottom: 0.4rem double;
     }
+
+    &-someday-will-i-find-my-peace{
+      font-family: $serif-font;
+      font-size: 1.5rem;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      border-bottom: 0.4rem double;
+    }
   }
 
   @mixin label($text-color-dark, $text-color-light, $title-font-size, $word-spacing:-0.5rem) {
@@ -251,6 +259,30 @@ $progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
 
   #bold-love {
     $text-color-dark: #f4511e;
+    $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.8rem);
+    }
+  }
+
+  #someday-will-i-find-my-peace {
+    $text-color-dark: #283593;
+    $text-color-light: #e8eaf6;
+    --record-progress-color: #{$text-color-dark};
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.5rem);
+    }
+  }
+
+  #alex-pretti-blues {
+    $text-color-dark: #d81b60;
     $text-color-light: #fbe9e7;
     --record-progress-color: #{$text-color-dark};
     .record{
