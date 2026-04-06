@@ -50,6 +50,15 @@ $dial-width: 3.2rem;
   background-color: $phone-color-dark;
   border-radius: 50%;
 
+  .slide {
+    display: block;
+    overflow: visible;
+  }
+
+  .slide-panel {
+    padding: 0;
+  }
+
   #dial {
     position: absolute;
     inset: 0;
