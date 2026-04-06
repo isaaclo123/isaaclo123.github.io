@@ -25,7 +25,7 @@ header-includes: |
 ---
 
 \Large \textbf{Isaac Lo} \hfill \normalsize isaaclo123@gmail.com \
-isaaclo.site \hfill 1(650)-503-1253 \
+loisa.ac \hfill 1(650)-503-1253 \
 Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{education}
@@ -44,6 +44,12 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 * **Misc**: Bash, NixOS, OCaml, Ansible, Docker, Git/Gitlab, Nginx, RESTful, AWS, GCP
 
 \lineheader{Work}
+
+* **ClassRanked** \hfill Minneapolis, MN\
+  *Senior Software Engineer \hfill Current*
+    * Developed Python and React code for the ClassRanked Course Evaluation software; hosted on AWS
+    * Took charge of coding, design, and deployment, growing the software from 1 customer to over
+      15 Universities.
 
 * **Beckman Coulter** \hfill Minneapolis, MN\
   *Software Engineer \hfill Current*
@@ -65,13 +71,6 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       customizable filters and message alerts. Written with Django, React.js, Bootstrap CSS, and
       HTML. Deployed the code with Gitlab pipelines and Ansible. The application is currently
       running in production in COUNTRY offices across the US.
-
-* **Voy** \hfill Minneapolis, MN\
-  *App Developer \hfill 2018*
-    * Developed a GPS-guided tour application prototype with the startup Voy for Minnedemo 2018.
-      The app helped the company earn a TBSr Innovation award, acceptance to the YC startup
-      school, and \$3000 of funding from the University of Minnesota Twin Cities. Written with
-      Nativescript and Vue.js
 
 \lineheader{Projects}
 
