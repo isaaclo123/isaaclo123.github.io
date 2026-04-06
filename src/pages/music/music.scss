@@ -1,12 +1,110 @@
+@use "sass:color";
+
 @import "~@/sass/variables";
 
 $record-color: #263238;
 $circle-radius: 5.25rem;
-$dark-record-color: darken($record-color, 3);
+$dark-record-color: color.adjust($record-color, $lightness: -3%);
+$page-border-width: $border-size * 0.75;
+$page-size: $content-width - (2 * $border-size);
+$progress-ring-stroke: ($page-border-width / $page-size) * 100;
+$progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
 
 .music-page {
   background-color: $record-color;
   border-radius: 50%;
+
+  &.page-border {
+    border-width: 0;
+    border-color: transparent;
+    box-shadow: 0 0 0 $border-size $primary;
+  }
+
+  @keyframes headline-spin-out {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(0) rotate(720deg);
+    }
+  }
+
+  @keyframes headline-spin-in {
+    0% {
+      transform: scale(0) rotate(-720deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  .slide {
+    --record-progress: 0;
+    --record-progress-color: #{$accent};
+    --record-rotation: 0deg;
+    overflow: visible;
+  }
+
+  .slide-panel {
+    padding: 0;
+    transform-origin: 50% 50%;
+
+    &.is-transitioning-out {
+      animation: headline-spin-out 0.2s cubic-bezier(0.25, 0.8, 0.45, 1) forwards;
+    }
+
+    &.is-transitioning-in {
+      transform: scale(0) rotate(-720deg);
+      animation: headline-spin-in 0.22s cubic-bezier(0.18, 0.9, 0.28, 1) forwards;
+    }
+  }
+
+  .record-face {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform-origin: center center;
+    transform: rotate(var(--record-rotation));
+  }
+
+  .record-progress {
+    z-index: 5;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  .slide.is-audio-active .record-progress {
+    opacity: 1;
+  }
+
+  .record-progress-track,
+  .record-progress-fill {
+    fill: none;
+    stroke-width: $progress-ring-stroke;
+  }
+
+  .record-progress-track {
+    stroke: $background;
+  }
+
+  .record-progress-fill {
+    stroke: var(--record-progress-color);
+    stroke-linecap: butt;
+    stroke-dasharray: #{2 * 3.141592653589793 * $progress-ring-radius};
+    stroke-dashoffset: calc(#{2 * 3.141592653589793 * $progress-ring-radius} * (1 - var(--record-progress)));
+    opacity: 0;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.12s linear, opacity 0.12s linear;
+  }
+
+  .slide.has-record-progress .record-progress-fill {
+    opacity: 1;
+  }
 
   // css for record labels
   .label {
@@ -60,6 +158,14 @@ $dark-record-color: darken($record-color, 3);
       font-size: 1.7rem;
       padding-top: 0.6rem;
       padding-bottom: 0.2rem;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      border-bottom: 0.4rem double;
+    }
+
+    &-someday-will-i-find-my-peace{
+      font-family: $serif-font;
+      font-size: 1.5rem;
       padding-left: 0.2rem;
       padding-right: 0.2rem;
       border-bottom: 0.4rem double;
@@ -118,6 +224,7 @@ $dark-record-color: darken($record-color, 3);
   #california-road {
     $text-color-dark: #863694;
     $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -129,6 +236,7 @@ $dark-record-color: darken($record-color, 3);
   #san-jose {
     $text-color-dark: #027cb7;
     $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -140,6 +248,7 @@ $dark-record-color: darken($record-color, 3);
   #san-jose {
     $text-color-dark: #027cb7;
     $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -151,6 +260,31 @@ $dark-record-color: darken($record-color, 3);
   #bold-love {
     $text-color-dark: #f4511e;
     $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.8rem);
+    }
+  }
+
+  #someday-will-i-find-my-peace {
+    $text-color-dark: #283593;
+    $text-color-light: #e8eaf6;
+    --record-progress-color: #{$text-color-dark};
+    .record{
+      @include record($text-color-dark, $text-color-light);
+    }
+    .label {
+      @include label($text-color-dark, $text-color-light, 1.5rem);
+    }
+  }
+
+  #alex-pretti-blues {
+    $text-color-dark: #d81b60;
+    $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -162,6 +296,7 @@ $dark-record-color: darken($record-color, 3);
   #vill-junct {
     $text-color-dark: #d81b60;
     $text-color-light: #fbe9e7;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -173,6 +308,7 @@ $dark-record-color: darken($record-color, 3);
   #fault-stars {
     $text-color-dark: #283593;
     $text-color-light: #e8eaf6;
+    --record-progress-color: #{$text-color-dark};
     .record{
       @include record($text-color-dark, $text-color-light);
     }
@@ -180,5 +316,4 @@ $dark-record-color: darken($record-color, 3);
       @include label($text-color-dark, $text-color-light, 1.8rem);
     }
   }
-
 }

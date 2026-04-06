@@ -59,6 +59,12 @@ function menuSelect(page) {
 function menuInit(pages, social) {
   // eslint-disable-line no-unused-vars
   // initializes circular menu
+  const ANIMATION_STEP_MS = 12;
+
+  function applyIntroAnimation(element, order) {
+    element.classList.add('menu-intro');
+    element.style.animationDelay = `${order * ANIMATION_STEP_MS}ms`;
+  }
 
   function createChar(i, name, character) {
     // create span for rotated elements
@@ -93,6 +99,7 @@ function menuInit(pages, social) {
     const text = document.createTextNode(character);
     inner.appendChild(text);
     outer.appendChild(inner);
+    applyIntroAnimation(inner, i - 1);
 
     return outer;
   }
@@ -163,6 +170,7 @@ function menuInit(pages, social) {
 
     // add letter to DOM
     letter.appendChild(icon);
+    applyIntroAnimation(icon, i - 1);
     el.appendChild(letter);
 
     // increment counter

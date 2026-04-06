@@ -1,0 +1,98 @@
+<p> isaaclo123@gmail.com<br />
+loisa.ac 1(650)-503-1253<br />
+Minneapolis MN / San Jose CA linkedin.com/in/isaac-lo-325587124</p>
+<ul>
+<li><strong>University of Minnesota Twin Cities</strong> Minneapolis,
+MN<br />
+<em>B.S. in Computer Science, College of Science and Engineering (GPA
+3.82) Sept 2017 - May 2020</em></li>
+<li><strong>Coursework</strong>: Data Structures, Machine Architecture,
+Adv. Programming Principles, Program Design, Databases, Networking,
+Internet Programming, AI, Machine Learning, Software Engineering</li>
+</ul>
+<ul>
+<li><strong>Backend</strong>: Python/Django/Flask, C/C#/C++, Rust,
+Node.js, Java, Spring Bean, SQL, DynamoDB</li>
+<li><strong>Frontend</strong>: HTML, Angular, Vue, React, SASS/CSS,
+Typescript</li>
+<li><strong>Misc</strong>: Bash, NixOS, OCaml, Ansible, Docker,
+Git/Gitlab, Nginx, RESTful, AWS, GCP</li>
+</ul>
+<ul>
+<li><strong>ClassRanked</strong> Minneapolis, MN<br />
+<em>Senior Software Engineer Current</em>
+<ul>
+<li>Developed Python and React code for the ClassRanked Course
+Evaluation software; hosted on AWS</li>
+<li>Took charge of coding, design, and deployment, growing the software
+from 1 customer to over 15 Universities.</li>
+</ul></li>
+<li><strong>Beckman Coulter</strong> Minneapolis, MN<br />
+<em>Software Engineer Current</em>
+<ul>
+<li>Writing and maintaining C# code for the Beckman Coulter Immunoassay
+Analyzer instrument UI.</li>
+<li>Took charge of Unit Test parallelization efforts, cutting UT
+pipeline run times by 50%, increasing developer productivity.</li>
+<li>Wrote Powershell scripts to automate the installation and testing of
+new language translation packs.</li>
+</ul></li>
+<li><strong>Cognizant</strong> Minneapolis, MN<br />
+<em>Software Developer 2021</em>
+<ul>
+<li>Wrote AWS Cloudformation templates to create a code pipeline for
+automated deployment of a web application. Developed a Java Spring Boot
+application connected to Amazon DynamoDB.</li>
+<li>Solved user issues in client applications in Microsoft Access, Ruby
+on Rails, Spring, and SQL.</li>
+</ul></li>
+<li><strong>COUNTRY Financial</strong> Minneapolis, MN<br />
+<em>Software Developer Intern Summer 2019</em>
+<ul>
+<li>Reduced call response times by developing a call monitoring
+dashboard application with customizable filters and message alerts.
+Written with Django, React.js, Bootstrap CSS, and HTML. Deployed the
+code with Gitlab pipelines and Ansible. The application is currently
+running in production in COUNTRY offices across the US.</li>
+</ul></li>
+</ul>
+<ul>
+<li><strong>Receipt Splitter</strong>
+(github.com/isaaclo123/receipt-split)
+<ul>
+<li>Wrote a web application enabling the easy and precise splitting of
+receipt costs. Allows for the easy sharing of receipt costs and
+splitting the cost of individual receipt items amongst users. Written
+with Typescript, Redux, React.js, Flask, and SQL. Deployed with Docker,
+Ansible, and Travis CI to Google Cloud Compute.</li>
+</ul></li>
+<li><strong>Transcriber bot</strong>
+(github.com/isaaclo123/transcriber_bot)
+<ul>
+<li>Wrote a python bot for transcribing the text within reddit image
+posts, aiding the visually impaired. Used OpenCV and Pytesseract to read
+text from images, Sqlite for logging information, and coverage/pytest
+for testing.</li>
+</ul></li>
+<li><strong>InFarm</strong> (devpost.com/software/minnehacks)
+<ul>
+<li>Created a SMS service to help farmers in developing countries
+advance their personal education and increase their agricultural
+productivity. Wrote the service with Twilio and Node.js. Submitted for
+Minnehack 2019.</li>
+</ul></li>
+<li><strong>Personal Webpage</strong>
+(github.com/isaaclo123/isaaclo123.github.io)
+<ul>
+<li>Designed and created my own personal webpage. Wrote the website with
+SASS, CSS, Webpack, and Javascript. Used minification and cached assets
+for web optimization.</li>
+</ul></li>
+<li><strong>System Configurations</strong>
+(github.com/isaaclo123/my-playbook)
+<ul>
+<li>Created configuration files for declarative software deployments for
+my personal VPS instance using Ansible. Set up a NGINX proxy with HTTPS,
+a calender server, and a file sync solution.</li>
+</ul></li>
+</ul>

@@ -50,6 +50,35 @@ $dial-width: 3.2rem;
   background-color: $phone-color-dark;
   border-radius: 50%;
 
+  .slide {
+    display: block;
+    overflow: visible;
+  }
+
+  .slide-panel {
+    padding: 0;
+  }
+
+  #dial {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dial-wheel {
+    position: absolute;
+    inset: 0;
+    cursor: grab;
+    touch-action: none;
+    transform: rotate(0deg);
+    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.25, 1);
+    will-change: transform;
+
+    &.is-dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+  }
+
   // creates dial background
   .dial-label{
     @include phone-dial($background, $label-color-dark);
@@ -134,7 +163,7 @@ $dial-width: 3.2rem;
   $dot-border: 1.1rem;
   $dot-offset: ($dot-radius + $dot-border);
   $circle-offset: calc($circle-radius + $dial-width);
-  .dot#{$i} {
+  .contact-page .dial-wheel .dot#{$i} {
     $circle-radius: 7.25rem;
     $deg-inc: 30deg;
     $start-deg: 165deg;
@@ -146,5 +175,6 @@ $dial-width: 3.2rem;
     border: $dot-border solid $phone-color-dark;
     border-radius: 50%;
     margin: 0; padding: 0;
+    pointer-events: none;
   };
 };

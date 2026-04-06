@@ -28,6 +28,12 @@ $translucent-color: rgba(0,0,0,0.6);
     }
   }
 
+  .project-panel {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
   .logo {
     @extend .noselect;
     z-index: -1;

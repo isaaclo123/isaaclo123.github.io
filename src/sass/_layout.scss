@@ -9,6 +9,7 @@
   top: calc(50% - #{$content-mod/2}); left: calc(50% - #{$content-mod/2});
   box-sizing: border-box;
   border-radius: 50%;
+  overflow: hidden;
   z-index: 0;
   font-family: $serif-font;
 
