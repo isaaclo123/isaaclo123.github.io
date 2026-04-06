@@ -240,4 +240,16 @@ export default () => {
     activeSlide = null;
     audio.dataset.activeSource = '';
   });
+
+  // Ensure audio stops when navigating away. The router swaps views but page JS can remain loaded;
+  // expose stopPlayback so a single global hashchange listener can call the latest handler.
+  window.__stopMusicPlayback = stopPlayback;
+  if (!window.__music_hashchange_handler_added) {
+    window.addEventListener('hashchange', () => {
+      if (typeof window.__stopMusicPlayback === 'function') {
+        window.__stopMusicPlayback({resetRotation: false});
+      }
+    });
+    window.__music_hashchange_handler_added = true;
+  }
 };
