@@ -3,19 +3,34 @@
 import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
 const DEFAULT_TITLE = 'Isaac Lo';
-const TRANSITION_DURATION = 560;
-const ROTATION_DEGREES = 89.5;
+const TRANSITION_DURATION = 520;
+const ROTATION_DEGREES = 108;
+const MENU_ORDER = ['home', 'resume', 'projects', 'music', 'contact'];
 
 // Fast, smooth ease-out
 const easeOutCubic = (t) => 1 - ((1 - t) ** 3);
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * (t ** 3) : 1 - (((-2 * t) + 2) ** 3) / 2);
-let nextFlipAxis = 'x';
 
 const getTransitionRoot = (view) => view.querySelector('.page') || view;
-const getFlipTransform = (axis, degrees) => `rotate${axis.toUpperCase()}(${degrees}deg)`;
+const getLensTransform = (degrees, scale = 1) => `rotate(${degrees}deg) scale(${scale})`;
 const getExistingFlipFace = (page) => Array.from(page.children)
   .find((child) => child.classList.contains('page-flip-face'));
 const isTransparent = (color) => color === 'rgba(0, 0, 0, 0)' || color === 'transparent';
+const getMenuIndex = (name) => MENU_ORDER.indexOf(name);
+const getRotationDirection = (fromName, toName) => {
+  const fromIndex = getMenuIndex(fromName);
+  const toIndex = getMenuIndex(toName);
+
+  if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
+    return -1;
+  }
+
+  const total = MENU_ORDER.length;
+  const clockwiseSteps = (toIndex - fromIndex + total) % total;
+  const counterclockwiseSteps = (fromIndex - toIndex + total) % total;
+
+  return counterclockwiseSteps < clockwiseSteps ? 1 : -1;
+};
 
 const ensureFlipFace = (view) => {
   const page = getTransitionRoot(view);
@@ -35,6 +50,13 @@ const ensureFlipFace = (view) => {
 
   while (page.firstChild) {
     face.appendChild(page.firstChild);
+  }
+
+  const routeControls = Array.from(view.children)
+    .filter((child) => child.classList.contains('button'));
+
+  for (let i = 0; i < routeControls.length; i += 1) {
+    face.appendChild(routeControls[i]);
   }
 
   page.appendChild(face);
@@ -91,18 +113,19 @@ export default (routeData, element = 'view') => {
 
   parent.appendChild(view);
 
-  const hasExistingContent = oldView.innerHTML.trim().length > 0;
-  const flipAxis = nextFlipAxis;
-  const outgoingDuration = TRANSITION_DURATION / 2;
-  const incomingDuration = TRANSITION_DURATION / 2;
   const oldPageBackground = oldPage ? window.getComputedStyle(oldPage).backgroundColor : '';
   const newPageBackground = newPage ? window.getComputedStyle(newPage).backgroundColor : '';
+  const previousRouteName = oldView.dataset.routeName || oldView.dataset.menuName || 'home';
+  const nextRouteName = currentRoute.menuname || route || 'home';
+  const rotationDirection = getRotationDirection(previousRouteName, nextRouteName);
 
   parent.classList.add('is-route-transitioning');
+  view.dataset.routeName = nextRouteName;
+  view.dataset.menuName = nextRouteName;
 
   if (oldFace) {
     oldFace.classList.add('is-route-flipping');
-    oldFace.style.transform = getFlipTransform(flipAxis, 0);
+    oldFace.style.transform = getLensTransform(0, 1);
     oldFace.style.opacity = '1';
     oldFace.style.backgroundColor = isTransparent(oldPageBackground) ? '' : oldPageBackground;
   }
@@ -113,7 +136,7 @@ export default (routeData, element = 'view') => {
 
   if (newFace) {
     newFace.classList.add('is-route-flipping');
-    newFace.style.transform = getFlipTransform(flipAxis, -ROTATION_DEGREES);
+    newFace.style.transform = getLensTransform(ROTATION_DEGREES, 0.96);
     newFace.style.opacity = '0';
     newFace.style.backgroundColor = isTransparent(newPageBackground) ? '' : newPageBackground;
   }
@@ -153,44 +176,29 @@ export default (routeData, element = 'view') => {
   const animationStart = performance.now();
 
   const animate = (now) => {
-    const elapsed = now - animationStart;
+    const rawProgress = Math.min((now - animationStart) / TRANSITION_DURATION, 1);
+    const incomingProgress = easeOutCubic(rawProgress);
 
-    if (elapsed <= outgoingDuration) {
-      const outgoingProgress = easeInOutCubic(Math.min(elapsed / outgoingDuration, 1));
-
-      if (oldFace) {
-        oldFace.style.transform = getFlipTransform(flipAxis, ROTATION_DEGREES * outgoingProgress);
-        oldFace.style.opacity = String(1 - Math.max(0, (outgoingProgress - 0.72) / 0.28));
-      }
-
-      if (newFace) {
-        newFace.style.opacity = '0';
-      }
-    } else {
-      const incomingElapsed = Math.min(elapsed - outgoingDuration, incomingDuration);
-      const incomingProgress = easeOutCubic(Math.min(incomingElapsed / incomingDuration, 1));
-
-      if (oldFace) {
-        oldFace.style.opacity = '0';
-      }
-
-      if (newFace) {
-        newFace.style.opacity = '1';
-        newFace.style.transform = getFlipTransform(
-          flipAxis,
-          -ROTATION_DEGREES + (ROTATION_DEGREES * incomingProgress),
-        );
-      }
+    if (oldFace) {
+      oldFace.style.transform = getLensTransform(0, 1);
+      oldFace.style.opacity = '1';
+      oldFace.style.zIndex = '1';
     }
 
-    if (elapsed < TRANSITION_DURATION) {
+    if (newFace) {
+      newFace.style.opacity = '1';
+      newFace.style.transform = getLensTransform(
+        rotationDirection * ROTATION_DEGREES * (1 - incomingProgress),
+        1,
+      );
+      newFace.style.zIndex = '2';
+    }
+
+    if (rawProgress < 1) {
       window.requestAnimationFrame(animate);
       return;
     }
 
-    if (hasExistingContent) {
-      nextFlipAxis = flipAxis === 'x' ? 'y' : 'x';
-    }
     finishTransition();
   };
 

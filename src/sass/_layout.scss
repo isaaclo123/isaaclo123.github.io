@@ -73,8 +73,6 @@
   position: fixed;
   inset: 0;
   isolation: isolate;
-  perspective: 1200px;
-  transform-style: preserve-3d;
 
   &.is-route-transitioning {
     &::before {
@@ -105,10 +103,8 @@
 }
 
 .page-flip-face.is-route-flipping {
-  transform-origin: 50% 50%;
-  transform-style: preserve-3d;
+  transform-origin: 18% 82%;
   will-change: transform, opacity;
-  backface-visibility: hidden;
 }
 
 .noselect {

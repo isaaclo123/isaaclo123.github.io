@@ -11,6 +11,7 @@ export default class {
   ) {
     this.slideId = 0;
     this.view = document.getElementById(view);
+    this.transitionFace = this.view.querySelector('.page-flip-face');
     this.slides = this.view.getElementsByClassName(slideClass);
     this.slidePanels = [];
     this.actionHandler = options.actionHandler;
@@ -70,8 +71,9 @@ export default class {
     };
 
     // add buttons to view
-    this.view.appendChild(nextEl);
-    this.view.appendChild(prevEl);
+    const controlsParent = this.transitionFace || this.view;
+    controlsParent.appendChild(nextEl);
+    controlsParent.appendChild(prevEl);
     this.indicatorEl = buttonCreate('indicator');
     this.actionEl = iconButtonCreate('action', String(icon), tooltip);
     this.actionEl.onclick = () => {
@@ -89,8 +91,8 @@ export default class {
       }
       window.location.href = link;
     };
-    this.view.appendChild(this.indicatorEl);
-    this.view.appendChild(this.actionEl);
+    controlsParent.appendChild(this.indicatorEl);
+    controlsParent.appendChild(this.actionEl);
 
     // wrap existing slide content so only the inner panel animates
     for (let i = 0; i < this.slides.length; i += 1) {
