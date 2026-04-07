@@ -114,6 +114,9 @@ export default (routeData, element = 'view') => {
   const rotationDirection = getRotationDirection(previousRouteName, nextRouteName);
 
   parent.classList.add('is-route-transitioning');
+  if (newPage && newPage.classList.contains('page-border')) {
+    parent.classList.add('is-route-border-transition');
+  }
   view.dataset.routeName = nextRouteName;
   view.dataset.menuName = nextRouteName;
 
@@ -130,6 +133,9 @@ export default (routeData, element = 'view') => {
 
   if (newFace) {
     newFace.classList.add('is-route-flipping');
+    if (newPage && newPage.classList.contains('page-border')) {
+      newFace.classList.add('has-route-border');
+    }
     newFace.style.transform = getLensTransform(ROTATION_DEGREES, 0.96);
     newFace.style.opacity = '0';
     newFace.style.backgroundColor = isTransparent(newPageBackground) ? '' : newPageBackground;
@@ -157,9 +163,11 @@ export default (routeData, element = 'view') => {
 
     if (newFace) {
       newFace.style.backgroundColor = '';
+      newFace.classList.remove('has-route-border');
     }
 
     parent.classList.remove('is-route-transitioning');
+    parent.classList.remove('is-route-border-transition');
 
     parent.style.minHeight = `${view.offsetHeight}px`;
     requestAnimationFrame(() => {
