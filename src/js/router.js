@@ -24,12 +24,31 @@ const getRotationDirection = (fromName, toName) => {
   if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
     return -1;
   }
+  return toIndex < fromIndex ? 1 : -1;
+};
+const getRouteSequence = (fromName, toName) => {
+  const fromIndex = getMenuIndex(fromName);
+  const toIndex = getMenuIndex(toName);
 
-  const total = MENU_ORDER.length;
-  const clockwiseSteps = (toIndex - fromIndex + total) % total;
-  const counterclockwiseSteps = (fromIndex - toIndex + total) % total;
+  if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
+    return [toName];
+  }
 
-  return counterclockwiseSteps < clockwiseSteps ? 1 : -1;
+  const direction = getRotationDirection(fromName, toName);
+  const step = direction === 1 ? -1 : 1;
+  const sequence = [];
+  let index = fromIndex;
+
+  while (true) {
+    index += step;
+    sequence.push(MENU_ORDER[index]);
+
+    if (index === toIndex) {
+      break;
+    }
+  }
+
+  return sequence;
 };
 
 const ensureFlipFace = (view) => {
@@ -63,6 +82,66 @@ const ensureFlipFace = (view) => {
   return face;
 };
 
+const createRouteView = (routeName, route, element, isFinalView = false) => {
+  const view = document.createElement('div');
+  view.innerHTML = route.page;
+  view.dataset.routeName = routeName;
+  view.dataset.menuName = routeName;
+
+  if (isFinalView) {
+    view.id = element;
+  } else {
+    view.className = 'route-transition-view';
+  }
+
+  Object.assign(view.style, {
+    position: 'absolute',
+    inset: '0',
+    width: '100%',
+    opacity: '1',
+  });
+
+  const page = getTransitionRoot(view);
+  const face = ensureFlipFace(view);
+
+  if (face) {
+    face.classList.add('is-route-flipping');
+    face.style.transform = getLensTransform(ROTATION_DEGREES, 0.96);
+    face.style.opacity = '1';
+    face.style.zIndex = '2';
+  }
+
+  return {
+    view,
+    page,
+    face,
+    route,
+    routeName,
+    isFinalView,
+  };
+};
+
+const initializeTransitionView = (transitionView, element) => {
+  const { route, view, isFinalView } = transitionView;
+
+  if (!route || !route.load || typeof route.load.default !== 'function') {
+    return false;
+  }
+
+  if (!isFinalView) {
+    view.id = element;
+  }
+
+  route.load.default();
+
+  if (!isFinalView) {
+    view.removeAttribute('id');
+    view.className = 'route-transition-view';
+  }
+
+  return true;
+};
+
 export default (routeData, element = 'view') => {
   const route = window.location.hash.slice(2);
 
@@ -88,14 +167,8 @@ export default (routeData, element = 'view') => {
   parent.style.minHeight = `${oldHeight}px`;
 
   oldView.id = `${element}-old`;
-
-  const view = document.createElement('div');
-  view.id = element;
-  view.innerHTML = currentRoute.page;
   const oldPage = getTransitionRoot(oldView);
-  const newPage = getTransitionRoot(view);
   const oldFace = ensureFlipFace(oldView);
-  const newFace = ensureFlipFace(view);
 
   Object.assign(oldView.style, {
     position: 'absolute',
@@ -104,24 +177,48 @@ export default (routeData, element = 'view') => {
     opacity: '1',
   });
 
-  Object.assign(view.style, {
-    position: 'absolute',
-    inset: '0',
-    width: '100%',
-    opacity: '1',
-  });
-
-  parent.appendChild(view);
-
   const oldPageBackground = oldPage ? window.getComputedStyle(oldPage).backgroundColor : '';
-  const newPageBackground = newPage ? window.getComputedStyle(newPage).backgroundColor : '';
   const previousRouteName = oldView.dataset.routeName || oldView.dataset.menuName || 'home';
   const nextRouteName = currentRoute.menuname || route || 'home';
   const rotationDirection = getRotationDirection(previousRouteName, nextRouteName);
+  const routeSequence = getRouteSequence(previousRouteName, nextRouteName);
+  const transitionViews = routeSequence
+    .map((routeName, index) => {
+      const routeRecord = routeData[routeName] || routeData[currentRoute.menuname] || currentRoute;
+      return createRouteView(routeName, routeRecord, element, index === routeSequence.length - 1);
+    });
+  const finalTransitionView = transitionViews[transitionViews.length - 1];
+  const view = finalTransitionView.view;
+
+  for (let i = 0; i < transitionViews.length; i += 1) {
+    parent.appendChild(transitionViews[i].view);
+  }
+
+  let finalViewInitialized = false;
+
+  for (let i = 0; i < transitionViews.length; i += 1) {
+    const didInitialize = initializeTransitionView(transitionViews[i], element);
+    if (didInitialize && transitionViews[i].isFinalView) {
+      finalViewInitialized = true;
+    }
+  }
+
+  for (let i = 0; i < transitionViews.length; i += 1) {
+    const transitionView = transitionViews[i];
+    const backgroundColor = transitionView.page
+      ? window.getComputedStyle(transitionView.page).backgroundColor
+      : '';
+
+    if (transitionView.face) {
+      transitionView.face.style.backgroundColor = isTransparent(backgroundColor) ? '' : backgroundColor;
+    }
+
+    if (transitionView.page && !isTransparent(backgroundColor)) {
+      transitionView.page.classList.add('is-route-transition-shell');
+    }
+  }
 
   parent.classList.add('is-route-transitioning');
-  view.dataset.routeName = nextRouteName;
-  view.dataset.menuName = nextRouteName;
 
   if (oldFace) {
     oldFace.classList.add('is-route-flipping');
@@ -132,17 +229,6 @@ export default (routeData, element = 'view') => {
 
   if (oldPage && !isTransparent(oldPageBackground)) {
     oldPage.classList.add('is-route-transition-shell');
-  }
-
-  if (newFace) {
-    newFace.classList.add('is-route-flipping');
-    newFace.style.transform = getLensTransform(ROTATION_DEGREES, 0.96);
-    newFace.style.opacity = '0';
-    newFace.style.backgroundColor = isTransparent(newPageBackground) ? '' : newPageBackground;
-  }
-
-  if (newPage && !isTransparent(newPageBackground)) {
-    newPage.classList.add('is-route-transition-shell');
   }
 
   const finishTransition = () => {
@@ -157,12 +243,20 @@ export default (routeData, element = 'view') => {
       opacity: '1',
     });
 
-    if (newPage) {
-      newPage.classList.remove('is-route-transition-shell');
-    }
+    for (let i = 0; i < transitionViews.length; i += 1) {
+      const transitionView = transitionViews[i];
 
-    if (newFace) {
-      newFace.style.backgroundColor = '';
+      if (transitionView.isFinalView) {
+        if (transitionView.page) {
+          transitionView.page.classList.remove('is-route-transition-shell');
+        }
+        if (transitionView.face) {
+          transitionView.face.style.backgroundColor = '';
+          transitionView.face.style.zIndex = '';
+        }
+      } else if (transitionView.view.parentNode) {
+        transitionView.view.parentNode.removeChild(transitionView.view);
+      }
     }
 
     parent.classList.remove('is-route-transitioning');
@@ -177,7 +271,7 @@ export default (routeData, element = 'view') => {
 
   const animate = (now) => {
     const rawProgress = Math.min((now - animationStart) / TRANSITION_DURATION, 1);
-    const incomingProgress = easeOutCubic(rawProgress);
+    const segmentCount = transitionViews.length;
 
     if (oldFace) {
       oldFace.style.transform = getLensTransform(0, 1);
@@ -185,13 +279,35 @@ export default (routeData, element = 'view') => {
       oldFace.style.zIndex = '1';
     }
 
-    if (newFace) {
-      newFace.style.opacity = '1';
-      newFace.style.transform = getLensTransform(
-        rotationDirection * ROTATION_DEGREES * (1 - incomingProgress),
-        1,
-      );
-      newFace.style.zIndex = '2';
+    for (let i = 0; i < transitionViews.length; i += 1) {
+      const transitionView = transitionViews[i];
+      const { face } = transitionView;
+
+      if (!face) {
+        continue;
+      }
+
+      const segmentStart = i / segmentCount;
+      const segmentEnd = (i + 1) / segmentCount;
+      const localRaw = Math.min(Math.max((rawProgress - segmentStart) / (segmentEnd - segmentStart), 0), 1);
+      const localProgress = easeOutCubic(localRaw);
+
+      if (rawProgress < segmentStart) {
+        face.style.transform = getLensTransform(rotationDirection * ROTATION_DEGREES, 1);
+        face.style.opacity = '0';
+        face.style.zIndex = '2';
+      } else if (rawProgress >= segmentEnd) {
+        face.style.transform = getLensTransform(0, 1);
+        face.style.opacity = '1';
+        face.style.zIndex = '1';
+      } else {
+        face.style.transform = getLensTransform(
+          rotationDirection * ROTATION_DEGREES * (1 - localProgress),
+          1,
+        );
+        face.style.opacity = '1';
+        face.style.zIndex = '2';
+      }
     }
 
     if (rawProgress < 1) {
@@ -206,7 +322,7 @@ export default (routeData, element = 'view') => {
 
   document.title = currentRoute.title || DEFAULT_TITLE;
 
-  if ('load' in currentRoute && currentRoute.load && typeof currentRoute.load.default === 'function') {
+  if (!finalViewInitialized && 'load' in currentRoute && currentRoute.load && typeof currentRoute.load.default === 'function') {
     currentRoute.load.default();
   }
 
