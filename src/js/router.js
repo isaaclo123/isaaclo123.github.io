@@ -3,13 +3,13 @@
 import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
 const DEFAULT_TITLE = 'Isaac Lo';
-const TRANSITION_DURATION = 520;
+const TRANSITION_DURATION = 360;
 const ROTATION_DEGREES = 108;
 const MENU_ORDER = ['home', 'resume', 'projects', 'music', 'contact'];
 
 // Fast, smooth ease-out
 const easeOutCubic = (t) => 1 - ((1 - t) ** 3);
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * (t ** 3) : 1 - (((-2 * t) + 2) ** 3) / 2);
+const easeOutQuint = (t) => 1 - ((1 - t) ** 5);
 
 const getTransitionRoot = (view) => view.querySelector('.page') || view;
 const getLensTransform = (degrees, scale = 1) => `rotate(${degrees}deg) scale(${scale})`;
@@ -272,6 +272,8 @@ export default (routeData, element = 'view') => {
   const animate = (now) => {
     const rawProgress = Math.min((now - animationStart) / TRANSITION_DURATION, 1);
     const segmentCount = transitionViews.length;
+    const segmentSpan = segmentCount > 1 ? 1 / (segmentCount * 0.58) : 1;
+    const segmentStep = segmentCount > 1 ? (1 - segmentSpan) / (segmentCount - 1) : 1;
 
     if (oldFace) {
       oldFace.style.transform = getLensTransform(0, 1);
@@ -282,31 +284,39 @@ export default (routeData, element = 'view') => {
     for (let i = 0; i < transitionViews.length; i += 1) {
       const transitionView = transitionViews[i];
       const { face } = transitionView;
+      const stackPriority = transitionViews.length - i;
 
       if (!face) {
         continue;
       }
 
-      const segmentStart = i / segmentCount;
-      const segmentEnd = (i + 1) / segmentCount;
+      const segmentStart = i * segmentStep;
+      const segmentEnd = segmentStart + segmentSpan;
       const localRaw = Math.min(Math.max((rawProgress - segmentStart) / (segmentEnd - segmentStart), 0), 1);
-      const localProgress = easeOutCubic(localRaw);
+      const localProgress = easeOutQuint(localRaw);
+      const isActive = rawProgress >= segmentStart && rawProgress < segmentEnd;
+      const hasStarted = rawProgress >= segmentStart;
 
       if (rawProgress < segmentStart) {
         face.style.transform = getLensTransform(rotationDirection * ROTATION_DEGREES, 1);
         face.style.opacity = '0';
-        face.style.zIndex = '2';
+        face.style.zIndex = String(20 + stackPriority);
       } else if (rawProgress >= segmentEnd) {
         face.style.transform = getLensTransform(0, 1);
         face.style.opacity = '1';
-        face.style.zIndex = '1';
+        face.style.zIndex = String(20 + stackPriority);
       } else {
         face.style.transform = getLensTransform(
           rotationDirection * ROTATION_DEGREES * (1 - localProgress),
           1,
         );
         face.style.opacity = '1';
-        face.style.zIndex = '2';
+        face.style.zIndex = String(20 + stackPriority);
+      }
+
+      if (hasStarted && !isActive && rawProgress < Math.min(segmentEnd + (segmentStep * 0.55), 1)) {
+        face.style.opacity = '1';
+        face.style.zIndex = String(20 + stackPriority);
       }
     }
 
