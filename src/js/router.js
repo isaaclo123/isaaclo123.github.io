@@ -127,7 +127,7 @@ export default (routeData, element = 'view') => {
     oldFace.style.backgroundColor = isTransparent(oldPageBackground) ? '' : oldPageBackground;
   }
 
-  if (oldPage && !isTransparent(oldPageBackground)) {
+  if (oldPage && oldPage.classList.contains('page-border')) {
     oldPage.classList.add('is-route-transition-shell');
   }
 
@@ -141,7 +141,7 @@ export default (routeData, element = 'view') => {
     newFace.style.backgroundColor = isTransparent(newPageBackground) ? '' : newPageBackground;
   }
 
-  if (newPage && !isTransparent(newPageBackground)) {
+  if (newPage && newPage.classList.contains('page-border')) {
     newPage.classList.add('is-route-transition-shell');
   }
 

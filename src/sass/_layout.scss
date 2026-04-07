@@ -75,26 +75,6 @@
   position: fixed;
   inset: 0;
   isolation: isolate;
-
-  &.is-route-transitioning {
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: $content-width - (2 * $border-size);
-      height: $content-width - (2 * $border-size);
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background-color: $background;
-      z-index: -1;
-      pointer-events: none;
-    }
-  }
-
-  &.is-route-border-transition::before {
-    opacity: 0;
-  }
 }
 
 .page-flip-face {
@@ -116,6 +96,7 @@
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 3;
     border-radius: inherit;
     box-shadow: inset 0 0 0 #{($border-size * 0.75)} #{$background};
     pointer-events: none;
