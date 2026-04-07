@@ -112,6 +112,8 @@ export default (routeData, element = 'view') => {
   const previousRouteName = oldView.dataset.routeName || oldView.dataset.menuName || 'home';
   const nextRouteName = currentRoute.menuname || route || 'home';
   const rotationDirection = getRotationDirection(previousRouteName, nextRouteName);
+  const oldHasBorder = !!(oldPage && oldPage.classList.contains('page-border'));
+  const newHasBorder = !!(newPage && newPage.classList.contains('page-border'));
 
   parent.classList.add('is-route-transitioning');
   if (newPage && newPage.classList.contains('page-border')) {
@@ -127,13 +129,9 @@ export default (routeData, element = 'view') => {
     oldFace.style.backgroundColor = isTransparent(oldPageBackground) ? '' : oldPageBackground;
   }
 
-  if (oldPage && oldPage.classList.contains('page-border')) {
-    oldPage.classList.add('is-route-transition-shell');
-  }
-
   if (newFace) {
     newFace.classList.add('is-route-flipping');
-    if (newPage && newPage.classList.contains('page-border')) {
+    if (newHasBorder) {
       newFace.classList.add('has-route-border');
     }
     newFace.style.transform = getLensTransform(ROTATION_DEGREES, 0.96);
@@ -141,7 +139,7 @@ export default (routeData, element = 'view') => {
     newFace.style.backgroundColor = isTransparent(newPageBackground) ? '' : newPageBackground;
   }
 
-  if (newPage && newPage.classList.contains('page-border')) {
+  if (newHasBorder) {
     newPage.classList.add('is-route-transition-shell');
   }
 
@@ -159,6 +157,10 @@ export default (routeData, element = 'view') => {
 
     if (newPage) {
       newPage.classList.remove('is-route-transition-shell');
+    }
+
+    if (oldPage) {
+      oldPage.classList.remove('is-route-transition-shell');
     }
 
     if (newFace) {
@@ -180,6 +182,11 @@ export default (routeData, element = 'view') => {
   const animate = (now) => {
     const rawProgress = Math.min((now - animationStart) / TRANSITION_DURATION, 1);
     const incomingProgress = easeOutQuint(rawProgress);
+    const shouldHideOldShellBorder = oldHasBorder && newHasBorder && rawProgress > 0.18;
+
+    if (oldPage) {
+      oldPage.classList.toggle('is-route-transition-shell', shouldHideOldShellBorder);
+    }
 
     if (oldFace) {
       oldFace.style.transform = getLensTransform(0, 1);
