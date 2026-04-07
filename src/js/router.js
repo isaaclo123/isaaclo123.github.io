@@ -3,13 +3,12 @@
 import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // eslint-disable-line no-unused-vars
 
 const DEFAULT_TITLE = 'Isaac Lo';
-const TRANSITION_DURATION = 520;
+const TRANSITION_DURATION = 360;
 const ROTATION_DEGREES = 108;
 const MENU_ORDER = ['home', 'resume', 'projects', 'music', 'contact'];
 
 // Fast, smooth ease-out
-const easeOutCubic = (t) => 1 - ((1 - t) ** 3);
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * (t ** 3) : 1 - (((-2 * t) + 2) ** 3) / 2);
+const easeOutQuint = (t) => 1 - ((1 - t) ** 5);
 
 const getTransitionRoot = (view) => view.querySelector('.page') || view;
 const getLensTransform = (degrees, scale = 1) => `rotate(${degrees}deg) scale(${scale})`;
@@ -24,12 +23,7 @@ const getRotationDirection = (fromName, toName) => {
   if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
     return -1;
   }
-
-  const total = MENU_ORDER.length;
-  const clockwiseSteps = (toIndex - fromIndex + total) % total;
-  const counterclockwiseSteps = (fromIndex - toIndex + total) % total;
-
-  return counterclockwiseSteps < clockwiseSteps ? 1 : -1;
+  return toIndex < fromIndex ? 1 : -1;
 };
 
 const ensureFlipFace = (view) => {
@@ -177,7 +171,7 @@ export default (routeData, element = 'view') => {
 
   const animate = (now) => {
     const rawProgress = Math.min((now - animationStart) / TRANSITION_DURATION, 1);
-    const incomingProgress = easeOutCubic(rawProgress);
+    const incomingProgress = easeOutQuint(rawProgress);
 
     if (oldFace) {
       oldFace.style.transform = getLensTransform(0, 1);
