@@ -9,15 +9,64 @@ export default () => {
   const buttonState = new Map();
   const ROTATION_MS_PER_TURN = 3200;
   const ROTATION_DEG_PER_MS = 360 / ROTATION_MS_PER_TURN;
+  const SCRATCH_SECONDS_PER_TURN = ROTATION_MS_PER_TURN / 1000;
+  const SCRATCH_INNER_RADIUS_RATIO = 0.08;
+  const SCRATCH_OUTER_RING_PADDING_REM = 2.4;
 
   let rafId = null;
   let activeSlide = null;
   let rotationBase = 0;
   let rotationStartedAt = 0;
   let isFinishingRotation = false;
+  let scratchPointerId = null;
+  let scratchPreviousAngle = null;
+  let scratchWasPlaying = false;
+  let scratchSlide = null;
 
   const setRotation = (slide, degrees) => {
     slide.style.setProperty('--record-rotation', `${degrees}deg`);
+  };
+
+  const normalizeDelta = (delta) => {
+    if (delta > 180) {
+      return delta - 360;
+    }
+    if (delta < -180) {
+      return delta + 360;
+    }
+    return delta;
+  };
+
+  const getRecordCenter = (recordFace) => {
+    const record = recordFace.querySelector('.record');
+    if (!record) {
+      return null;
+    }
+
+    const rect = record.getBoundingClientRect();
+    const rootFontSize = Number.parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16;
+    const outerRadiusPadding = SCRATCH_OUTER_RING_PADDING_REM * rootFontSize;
+    return {
+      x: rect.left + (rect.width / 2),
+      y: rect.top + (rect.height / 2),
+      radius: (rect.width / 2) + outerRadiusPadding,
+    };
+  };
+
+  const getPointerAngle = (recordFace, event) => {
+    const center = getRecordCenter(recordFace);
+    if (!center) {
+      return null;
+    }
+
+    const dx = event.clientX - center.x;
+    const dy = event.clientY - center.y;
+    const distance = Math.hypot(dx, dy);
+    if (distance < center.radius * SCRATCH_INNER_RADIUS_RATIO || distance > center.radius) {
+      return null;
+    }
+
+    return Math.atan2(dy, dx) * (180 / Math.PI);
   };
 
   const getCurrentRotation = (now = performance.now(), { ignorePaused = false } = {}) => {
@@ -72,13 +121,34 @@ export default () => {
     slide.classList.toggle('has-record-progress', clamped > 0.001);
   };
 
+  const syncProgress = (slide) => {
+    if (!slide) {
+      return;
+    }
+
+    if (!audio.duration) {
+      setProgress(slide, 0);
+      return;
+    }
+
+    setProgress(slide, audio.currentTime / audio.duration);
+  };
+
   const clearActivePlayback = ({ resetProgress, resetRotation } = { resetProgress: false, resetRotation: false }) => {
     stopRotationLoop();
     isFinishingRotation = false;
+    scratchPointerId = null;
+    scratchPreviousAngle = null;
+    scratchWasPlaying = false;
+    if (scratchSlide) {
+      scratchSlide.classList.remove('is-scratching');
+    }
+    scratchSlide = null;
     buttonState.forEach((slide, actionEl) => {
       updateButtonIcon(actionEl, false);
       slide.classList.remove(activeAudioClass);
       slide.classList.remove(playingAudioClass);
+      slide.classList.remove('is-scratching');
       if (resetProgress) {
         setProgress(slide, 0);
       }
@@ -124,7 +194,7 @@ export default () => {
       return;
     }
     const slide = buttonState.get(actionEl);
-    setProgress(slide, audio.currentTime / audio.duration);
+    syncProgress(slide);
   });
 
   audio.addEventListener('error', () => {
@@ -240,6 +310,122 @@ export default () => {
     activeSlide = null;
     audio.dataset.activeSource = '';
   });
+
+  const seekByRotationDelta = (slide, deltaDegrees) => {
+    if (!slide || !audio.duration) {
+      return;
+    }
+
+    const nextTime = audio.currentTime + ((deltaDegrees / 360) * SCRATCH_SECONDS_PER_TURN);
+    audio.currentTime = Math.max(0, Math.min(audio.duration, nextTime));
+    syncProgress(slide);
+  };
+
+  const finishScratch = async () => {
+    if (!scratchSlide) {
+      return;
+    }
+
+    const slide = scratchSlide;
+    slide.classList.remove('is-scratching');
+    scratchPointerId = null;
+    scratchPreviousAngle = null;
+    scratchSlide = null;
+
+    if (!scratchWasPlaying || activeSlide !== slide || audio.dataset.activeSource !== slide.dataset.audio) {
+      scratchWasPlaying = false;
+      return;
+    }
+
+    scratchWasPlaying = false;
+    buttonState.forEach((buttonSlide, actionEl) => {
+      updateButtonIcon(actionEl, buttonSlide === slide);
+      buttonSlide.classList.toggle(playingAudioClass, buttonSlide === slide);
+    });
+
+    try {
+      await audio.play();
+      startRotationLoop();
+    } catch (error) {
+      pausePlayback();
+    }
+  };
+
+  const attachScratchHandlers = (slide) => {
+    const recordFace = slide.querySelector('.record-face');
+    if (!recordFace) {
+      return;
+    }
+
+    recordFace.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) {
+        return;
+      }
+
+      const audioSource = slide.dataset.audio;
+      if (!audioSource || activeSlide !== slide || audio.dataset.activeSource !== audioSource || !audio.duration) {
+        return;
+      }
+
+      const angle = getPointerAngle(recordFace, event);
+      if (angle === null) {
+        return;
+      }
+
+      scratchPointerId = event.pointerId;
+      scratchPreviousAngle = angle;
+      scratchWasPlaying = !audio.paused;
+      scratchSlide = slide;
+
+      slide.classList.add('is-scratching');
+      syncRotationBase(performance.now(), { ignorePaused: true });
+      stopRotationLoop();
+      audio.pause();
+      buttonState.forEach((buttonSlide, actionEl) => {
+        updateButtonIcon(actionEl, false);
+        buttonSlide.classList.remove(playingAudioClass);
+      });
+
+      recordFace.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+
+    recordFace.addEventListener('pointermove', (event) => {
+      if (scratchPointerId !== event.pointerId || scratchSlide !== slide) {
+        return;
+      }
+
+      const angle = getPointerAngle(recordFace, event);
+      if (angle === null || scratchPreviousAngle === null) {
+        return;
+      }
+
+      const delta = normalizeDelta(angle - scratchPreviousAngle);
+      scratchPreviousAngle = angle;
+      rotationBase += delta;
+      setRotation(slide, rotationBase);
+      seekByRotationDelta(slide, delta);
+      event.preventDefault();
+    });
+
+    const releaseScratch = (event) => {
+      if (scratchPointerId !== event.pointerId || scratchSlide !== slide) {
+        return;
+      }
+
+      finishScratch();
+    };
+
+    recordFace.addEventListener('pointerup', releaseScratch);
+    recordFace.addEventListener('pointercancel', releaseScratch);
+    recordFace.addEventListener('lostpointercapture', () => {
+      if (scratchSlide === slide) {
+        finishScratch();
+      }
+    });
+  };
+
+  document.querySelectorAll('.music-page .slide').forEach(attachScratchHandlers);
 
   // Ensure audio stops when navigating away. The router swaps views but page JS can remain loaded;
   // expose stopPlayback so a single global hashchange listener can call the latest handler.
