@@ -65,6 +65,7 @@ $dial-width: 3.2rem;
   }
 
   .dial-wheel {
+    z-index: 1;
     position: absolute;
     inset: 0;
     cursor: grab;
@@ -77,6 +78,13 @@ $dial-width: 3.2rem;
       cursor: grabbing;
       transition: none;
     }
+  }
+
+  .dial-dots {
+    z-index: 2;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
   }
 
   // creates dial background
@@ -162,6 +170,7 @@ $dial-width: 3.2rem;
   $dot-radius: 0.2rem;
   $dot-border: 1.1rem;
   $dot-offset: ($dot-radius + $dot-border);
+  $dot-center-offset: $dot-radius;
   $circle-offset: calc($circle-radius + $dial-width);
   .contact-page .dial-wheel .dot#{$i} {
     $circle-radius: 7.25rem;
@@ -171,8 +180,22 @@ $dial-width: 3.2rem;
     width: ($dot-radius*2); height: ($dot-radius*2);
     top: calc(50% - #{$dot-offset + ($circle-radius * sin($i*$deg-inc - $start-deg))});
     left: calc(50% - #{$dot-offset + ($circle-radius * cos($i*$deg-inc - $start-deg))});
-    background-color: $label-color-light;
+    background-color: $phone-color-dark;
     border: $dot-border solid $phone-color-dark;
+    border-radius: 50%;
+    margin: 0; padding: 0;
+    pointer-events: none;
+  };
+
+  .contact-page .dial-dots .dot#{$i} {
+    $circle-radius: 7.25rem;
+    $deg-inc: 30deg;
+    $start-deg: 165deg;
+    position: absolute;
+    width: ($dot-radius*2); height: ($dot-radius*2);
+    top: calc(50% - #{$dot-center-offset + ($circle-radius * sin($i*$deg-inc - $start-deg))});
+    left: calc(50% - #{$dot-center-offset + ($circle-radius * cos($i*$deg-inc - $start-deg))});
+    background-color: $label-color-light;
     border-radius: 50%;
     margin: 0; padding: 0;
     pointer-events: none;
