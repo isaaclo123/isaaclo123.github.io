@@ -4,20 +4,89 @@ require('@/pages/music/music.scss');
 
 export default () => {
   const audio = new Audio();
+  audio.preload = 'metadata';
   const activeAudioClass = 'is-audio-active';
   const playingAudioClass = 'is-audio-playing';
   const buttonState = new Map();
+  const trackState = new Map();
   const ROTATION_MS_PER_TURN = 3200;
   const ROTATION_DEG_PER_MS = 360 / ROTATION_MS_PER_TURN;
+  const SCRATCH_SECONDS_PER_TURN = (ROTATION_MS_PER_TURN / 1000) * 2.5;
+  const SCRATCH_INNER_RADIUS_RATIO = 0.08;
 
   let rafId = null;
   let activeSlide = null;
   let rotationBase = 0;
   let rotationStartedAt = 0;
   let isFinishingRotation = false;
+  let scratchPointerId = null;
+  let scratchPreviousAngle = null;
+  let scratchWasPlaying = false;
+  let scratchSlide = null;
 
   const setRotation = (slide, degrees) => {
     slide.style.setProperty('--record-rotation', `${degrees}deg`);
+  };
+
+  const getTrackState = (slide) => {
+    const audioSource = slide?.dataset.audio;
+    if (!audioSource) {
+      return null;
+    }
+
+    if (!trackState.has(audioSource)) {
+      trackState.set(audioSource, {
+        currentTime: 0,
+        progress: 0,
+        rotation: 0,
+      });
+    }
+
+    return trackState.get(audioSource);
+  };
+
+  const normalizeDelta = (delta) => {
+    if (delta > 180) {
+      return delta - 360;
+    }
+    if (delta < -180) {
+      return delta + 360;
+    }
+    return delta;
+  };
+
+  const getRecordCenter = (recordFace) => {
+    const rect = recordFace.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
+      return null;
+    }
+
+    return {
+      x: rect.left + (rect.width / 2),
+      y: rect.top + (rect.height / 2),
+      radius: Math.min(rect.width, rect.height) / 2,
+    };
+  };
+
+  const getPointerAngle = (recordFace, event) => {
+    const center = getRecordCenter(recordFace);
+    if (!center) {
+      return null;
+    }
+
+    const dx = event.clientX - center.x;
+    const dy = event.clientY - center.y;
+    const distance = Math.hypot(dx, dy);
+    if (distance < center.radius * SCRATCH_INNER_RADIUS_RATIO || distance > center.radius) {
+      return null;
+    }
+
+    return Math.atan2(dy, dx) * (180 / Math.PI);
+  };
+
+  const isPointerOverSlideControl = (event) => {
+    const hoveredEl = document.elementFromPoint(event.clientX, event.clientY);
+    return Boolean(hoveredEl && hoveredEl.closest('.button'));
   };
 
   const getCurrentRotation = (now = performance.now(), { ignorePaused = false } = {}) => {
@@ -72,28 +141,105 @@ export default () => {
     slide.classList.toggle('has-record-progress', clamped > 0.001);
   };
 
+  const saveTrackState = (slide, { syncRotation = false } = {}) => {
+    const state = getTrackState(slide);
+    if (!state) {
+      return;
+    }
+
+    if (slide === activeSlide && audio.dataset.activeSource === slide.dataset.audio) {
+      if (syncRotation) {
+        syncRotationBase(performance.now(), { ignorePaused: true });
+      }
+      state.currentTime = audio.currentTime;
+      state.rotation = rotationBase;
+      if (audio.duration) {
+        state.progress = audio.currentTime / audio.duration;
+      }
+    }
+  };
+
+  const applyTrackState = (slide) => {
+    const state = getTrackState(slide);
+    if (!state) {
+      return;
+    }
+
+    setProgress(slide, state.progress);
+    setRotation(slide, state.rotation);
+    slide.classList.toggle(activeAudioClass, state.progress > 0.001 || slide === activeSlide);
+    slide.classList.toggle(
+      playingAudioClass,
+      slide === activeSlide && !audio.paused && scratchSlide !== slide,
+    );
+  };
+
+  const refreshSlidesUi = () => {
+    document.querySelectorAll('.music-page .slide').forEach(applyTrackState);
+  };
+
+  const syncCurrentTrackState = ({ syncRotation = false } = {}) => {
+    if (!activeSlide) {
+      return;
+    }
+
+    saveTrackState(activeSlide, { syncRotation });
+    applyTrackState(activeSlide);
+  };
+
+  const syncProgress = (slide) => {
+    if (!slide) {
+      return;
+    }
+
+    const state = getTrackState(slide);
+    if (!state) {
+      return;
+    }
+
+    if (!audio.duration) {
+      setProgress(slide, state.progress);
+      return;
+    }
+
+    state.currentTime = audio.currentTime;
+    state.progress = audio.currentTime / audio.duration;
+    setProgress(slide, state.progress);
+  };
+
   const clearActivePlayback = ({ resetProgress, resetRotation } = { resetProgress: false, resetRotation: false }) => {
     stopRotationLoop();
     isFinishingRotation = false;
+    scratchPointerId = null;
+    scratchPreviousAngle = null;
+    scratchWasPlaying = false;
+    if (scratchSlide) {
+      scratchSlide.classList.remove('is-scratching');
+    }
+    scratchSlide = null;
+    document.querySelectorAll('.music-page .slide').forEach((slide) => {
+      const state = getTrackState(slide);
+      if (state && resetProgress) {
+        state.currentTime = 0;
+        state.progress = 0;
+      }
+      if (state && resetRotation) {
+        state.rotation = 0;
+      }
+    });
     buttonState.forEach((slide, actionEl) => {
       updateButtonIcon(actionEl, false);
-      slide.classList.remove(activeAudioClass);
-      slide.classList.remove(playingAudioClass);
-      if (resetProgress) {
-        setProgress(slide, 0);
-      }
-      if (resetRotation) {
-        setRotation(slide, 0);
-      }
+      slide.classList.remove('is-scratching');
     });
     if (resetRotation) {
       rotationBase = 0;
     }
+    refreshSlidesUi();
   };
 
   const stopPlayback = ({ resetProgress, resetRotation } = { resetProgress: true, resetRotation: true }) => {
     if (!audio.paused) {
-      syncRotationBase();
+      syncCurrentTrackState({ syncRotation: true });
     } else {
       stopRotationLoop();
     }
@@ -109,13 +255,13 @@ export default () => {
   };
 
   const pausePlayback = () => {
-    syncRotationBase(performance.now(), { ignorePaused: true });
+    syncCurrentTrackState({ syncRotation: true });
     stopRotationLoop();
     audio.pause();
     buttonState.forEach((slide, actionEl) => {
       updateButtonIcon(actionEl, false);
-      slide.classList.remove(playingAudioClass);
     });
+    refreshSlidesUi();
   };
 
   audio.addEventListener('timeupdate', () => {
@@ -124,18 +270,78 @@ export default () => {
       return;
     }
     const slide = buttonState.get(actionEl);
-    setProgress(slide, audio.currentTime / audio.duration);
+    syncProgress(slide);
   });
 
   audio.addEventListener('error', () => {
     stopPlayback();
   });
 
-  const handleSlideChange = ({ currentSlideId, previousSlideId }) => {
-    if (currentSlideId !== previousSlideId && !audio.paused) {
-      stopPlayback();
+  const handleSlideChange = ({ currentSlide, currentSlideId, previousSlide, previousSlideId }) => {
+    if (currentSlideId !== previousSlideId && previousSlide === activeSlide) {
+      syncCurrentTrackState({ syncRotation: true });
+      stopRotationLoop();
+      audio.pause();
+      refreshSlidesUi();
+    }
+
+    if (currentSlide) {
+      applyTrackState(currentSlide);
+    }
+
+    if (window.slides?.actionEl) {
+      updateButtonIcon(
+        window.slides.actionEl,
+        currentSlide === activeSlide && !audio.paused,
+      );
     }
   };
+
+  const activateTrack = (slide) => {
+    const state = getTrackState(slide);
+    if (!state) {
+      return;
+    }
+
+    if (activeSlide && activeSlide !== slide) {
+      saveTrackState(activeSlide, { syncRotation: true });
+    }
+
+    activeSlide = slide;
+    rotationBase = state.rotation;
+    setRotation(slide, state.rotation);
+    setProgress(slide, state.progress);
+    audio.src = slide.dataset.audio;
+    audio.dataset.activeSource = slide.dataset.audio;
+    audio.currentTime = state.currentTime;
+    refreshSlidesUi();
+  };
+
+  const loadTrackMetadata = (slide) => new Promise((resolve) => {
+    if (!slide?.dataset.audio) {
+      resolve();
+      return;
+    }
+
+    if (audio.dataset.activeSource !== slide.dataset.audio) {
+      activateTrack(slide);
+    }
+
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      resolve();
+      return;
+    }
+
+    const handleReady = () => {
+      audio.removeEventListener('loadedmetadata', handleReady);
+      audio.removeEventListener('canplay', handleReady);
+      resolve();
+    };
+
+    audio.addEventListener('loadedmetadata', handleReady, { once: true });
+    audio.addEventListener('canplay', handleReady, { once: true });
+    audio.load();
+  });
 
   window.slides = new Slides('fa-play', 'Play Music', 'slide', 'view', {
     transitionMode: 'music-spin',
@@ -154,39 +360,33 @@ export default () => {
       }
 
       if (audio.dataset.activeSource === audioSource && audio.paused) {
-        activeSlide = slide;
-        slide.classList.add(activeAudioClass);
-        slide.classList.add(playingAudioClass);
+        activateTrack(slide);
         updateButtonIcon(actionEl, true);
 
         try {
           await audio.play();
           startRotationLoop();
+          refreshSlidesUi();
         } catch (error) {
           pausePlayback();
         }
         return;
       }
 
-      clearActivePlayback({ resetProgress: true, resetRotation: true });
-      slide.classList.add(activeAudioClass);
-      slide.classList.add(playingAudioClass);
-      updateButtonIcon(actionEl, true);
-      activeSlide = slide;
-      setRotation(slide, 0);
-      rotationBase = 0;
-
-      if (audio.dataset.activeSource !== audioSource) {
-        audio.src = audioSource;
-        audio.dataset.activeSource = audioSource;
-        audio.currentTime = 0;
+      if (activeSlide) {
+        saveTrackState(activeSlide, { syncRotation: true });
       }
+      stopRotationLoop();
+      audio.pause();
+      activateTrack(slide);
+      updateButtonIcon(actionEl, true);
 
       try {
         await audio.play();
         startRotationLoop();
+        refreshSlidesUi();
       } catch (error) {
-        clearActivePlayback({ resetProgress: true, resetRotation: true });
+        pausePlayback();
         updateButtonIcon(actionEl, false);
       }
     },
@@ -236,9 +436,166 @@ export default () => {
 
     audio.pause();
     audio.currentTime = 0;
+    const state = getTrackState(slide);
+    if (state) {
+      state.currentTime = 0;
+      state.progress = 0;
+      state.rotation = 0;
+    }
     clearActivePlayback({ resetProgress: true, resetRotation: false });
     activeSlide = null;
     audio.dataset.activeSource = '';
+  });
+
+  const seekByRotationDelta = (slide, deltaDegrees) => {
+    if (!slide || !audio.duration) {
+      return;
+    }
+
+    const nextTime = audio.currentTime + ((deltaDegrees / 360) * SCRATCH_SECONDS_PER_TURN);
+    audio.currentTime = Math.max(0, Math.min(audio.duration, nextTime));
+    syncProgress(slide);
+    saveTrackState(slide);
+  };
+
+  const finishScratch = async () => {
+    if (!scratchSlide) {
+      return;
+    }
+
+    const slide = scratchSlide;
+    slide.classList.remove('is-scratching');
+    scratchPointerId = null;
+    scratchPreviousAngle = null;
+    scratchSlide = null;
+
+    if (!scratchWasPlaying || activeSlide !== slide || audio.dataset.activeSource !== slide.dataset.audio) {
+      scratchWasPlaying = false;
+      return;
+    }
+
+    scratchWasPlaying = false;
+    buttonState.forEach((buttonSlide, actionEl) => {
+      updateButtonIcon(actionEl, buttonSlide === slide);
+      buttonSlide.classList.toggle(playingAudioClass, buttonSlide === slide);
+    });
+
+    try {
+      await audio.play();
+      startRotationLoop();
+    } catch (error) {
+      pausePlayback();
+    }
+  };
+
+  const attachScratchHandlers = (slide) => {
+    const recordFace = slide.querySelector('.record-face');
+    if (!recordFace) {
+      return;
+    }
+
+    recordFace.addEventListener('pointerdown', async (event) => {
+      if (event.button !== 0) {
+        return;
+      }
+
+      const audioSource = slide.dataset.audio;
+      if (!audioSource) {
+        return;
+      }
+
+      if (activeSlide !== slide || audio.dataset.activeSource !== audioSource) {
+        if (activeSlide) {
+          saveTrackState(activeSlide, { syncRotation: true });
+        }
+        stopRotationLoop();
+        audio.pause();
+        activateTrack(slide);
+      }
+
+      if (!audio.duration) {
+        await loadTrackMetadata(slide);
+      }
+
+      const angle = getPointerAngle(recordFace, event);
+      if (angle === null || activeSlide !== slide || audio.dataset.activeSource !== audioSource || !audio.duration) {
+        return;
+      }
+
+      scratchPointerId = event.pointerId;
+      scratchPreviousAngle = angle;
+      scratchWasPlaying = !audio.paused;
+      scratchSlide = slide;
+
+      slide.classList.add('is-scratching');
+      syncCurrentTrackState({ syncRotation: true });
+      stopRotationLoop();
+      audio.pause();
+      buttonState.forEach((buttonSlide, actionEl) => {
+        updateButtonIcon(actionEl, false);
+      });
+      refreshSlidesUi();
+
+      recordFace.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+
+    recordFace.addEventListener('pointermove', (event) => {
+      if (scratchPointerId !== event.pointerId || scratchSlide !== slide) {
+        return;
+      }
+
+      const angle = getPointerAngle(recordFace, event);
+      if (isPointerOverSlideControl(event)) {
+        if (angle !== null) {
+          scratchPreviousAngle = angle;
+        }
+        return;
+      }
+
+      if (angle === null) {
+        scratchPreviousAngle = null;
+        return;
+      }
+
+      if (scratchPreviousAngle === null) {
+        scratchPreviousAngle = angle;
+        return;
+      }
+
+      const delta = normalizeDelta(angle - scratchPreviousAngle);
+      scratchPreviousAngle = angle;
+      rotationBase += delta;
+      const state = getTrackState(slide);
+      if (state) {
+        state.rotation = rotationBase;
+      }
+      setRotation(slide, rotationBase);
+      seekByRotationDelta(slide, delta);
+      event.preventDefault();
+    });
+
+    const releaseScratch = (event) => {
+      if (scratchPointerId !== event.pointerId || scratchSlide !== slide) {
+        return;
+      }
+
+      finishScratch();
+    };
+
+    recordFace.addEventListener('pointerup', releaseScratch);
+    recordFace.addEventListener('pointercancel', releaseScratch);
+    recordFace.addEventListener('lostpointercapture', () => {
+      if (scratchSlide === slide) {
+        finishScratch();
+      }
+    });
+  };
+
+  document.querySelectorAll('.music-page .slide').forEach((slide) => {
+    getTrackState(slide);
+    applyTrackState(slide);
+    attachScratchHandlers(slide);
   });
 
   // Ensure audio stops when navigating away. The router swaps views but page JS can remain loaded;

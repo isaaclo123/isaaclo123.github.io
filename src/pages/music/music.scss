@@ -63,8 +63,14 @@ $progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
     position: absolute;
     inset: 0;
     z-index: 1;
+    cursor: grab;
+    touch-action: none;
     transform-origin: center center;
     transform: rotate(var(--record-rotation));
+  }
+
+  .slide.is-scratching .record-face {
+    cursor: grabbing;
   }
 
   .record-progress {
