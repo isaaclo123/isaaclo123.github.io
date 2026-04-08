@@ -21,9 +21,9 @@ const getRotationDirection = (fromName, toName) => {
   const toIndex = getMenuIndex(toName);
 
   if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
-    return -1;
+    return 1;
   }
-  return toIndex < fromIndex ? 1 : -1;
+  return toIndex < fromIndex ? -1 : 1;
 };
 
 const ensureFlipFace = (view) => {
