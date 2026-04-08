@@ -90,7 +90,5 @@ window.onload = () => {
 // route view based on page change
 
 window.onhashchange = () => {
-  setTimeout(() => {
-    router(routes);
-  }, 400);
+  router(routes);
 };

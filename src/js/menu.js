@@ -11,28 +11,26 @@ function gotoHash(hash) {
   window.location.hash = `/${hash}`;
 }
 
-function hover(el) {
+function hover(el, isActive) {
   // eslint-disable-line no-unused-vars
-  // highlight or unhighlight element
-  console.log('hover event');
   const className = el.classList.item(0);
   const elements = document.getElementsByClassName(className);
 
   for (let i = 0; i < elements.length; i += 1) {
-    elements[i].classList.toggle('highlight-hover');
-    elements[i].classList.toggle('highlight-click', false);
+    elements[i].classList.toggle('highlight-hover', isActive);
+    if (isActive) {
+      elements[i].classList.remove('highlight-click');
+    }
   }
 }
 
-function click(el) {
+function click(el, isActive) {
   // eslint-disable-line no-unused-vars
-  // highlight or unhighlight element
-  console.log('click event');
   const className = el.classList.item(0);
   const elements = document.getElementsByClassName(className);
 
   for (let i = 0; i < elements.length; i += 1) {
-    elements[i].classList.toggle('highlight-click');
+    elements[i].classList.toggle('highlight-click', isActive);
   }
 }
 
@@ -80,18 +78,18 @@ function menuInit(pages, social) {
         gotoHash(name);
       };
       // add hover behavior
-      inner.onmouseover = () => {
-        hover(inner);
+      inner.onmouseenter = () => {
+        hover(inner, true);
       };
-      inner.onmouseout = () => {
-        hover(inner);
+      inner.onmouseleave = () => {
+        hover(inner, false);
       };
       // add mouseclick behavior
       inner.onmousedown = () => {
-        click(inner);
+        click(inner, true);
       };
       inner.onmouseup = () => {
-        click(inner);
+        click(inner, false);
       };
     }
 
@@ -154,18 +152,18 @@ function menuInit(pages, social) {
     };
 
     // add hover behavior
-    icon.onmouseover = () => {
-      hover(icon);
+    icon.onmouseenter = () => {
+      hover(icon, true);
     };
-    icon.onmouseout = () => {
-      hover(icon);
+    icon.onmouseleave = () => {
+      hover(icon, false);
     };
     // add mouseclick behavior
     icon.onmousedown = () => {
-      click(icon);
+      click(icon, true);
     };
     icon.onmouseup = () => {
-      click(icon);
+      click(icon, false);
     };
 
     // add letter to DOM

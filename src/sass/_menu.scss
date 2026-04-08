@@ -56,7 +56,11 @@ nav {
     padding: 0;
     margin: 0;
     font-weight: bold;
+    display: inline-block;
     pointer-events: auto;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 0.14s ease-out, color 0.14s ease-out;
 
     &.menu-intro {
       opacity: 0;
@@ -67,7 +71,11 @@ nav {
   i {
     font-size: ($menu-font-size * 0.85) !important;
     cursor: pointer;
+    display: inline-block;
     pointer-events: auto;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 0.14s ease-out, color 0.14s ease-out;
 
     &.menu-intro {
       opacity: 0;
