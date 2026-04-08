@@ -11,7 +11,6 @@ export default () => {
   const ROTATION_DEG_PER_MS = 360 / ROTATION_MS_PER_TURN;
   const SCRATCH_SECONDS_PER_TURN = ROTATION_MS_PER_TURN / 1000;
   const SCRATCH_INNER_RADIUS_RATIO = 0.08;
-  const SCRATCH_OUTER_RING_PADDING_REM = 2.4;
 
   let rafId = null;
   let activeSlide = null;
@@ -38,18 +37,15 @@ export default () => {
   };
 
   const getRecordCenter = (recordFace) => {
-    const record = recordFace.querySelector('.record');
-    if (!record) {
+    const rect = recordFace.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
       return null;
     }
 
-    const rect = record.getBoundingClientRect();
-    const rootFontSize = Number.parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16;
-    const outerRadiusPadding = SCRATCH_OUTER_RING_PADDING_REM * rootFontSize;
     return {
       x: rect.left + (rect.width / 2),
       y: rect.top + (rect.height / 2),
-      radius: (rect.width / 2) + outerRadiusPadding,
+      radius: Math.min(rect.width, rect.height) / 2,
     };
   };
 
@@ -67,6 +63,11 @@ export default () => {
     }
 
     return Math.atan2(dy, dx) * (180 / Math.PI);
+  };
+
+  const isPointerOverSlideControl = (event) => {
+    const hoveredEl = document.elementFromPoint(event.clientX, event.clientY);
+    return Boolean(hoveredEl && hoveredEl.closest('.button'));
   };
 
   const getCurrentRotation = (now = performance.now(), { ignorePaused = false } = {}) => {
@@ -396,7 +397,20 @@ export default () => {
       }
 
       const angle = getPointerAngle(recordFace, event);
-      if (angle === null || scratchPreviousAngle === null) {
+      if (isPointerOverSlideControl(event)) {
+        if (angle !== null) {
+          scratchPreviousAngle = angle;
+        }
+        return;
+      }
+
+      if (angle === null) {
+        scratchPreviousAngle = null;
+        return;
+      }
+
+      if (scratchPreviousAngle === null) {
+        scratchPreviousAngle = angle;
         return;
       }
 
