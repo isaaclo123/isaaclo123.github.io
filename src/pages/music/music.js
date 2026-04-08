@@ -4,6 +4,7 @@ require('@/pages/music/music.scss');
 
 export default () => {
   const audio = new Audio();
+  audio.preload = 'metadata';
   const activeAudioClass = 'is-audio-active';
   const playingAudioClass = 'is-audio-playing';
   const buttonState = new Map();
@@ -316,6 +317,32 @@ export default () => {
     refreshSlidesUi();
   };
 
+  const loadTrackMetadata = (slide) => new Promise((resolve) => {
+    if (!slide?.dataset.audio) {
+      resolve();
+      return;
+    }
+
+    if (audio.dataset.activeSource !== slide.dataset.audio) {
+      activateTrack(slide);
+    }
+
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      resolve();
+      return;
+    }
+
+    const handleReady = () => {
+      audio.removeEventListener('loadedmetadata', handleReady);
+      audio.removeEventListener('canplay', handleReady);
+      resolve();
+    };
+
+    audio.addEventListener('loadedmetadata', handleReady, { once: true });
+    audio.addEventListener('canplay', handleReady, { once: true });
+    audio.load();
+  });
+
   window.slides = new Slides('fa-play', 'Play Music', 'slide', 'view', {
     transitionMode: 'music-spin',
     animationDuration: 420,
@@ -467,18 +494,31 @@ export default () => {
       return;
     }
 
-    recordFace.addEventListener('pointerdown', (event) => {
+    recordFace.addEventListener('pointerdown', async (event) => {
       if (event.button !== 0) {
         return;
       }
 
       const audioSource = slide.dataset.audio;
-      if (!audioSource || activeSlide !== slide || audio.dataset.activeSource !== audioSource || !audio.duration) {
+      if (!audioSource) {
         return;
       }
 
+      if (activeSlide !== slide || audio.dataset.activeSource !== audioSource) {
+        if (activeSlide) {
+          saveTrackState(activeSlide, { syncRotation: true });
+        }
+        stopRotationLoop();
+        audio.pause();
+        activateTrack(slide);
+      }
+
+      if (!audio.duration) {
+        await loadTrackMetadata(slide);
+      }
+
       const angle = getPointerAngle(recordFace, event);
-      if (angle === null) {
+      if (angle === null || activeSlide !== slide || audio.dataset.activeSource !== audioSource || !audio.duration) {
         return;
       }
 
