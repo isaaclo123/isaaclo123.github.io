@@ -94,7 +94,3 @@ window.onhashchange = () => {
     router(routes);
   }, 400);
 };
-
-window.onbeforeunload = () => {
-  router(routes);
-};
