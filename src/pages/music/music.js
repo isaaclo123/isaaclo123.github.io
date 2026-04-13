@@ -398,7 +398,8 @@ export default () => {
       toggleSlidePlayback(actionEl, slide);
     },
     keyHandler: (event) => {
-      if ((event.code !== 'Space' && event.key !== ' ' && event.key !== 'Spacebar') || event.repeat) {
+      const isActionKey = event.key === 'Enter' || event.code === 'Space' || event.key === ' ' || event.key === 'Spacebar';
+      if (!isActionKey || event.repeat) {
         return false;
       }
 

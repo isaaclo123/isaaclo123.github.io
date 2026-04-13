@@ -177,6 +177,12 @@ export default class {
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       this.nextEl?.click();
+      return;
+    }
+
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+      event.preventDefault();
+      this.actionEl?.click();
     }
   }
 

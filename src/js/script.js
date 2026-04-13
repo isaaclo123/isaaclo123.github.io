@@ -38,6 +38,54 @@ const social = [
   ['fa-github fa', 'https://github.com/isaaclo123'],
 ];
 
+const pageOrder = pages.map(([routeName]) => routeName);
+
+const isEditableTarget = (target) => {
+  if (!target) {
+    return false;
+  }
+
+  const tagName = target.tagName;
+  return target.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+};
+
+const getCurrentPageIndex = () => {
+  const activeView = document.getElementById('view');
+  const routeName = activeView?.dataset.routeName || window.location.hash.slice(2) || 'home';
+  const currentIndex = pageOrder.indexOf(routeName);
+  return currentIndex === -1 ? 0 : currentIndex;
+};
+
+const registerPageKeyboardNavigation = () => {
+  if (window.__page_keyboard_navigation_registered) {
+    return;
+  }
+
+  window.addEventListener('keydown', (event) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || isEditableTarget(event.target)) {
+      return;
+    }
+
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+      return;
+    }
+
+    const currentIndex = getCurrentPageIndex();
+    const direction = event.key === 'ArrowDown' ? 1 : -1;
+    const nextIndex = (currentIndex + direction + pageOrder.length) % pageOrder.length;
+    const nextPage = pageOrder[nextIndex];
+
+    if (!nextPage || nextIndex === currentIndex) {
+      return;
+    }
+
+    event.preventDefault();
+    gotoHash(nextPage);
+  });
+
+  window.__page_keyboard_navigation_registered = true;
+};
+
 // router
 
 const routes = {
@@ -83,6 +131,7 @@ const routes = {
 
 window.onload = () => {
   menuInit(pages, social); // eslint-disable-line no-undef
+  registerPageKeyboardNavigation();
   router(routes);
   // goto home page when page first loads
 };

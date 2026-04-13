@@ -80,12 +80,14 @@
 .page-flip-face {
   position: absolute;
   inset: 0;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: inherit;
   clip-path: circle(50% at 50% 50%);
+  isolation: isolate;
 }
 
 .page-flip-face.is-route-flipping {
