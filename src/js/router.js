@@ -4,6 +4,8 @@ import { gotoUrl, gotoHash, hover, menuInit, menuSelect } from '@/js/menu'; // e
 
 const DEFAULT_TITLE = 'Isaac Lo';
 const BASE_TRANSITION_DURATION = 360;
+const MIN_TRANSITION_DURATION = 150;
+const QUEUED_TRANSITION_STEP_MS = 55;
 const ROTATION_DEGREES = 108;
 const REVERSE_ROTATION_DEGREES = 180;
 const MENU_ORDER = ['home', 'resume', 'projects', 'music', 'contact'];
@@ -87,6 +89,20 @@ const getRotationDirection = (fromName, toName) => {
   return toIndex < fromIndex ? -1 : 1;
 };
 
+const queueLatestRoute = () => {
+  window.__pending_route_name = window.location.hash.slice(2);
+  window.__queued_route_transition_count = Math.min((window.__queued_route_transition_count || 0) + 1, 4);
+};
+
+const getQueuedTransitionDuration = (queuedTransitionCount, activeRotationDegrees) => {
+  const transitionDurationBase = Math.max(
+    MIN_TRANSITION_DURATION,
+    BASE_TRANSITION_DURATION - (queuedTransitionCount * QUEUED_TRANSITION_STEP_MS),
+  );
+
+  return transitionDurationBase * (activeRotationDegrees / ROTATION_DEGREES);
+};
+
 const ensureFlipFace = (view) => {
   const page = getTransitionRoot(view);
 
@@ -118,8 +134,13 @@ const ensureFlipFace = (view) => {
   return face;
 };
 
-export default (routeData, element = 'view') => {
+const router = (routeData, element = 'view') => {
   const route = window.location.hash.slice(2);
+
+  if (window.__route_transition_in_progress) {
+    queueLatestRoute();
+    return;
+  }
 
   if (!(route in routeData)) {
     window.location = '';
@@ -141,6 +162,7 @@ export default (routeData, element = 'view') => {
 
   const oldHeight = oldView.offsetHeight;
   parent.style.minHeight = `${oldHeight}px`;
+  window.__route_transition_in_progress = true;
 
   oldView.id = `${element}-old`;
 
@@ -178,7 +200,6 @@ export default (routeData, element = 'view') => {
   const oldPageBackground = oldPage ? window.getComputedStyle(oldPage).backgroundColor : '';
   const newPageBackground = newPage ? window.getComputedStyle(newPage).backgroundColor : '';
   const activeRotationDegrees = rotationDirection < 0 ? REVERSE_ROTATION_DEGREES : ROTATION_DEGREES;
-  const transitionDuration = BASE_TRANSITION_DURATION * (activeRotationDegrees / ROTATION_DEGREES);
 
   parent.classList.add('is-route-transitioning');
   view.dataset.routeName = nextRouteName;
@@ -257,11 +278,34 @@ export default (routeData, element = 'view') => {
       parent.style.minHeight = '';
     });
 
+    window.__route_transition_in_progress = false;
+
+    const activeRouteName = view.dataset.routeName || nextRouteName;
+    const pendingRouteName = window.__pending_route_name;
+    window.__pending_route_name = '';
+
+    if (pendingRouteName && pendingRouteName !== activeRouteName && pendingRouteName in routeData) {
+      window.__queued_route_transition_count = Math.max((window.__queued_route_transition_count || 1) - 1, 0);
+      window.requestAnimationFrame(() => {
+        if (!window.__route_transition_in_progress) {
+          window.location.hash = `/${pendingRouteName}`;
+          if (window.location.hash.slice(2) === pendingRouteName) {
+            router(routeData, element);
+          }
+        }
+      });
+      return;
+    }
+
+    window.__queued_route_transition_count = 0;
+
   };
 
   const animationStart = performance.now();
 
   const animate = (now) => {
+    const queuedTransitionCount = window.__queued_route_transition_count || 0;
+    const transitionDuration = getQueuedTransitionDuration(queuedTransitionCount, activeRotationDegrees);
     const rawProgress = Math.min((now - animationStart) / transitionDuration, 1);
     const easedProgress = routeEase(rawProgress);
 
@@ -303,3 +347,5 @@ export default (routeData, element = 'view') => {
     menuSelect(currentRoute.menuname);
   }
 };
+
+export default router;
