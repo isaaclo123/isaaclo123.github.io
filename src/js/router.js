@@ -301,12 +301,23 @@ const router = (routeData, element = 'view') => {
 
   };
 
-  const animationStart = performance.now();
+  let animationStart = performance.now();
+  let currentTransitionDuration = getQueuedTransitionDuration(
+    window.__queued_route_transition_count || 0,
+    activeRotationDegrees,
+  );
 
   const animate = (now) => {
     const queuedTransitionCount = window.__queued_route_transition_count || 0;
-    const transitionDuration = getQueuedTransitionDuration(queuedTransitionCount, activeRotationDegrees);
-    const rawProgress = Math.min((now - animationStart) / transitionDuration, 1);
+    const nextTransitionDuration = getQueuedTransitionDuration(queuedTransitionCount, activeRotationDegrees);
+
+    if (nextTransitionDuration !== currentTransitionDuration) {
+      const currentProgress = Math.min((now - animationStart) / currentTransitionDuration, 1);
+      currentTransitionDuration = nextTransitionDuration;
+      animationStart = now - (currentProgress * currentTransitionDuration);
+    }
+
+    const rawProgress = Math.min((now - animationStart) / currentTransitionDuration, 1);
     const easedProgress = routeEase(rawProgress);
 
     if (oldFace) {
