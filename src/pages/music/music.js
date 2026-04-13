@@ -28,6 +28,8 @@ export default () => {
     slide.style.setProperty('--record-rotation', `${degrees}deg`);
   };
 
+  const getSlides = () => document.querySelectorAll('.music-page .slide');
+
   const getTrackState = (slide) => {
     const audioSource = slide?.dataset.audio;
     if (!audioSource) {
@@ -172,10 +174,11 @@ export default () => {
       playingAudioClass,
       slide === activeSlide && !audio.paused && scratchSlide !== slide,
     );
+
   };
 
   const refreshSlidesUi = () => {
-    document.querySelectorAll('.music-page .slide').forEach(applyTrackState);
+    getSlides().forEach(applyTrackState);
   };
 
   const syncCurrentTrackState = ({ syncRotation = false } = {}) => {
@@ -217,7 +220,7 @@ export default () => {
       scratchSlide.classList.remove('is-scratching');
     }
     scratchSlide = null;
-    document.querySelectorAll('.music-page .slide').forEach((slide) => {
+    getSlides().forEach((slide) => {
       const state = getTrackState(slide);
       if (state && resetProgress) {
         state.currentTime = 0;
@@ -592,7 +595,7 @@ export default () => {
     });
   };
 
-  document.querySelectorAll('.music-page .slide').forEach((slide) => {
+  getSlides().forEach((slide) => {
     getTrackState(slide);
     applyTrackState(slide);
     attachScratchHandlers(slide);

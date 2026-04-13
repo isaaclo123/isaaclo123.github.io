@@ -16,6 +16,7 @@ export default class {
     this.slidePanels = [];
     this.actionHandler = options.actionHandler;
     this.onSlideChange = options.onSlideChange;
+    this.onSlideWillChange = options.onSlideWillChange;
     this.animationDuration = options.animationDuration || 320;
     this.transitionMode = options.transitionMode || 'horizontal';
     this.transitionDirection = 'next';
@@ -187,6 +188,15 @@ export default class {
     const nextPanel = this.slidePanels[id];
     const previousPanel = this.slidePanels[prevId];
     this.indicatorEl.textContent = `${String(id + 1)} / ${String(this.slides.length)}`;
+
+    if (this.onSlideWillChange) {
+      this.onSlideWillChange({
+        currentSlide: nextSlide,
+        currentSlideId: id,
+        previousSlide,
+        previousSlideId: prevId,
+      });
+    }
 
     // hide all slides and reset transition state
     for (let i = 0; i < this.slides.length; i += 1) {

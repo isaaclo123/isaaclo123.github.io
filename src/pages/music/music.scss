@@ -9,7 +9,6 @@ $page-border-width: $border-size * 0.75;
 $page-size: $content-width - (2 * $border-size);
 $progress-ring-stroke: ($page-border-width / $page-size) * 100;
 $progress-ring-radius: 50 - ($progress-ring-stroke / 2) + 0.55;
-
 .music-page {
   background-color: $record-color;
   border-radius: 50%;
