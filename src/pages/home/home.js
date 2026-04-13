@@ -4,6 +4,8 @@ import face640 from '@/pages/home/face-640.jpg';
 import face960 from '@/pages/home/face-960.jpg';
 import face1440 from '@/pages/home/face-1440.jpg';
 
+require('@/pages/home/home.scss');
+
 export default () => { // eslint-disable-line no-unused-vars
   const viewportPixels = Math.min(window.innerWidth, window.innerHeight) * window.devicePixelRatio;
 

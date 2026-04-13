@@ -1,0 +1,15 @@
+@import "~@/sass/variables";
+
+.home-page {
+  background-color: $background;
+}
+
+.home-image {
+  opacity: 0;
+  transition: opacity 110ms ease-out;
+  will-change: opacity;
+}
+
+.home-image.is-image-loaded {
+  opacity: 1;
+}
