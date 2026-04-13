@@ -1,5 +1,30 @@
 // slide generation
 
+const isEditableTarget = (target) => {
+  if (!target) {
+    return false;
+  }
+
+  const tagName = target.tagName;
+  return target.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+};
+
+const registerKeyboardControls = () => {
+  if (window.__slides_keyboard_controls_registered) {
+    return;
+  }
+
+  window.addEventListener('keydown', (event) => {
+    if (!window.slides || typeof window.slides.handleKeyDown !== 'function') {
+      return;
+    }
+
+    window.slides.handleKeyDown(event);
+  });
+
+  window.__slides_keyboard_controls_registered = true;
+};
+
 export default class {
   constructor( // eslint-disable-line no-unused-vars
     icon = 'fa-link',
@@ -15,12 +40,16 @@ export default class {
     this.slides = this.view.getElementsByClassName(slideClass);
     this.slidePanels = [];
     this.actionHandler = options.actionHandler;
+    this.keyHandler = options.keyHandler;
     this.onSlideChange = options.onSlideChange;
     this.onSlideWillChange = options.onSlideWillChange;
     this.animationDuration = options.animationDuration || 320;
     this.transitionMode = options.transitionMode || 'horizontal';
     this.transitionDirection = 'next';
     this.hasInitialized = false;
+
+    window.slides = this;
+    registerKeyboardControls();
 
     // init
 
@@ -64,12 +93,14 @@ export default class {
     nextEl.onclick = () => {
       this.next();
     };
+    this.nextEl = nextEl;
 
     // create prev button
     const prevEl = iconButtonCreate('prev', 'fa-angle-left', 'Previous Slide');
     prevEl.onclick = () => {
       this.prev();
     };
+    this.prevEl = prevEl;
 
     // add buttons to view
     const controlsParent = this.transitionFace || this.view;
@@ -118,6 +149,35 @@ export default class {
     }
 
     this.goto(this.slideId, this.slides.length - 1);
+  }
+
+  isActiveView() {
+    return Boolean(this.view && this.view.id === 'view' && document.body.contains(this.view));
+  }
+
+  handleKeyDown(event) {
+    if (!this.isActiveView() || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+
+    if (isEditableTarget(event.target)) {
+      return;
+    }
+
+    if (this.keyHandler && this.keyHandler(event) === true) {
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prevEl?.click();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.nextEl?.click();
+    }
   }
 
   // // resets timer
@@ -251,6 +311,11 @@ export default class {
       previousPanel.classList.add('is-animating');
       nextPanel.style.transform = enteringTransform;
       nextPanel.classList.add('is-animating');
+
+      // Force the browser to commit the starting transform before moving both panels.
+      // Without this, rapid route/view updates can collapse the initial and final states
+      // into one frame and the horizontal transition appears to skip intermittently.
+      void nextPanel.offsetWidth;
 
       window.requestAnimationFrame(() => {
         nextPanel.style.transform = 'translateX(0)';

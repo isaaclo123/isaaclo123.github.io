@@ -267,6 +267,51 @@ export default () => {
     refreshSlidesUi();
   };
 
+  const toggleSlidePlayback = async (actionEl, slide) => {
+    const audioSource = slide?.dataset.audio;
+    buttonState.set(actionEl, slide);
+
+    if (!audioSource) {
+      return;
+    }
+
+    if (audio.dataset.activeSource === audioSource && !audio.paused) {
+      pausePlayback();
+      return;
+    }
+
+    if (audio.dataset.activeSource === audioSource && audio.paused) {
+      activateTrack(slide);
+      updateButtonIcon(actionEl, true);
+
+      try {
+        await audio.play();
+        startRotationLoop();
+        refreshSlidesUi();
+      } catch (error) {
+        pausePlayback();
+      }
+      return;
+    }
+
+    if (activeSlide) {
+      saveTrackState(activeSlide, { syncRotation: true });
+    }
+    stopRotationLoop();
+    audio.pause();
+    activateTrack(slide);
+    updateButtonIcon(actionEl, true);
+
+    try {
+      await audio.play();
+      startRotationLoop();
+      refreshSlidesUi();
+    } catch (error) {
+      pausePlayback();
+      updateButtonIcon(actionEl, false);
+    }
+  };
+
   audio.addEventListener('timeupdate', () => {
     const actionEl = [...buttonState.keys()].find(button => buttonState.get(button).dataset.audio === audio.dataset.activeSource);
     if (!actionEl || !audio.duration) {
@@ -349,49 +394,23 @@ export default () => {
   window.slides = new Slides('fa-play', 'Play Music', 'slide', 'view', {
     transitionMode: 'music-spin',
     animationDuration: 420,
-    actionHandler: async ({ actionEl, slide }) => {
-      const audioSource = slide.dataset.audio;
-      buttonState.set(actionEl, slide);
-
-      if (!audioSource) {
-        return;
+    actionHandler: ({ actionEl, slide }) => {
+      toggleSlidePlayback(actionEl, slide);
+    },
+    keyHandler: (event) => {
+      if ((event.code !== 'Space' && event.key !== ' ' && event.key !== 'Spacebar') || event.repeat) {
+        return false;
       }
 
-      if (audio.dataset.activeSource === audioSource && !audio.paused) {
-        pausePlayback();
-        return;
+      const slide = window.slides?.slides?.[window.slides.slideId];
+      const actionEl = window.slides?.actionEl;
+      if (!slide || !actionEl) {
+        return false;
       }
 
-      if (audio.dataset.activeSource === audioSource && audio.paused) {
-        activateTrack(slide);
-        updateButtonIcon(actionEl, true);
-
-        try {
-          await audio.play();
-          startRotationLoop();
-          refreshSlidesUi();
-        } catch (error) {
-          pausePlayback();
-        }
-        return;
-      }
-
-      if (activeSlide) {
-        saveTrackState(activeSlide, { syncRotation: true });
-      }
-      stopRotationLoop();
-      audio.pause();
-      activateTrack(slide);
-      updateButtonIcon(actionEl, true);
-
-      try {
-        await audio.play();
-        startRotationLoop();
-        refreshSlidesUi();
-      } catch (error) {
-        pausePlayback();
-        updateButtonIcon(actionEl, false);
-      }
+      event.preventDefault();
+      toggleSlidePlayback(actionEl, slide);
+      return true;
     },
     onSlideChange: handleSlideChange,
   });
