@@ -1,5 +1,7 @@
 // menu scss
 
+@use "sass:color";
+
 @import "layout";
 @import "variables";
 
@@ -53,14 +55,15 @@ nav {
 
   p {
     cursor: pointer;
-    padding: 0;
-    margin: 0;
+    padding: 0.42rem 0.6rem;
+    margin: -0.42rem -0.6rem;
     font-weight: bold;
     display: inline-block;
     pointer-events: auto;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     transform-origin: center center;
-    transition: transform 0.14s ease-out, color 0.14s ease-out;
+    transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.14s ease-out;
+    will-change: transform;
 
     &.menu-intro {
       opacity: 0;
@@ -72,10 +75,13 @@ nav {
     font-size: ($menu-font-size * 0.85) !important;
     cursor: pointer;
     display: inline-block;
+    padding: 0.5rem;
+    margin: -0.5rem;
     pointer-events: auto;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     transform-origin: center center;
-    transition: transform 0.14s ease-out, color 0.14s ease-out;
+    transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.14s ease-out;
+    will-change: transform;
 
     &.menu-intro {
       opacity: 0;
@@ -86,11 +92,15 @@ nav {
   // highlight
 
   .highlight {
-    &-hover, &-page {
-      color: $accent;
+    &-hover {
+      color: color.adjust($primary, $lightness: 8%);
+      transform: translateY(-0.45rem) scale(1.18);
+    }
+    &-page {
+      transform: translateY(-0.45rem) scale(1.18);
     }
     &-click {
-      color: $accent-2;
+      transform: translateY(-0.2rem) scale(1.08);
     }
   }
 
@@ -99,7 +109,7 @@ nav {
   }
 
   .current-menu-item.highlight-hover {
-    color: $accent-2;
+    color: color.adjust($accent, $lightness: 5%);
   }
   .current-menu-item.highlight-click {
     color: $accent;

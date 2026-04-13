@@ -1,4 +1,14 @@
 // sets up circular menu
+const hoverLeaveTimeouts = new Map();
+
+function clearHoverLeaveTimeout(className) {
+  const timeoutId = hoverLeaveTimeouts.get(className);
+
+  if (timeoutId) {
+    window.clearTimeout(timeoutId);
+    hoverLeaveTimeouts.delete(className);
+  }
+}
 
 function gotoUrl(url) {
   // eslint-disable-line no-unused-vars
@@ -14,6 +24,23 @@ function gotoHash(hash) {
 function hover(el, isActive) {
   // eslint-disable-line no-unused-vars
   const className = el.classList.item(0);
+  clearHoverLeaveTimeout(className);
+
+  if (!isActive) {
+    const timeoutId = window.setTimeout(() => {
+      const elements = document.getElementsByClassName(className);
+
+      for (let i = 0; i < elements.length; i += 1) {
+        elements[i].classList.remove('highlight-hover');
+      }
+
+      hoverLeaveTimeouts.delete(className);
+    }, 45);
+
+    hoverLeaveTimeouts.set(className, timeoutId);
+    return;
+  }
+
   const elements = document.getElementsByClassName(className);
 
   for (let i = 0; i < elements.length; i += 1) {
@@ -35,8 +62,6 @@ function click(el, isActive) {
 }
 
 function menuSelect(page) {
-  console.log(`menuSelect ${page}`);
-
   const oldElements = document.querySelectorAll('.current-menu-item');
   for (let i = 0; i < oldElements.length; i += 1) {
     oldElements[i].classList.remove('current-menu-item');
@@ -44,14 +69,8 @@ function menuSelect(page) {
 
   const elements = document.querySelectorAll(`.menu-${page}`);
   for (let i = 0; i < elements.length; i += 1) {
-    console.log('current-menu-item');
     elements[i].classList.add('current-menu-item');
   }
-
-  // for (let i = 0; i < elements.length; i += 1) {
-  //   elements[i].classList.toggle('highlight-hover');
-  //   elements[i].classList.toggle('highlight-click', false);
-  // }
 }
 
 function menuInit(pages, social) {
@@ -62,6 +81,11 @@ function menuInit(pages, social) {
   function applyIntroAnimation(element, order) {
     element.classList.add('menu-intro');
     element.style.animationDelay = `${order * ANIMATION_STEP_MS}ms`;
+    element.addEventListener('animationend', () => {
+      element.classList.remove('menu-intro');
+      element.style.animationDelay = '';
+      element.style.opacity = '1';
+    }, { once: true });
   }
 
   function createChar(i, name, character) {
@@ -123,6 +147,7 @@ function menuInit(pages, social) {
       // increment counter
       i += 1;
     }
+
     // add seperator
     addSeperator(i, el);
     i += 3;
