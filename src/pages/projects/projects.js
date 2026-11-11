@@ -1,6 +1,7 @@
 import Slides from '@/js/slides';
 import loadImage from '@/js/image';
 
+import quilt from '@/pages/projects/quilt.png';
 import vvvvvv from '@/pages/projects/vvvvvv.png';
 import receipt from '@/pages/projects/receipt.png';
 import ansible from '@/pages/projects/ansible.png';
@@ -13,6 +14,7 @@ require('@/pages/projects/projects.scss');
 
 export default () => {
   window.slides = new Slides(undefined, 'Link to Project');
+  loadImage(quilt, 'quilt');
   loadImage(vvvvvv, 'vvvvvv');
   loadImage(receipt, 'receipt');
   loadImage(ansible, 'ansible');
