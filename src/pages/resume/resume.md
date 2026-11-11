@@ -25,8 +25,8 @@ header-includes: |
 ---
 
 \Large \textbf{Isaac Lo} \hfill \normalsize isaaclo123@gmail.com \
-loisa.ac \hfill 1(650)-503-1253 \
-Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
+https://loisa.ac \hfill 1(650)-503-1253 \
+Baton Rouge LA / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{education}
 
@@ -45,21 +45,25 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
 
 \lineheader{Work}
 
-* **ClassRanked** \hfill Minneapolis, MN\
-  *Senior Software Engineer \hfill Current*
-    * Developed Python and React code for the ClassRanked Course Evaluation software; hosted on AWS
-    * Took charge of coding, design, and deployment, growing the software from 1 customer to over
-      15 Universities.
+* **Coursedog** \hfill Remote \
+  *Senior Software Engineer \hfill April 2026 -- Current*
+    * Architecting and developing full-stack features using Vue.js, Node.js, and MongoDB to deliver a next-generation Course Evaluation platform for higher education institutions.
+    * Spearheading AI-driven development to accelerate and modernize student feedback analytics.
+
+* **ClassRanked** \hfill Remote \
+  *Senior Software Engineer \hfill Feb 2023 -- April 2026*
+    * Owned end-to-end architecture, UI/UX design, full-stack development (Python, React), and AWS cloud deployment for the core Course Evaluation SaaS platform.
+    * Scaled the product from its initial customer to 15+ university clients, directly driving product-market fit and growth leading to the company's acquisition by Coursedog.
 
 * **Beckman Coulter** \hfill Minneapolis, MN\
-  *Software Engineer \hfill Current*
+  *Software Engineer \hfill May 2021 - Feb 2023*
     * Writing and maintaining C# code for the Beckman Coulter Immunoassay Analyzer instrument UI.
     * Took charge of Unit Test parallelization efforts, cutting UT pipeline run times by 50%, increasing
       developer productivity.
     * Wrote Powershell scripts to automate the installation and testing of new language translation packs.
 
 * **Cognizant** \hfill Minneapolis, MN\
-  *Software Developer \hfill 2021*
+  *Software Developer \hfill Nov 2020 - May 2021*
     * Wrote AWS Cloudformation templates to create a code pipeline for automated deployment of a 
       web application. Developed a Java Spring Boot application connected to Amazon DynamoDB.
     * Solved user issues in client applications in Microsoft Access, Ruby on Rails, Spring, and 
@@ -73,6 +77,10 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
       running in production in COUNTRY offices across the US.
 
 \lineheader{Projects}
+
+* **Interactive Book Blanket** (dearyall.net/book-blanket-2025)
+    * Engineered a responsive, interactive web application allowing users to explore reading history
+      through a dynamic digital quilt interface.
 
 * **Receipt Splitter** (github.com/isaaclo123/receipt-split)
     * Wrote a web application enabling the easy and precise splitting of receipt costs. Allows for
@@ -89,12 +97,3 @@ Minneapolis MN / San Jose CA \hfill linkedin.com/in/isaac-lo-325587124
     * Created a SMS service to help farmers in developing countries advance their personal
       education and increase their agricultural productivity. Wrote the service with Twilio and
       Node.js. Submitted for Minnehack 2019.
-
-* **Personal Webpage** (github.com/isaaclo123/isaaclo123.github.io)
-    * Designed and created my own personal webpage. Wrote the website with SASS, CSS, Webpack, and
-      Javascript. Used minification and cached assets for web optimization.
-
-* **System Configurations** (github.com/isaaclo123/my-playbook)
-    * Created configuration files for declarative software deployments for my personal
-      VPS instance using Ansible. Set up a NGINX proxy with HTTPS, a calender server, and a file sync
-      solution.
